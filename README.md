@@ -1,2 +1,2 @@
-# poetiq
-Portfolio Optimization and Event Trading in q
+# Portfolio Optimization and Event Trading in q
+
