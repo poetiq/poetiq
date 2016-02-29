@@ -19,34 +19,26 @@ h (`upd; `new; ([] sym: key os; dir: value `BUY`SELL os < 0 ; qty: value os; prx
 
 ///////////////////
 
+
 w:  ( [sym:`AAPL`AMZN] pct: 0 1)
 
 taq: ( [sym:`AAPL`AMZN] price: 5 70f);
-trades: ( [sym:`AAPL`AMZN] qty: 2 5);
+trades: ( [sym:`AAPL`AMZN; tstamp: 2 # 2015.01.01T00] qty: 2 5; prx: 5 70f);
 
-/ mtm: `AAPL`AMZN:! (enlist 5; enlist 70)
+// OPTIMIZER //
+/ provides target portfolio view
+target:  delete from .schema.holdings;
 
-mtm: select last price by sym from taq;
-pos: select sum qty by sym from trades;
+// PORTFOLIO STATE MACHINE //
+holdings: delete from .schema.holdings;
+`holdings upsert (select sum qty, last prx by sym from trades);
 
-eq:: sum pos * mtm
-
-mtm pos
-
-select  price, eq: 2# price wsum qty from w lj mtm lj pos 
-
-data:([]y:1 8 27 64 125;x1:1 2 3 4 5;x2:1 4 9 16 25)
-
-select enlist {sum x} x2 from data
-
-select {[w;price;qty] w * eq;{eq: price wsum qty}}[w;price;qty] from w lj mtm lj pos 
-select pct*eq, eq: value price wsum qty from 0!w lj mtm lj pos 
+/ subscribes to price updates and marks positions to market
+/ provides view: equity value
+eq:: exec qty wsum prx from holdings
 
 
-eq:: sum pos * mtm
-delta:: "i" $ (neg pos) + w * eq % mtm
-os: (where 0 = delta) _ delta
-
+// ORDER MANAGEMENT SYSTEM //
 h (`upd; `new; ([] sym: key os; dir: value `BUY`SELL os < 0 ; qty: value os; prx: 99.0; id: `001; tif: `DAY));
 
 

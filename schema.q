@@ -1,27 +1,27 @@
 \d .schema
 
-signals: (
-[]
-fun: ();
-tstamp:`timestamp$()
-)
-
 orders: (
 	[]
 	sym:		`symbol$	();
 	dir:		`symbol$	();
 	qty:		`int$		();
-	prx:		`float$		();
+	prx:		`float$	();
 	tif:		`symbol$	();
-	id:			`symbol$	()
+	id:		`symbol$	()
 	)
 
 quotes: (
 	[sym:		`symbol$	()]
-	bidqty:		`int$		();
-	bidprx:		`float$		();
-	askprx:		`float$		();
-	askqty:		`int$		()
+	bidqty:	`int$		();
+	bidprx:	`float$	();
+	askprx:	`float$	();
+	askqty:	`int$		()
+	)
+
+holdings: (
+	[sym:		`symbol$	()]
+	qty:	       `int$		();
+	prx:		`float$	()
 	)
 
 \d .
