@@ -131,6 +131,6 @@ opening: {
 /----------------------------------------------------------------------------------------------------------------------
 / Run
 
-`control upsert ("SIFF"; enlist csv) 0: `:/kdb/qx/marketmaker.csv;
+`control upsert ("SIFF"; enlist csv) 0: `:F:/marketmaker.csv;
 h: @[hopen; value .util.args `qx; 0]
 opening h (`snap; ([] sym:()));
