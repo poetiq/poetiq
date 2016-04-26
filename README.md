@@ -1,2 +1,2 @@
-# Portfolio Optimization and Event Trading in q
+# Platform O' Electronic Trading In Q
 
