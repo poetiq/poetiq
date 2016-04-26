@@ -1,2 +1,2 @@
-# Platform O' Electronic Trading In Q
+# POETIQ - Platform O' Electronic Trading In Q
 
