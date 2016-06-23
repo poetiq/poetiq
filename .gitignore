@@ -21,3 +21,8 @@ vignettes/*.pdf
 #archive
 Archive/
 
+#sublime
+*.sublime-project
+*.sublime-workspace
+terminal.glue
+
