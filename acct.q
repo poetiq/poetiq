@@ -26,20 +26,29 @@ fifo: {deltas each deltas sums[x] &\: sums[y]}
 / Connectivity list from connectivity matrix
 lm: {raze(til count x),''where each x}
 
+acct::{.inventory.acct[x]}
+xside:{$[`BUY=x;`SELL;`BUY]}
 
-\d .inventory
 / nested data structure to hold current inventory. Keyed by trade (gu)id and by side.
-book: flip `dt`sz`px!"iif"$\:()
-acct: ()!()
-acct[first 1#`guid$()]: `BUY`SELL!(book;book)
-past: "to be defined"
+.inventory.acct: ()!()
+.inventory.acct[first 1#`guid$()]: `BUY`SELL!(flip `dt`sz`px!"iif"$\:();flip `dt`sz`px!"iif"$\:())
+.inventory.past: "to be defined"
 
-\d .trade
+/ First-in first-out allocation of bid/buy and ask/sell fills
+/ Returns allocation matrix: a connectivity matrix of (b)id fills in rows and (a)sk fills in columns
+fifo: {deltas each deltas sums[x] &\: sums[y]}
+
+/ Connectivity list from connectivity matrix
+lm: {raze(til count x),''where each x}
+
 / allocate: try to match with opposite side. add nonmatched.
-allocate: ()!()
-allocate[`FIFO]:{[f]
-	opposide: $[`BUY=f`side;`SELL;`BUY];
-	$[count i:.inventory.acct[f`acct;opposide];
-	0N!"some matching";
-	inventory[f`acct;f`side],::`dt`sz`px!(1;1;1.)]}
+/ f(ill): a dictionary Must be a single record.  
+.trade.allocate: ()!()
+.trade.allocate[`FIFO]:{[f]
+	ao:acct[f`acct] xside f`side;
+	$[count ao;.trade.match[`FIFO][ao;f];
+	.inventory.acct[f`acct;f`side],::`dt`sz`px!(f`dt;f`sz;f`px)];}
 
+.trade.match: ()!()
+.trade.match[`FIFO]:{[a;f]
+	0N!r,'lm 0<r:fifo[a`sz;enlist abs f`sz];}

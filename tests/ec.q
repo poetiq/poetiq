@@ -6,12 +6,27 @@ Resources:
 \
 
 \l acct.q
+\e 1
 fills_:([] acct: 6#first -1?0Ng; dt: 1 3 5 7 9 11 ; sym: `AAPL`AAPL`AAPL`AAPL`AAPL`AAPL; side:`BUY`SELL`BUY`SELL`SELL`BUY; sz:6 -5 4 -3 -8 1; px: 10.0 11.0 10.0 11.0 9.0 8.0)
 quotes: ([] t: 1 3 5 7 9 11; sym: `AAPL`AAPL`AAPL`AAPL`AAPL`AAPL; bid: 10.0 11.0 10.0 11.0 9.0 8.0; ask: 10.0 12.0 10.0 11.0 9.0 8.0)
 
-f: fills_ 0
+f: fills_ 1
 
-.trade.allocate[`FIFO; f]
-.inventory.acct[f`acct;`BUY]
-.inventory.acct[f`acct] `BUY
+.trade.allocate[`FIFO; fills_ 0]
+i::{[a;s] select from .inventory.acct[a;s]}
+i[f`acct;`BUY]
+.inventory.acct[f`acct][`BUY]
+
+.trade.allocate[`FIFO; fills_ 1]
+
+
+/todo: how to access function outside namespace? fifo 
+/todo: what's the command for view recalc check? need to time the a view if it's worthwhile to define it globally and use it
+
+acct exec acct from fills_ 0
+
+.inventory.portfolio
 .inventory.past
+
+lm 0<fifo[enlist 6; enlist 5]
+
