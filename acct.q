@@ -51,4 +51,9 @@ lm: {raze(til count x),''where each x}
 
 .trade.match: ()!()
 .trade.match[`FIFO]:{[a;f]
-	0N!r,'lm 0<r:fifo[a`sz;enlist abs f`sz];}
+	f: enlist update abs sz,px: px*signum sz from f
+	l:lm 0<r:fifo[a`sz;f`sz]
+	delete from (update sz - raze r from a) where sz=0
+	dt: a[l[;0];`dt]|f`dt
+	pnl: a[l[;0];`px] + (raze r) * f`px
+	rpnl:([] sym:f`sym;acct:f`acct;dt;pnl)
