@@ -1,3 +1,6 @@
+# Ignore subfolders (databases) in hdb/ but retain files
+hdb/*/*
+
 # History files
 .Rhistory
 .Rapp.history
@@ -26,3 +29,5 @@ Archive/
 *.sublime-workspace
 terminal.glue
 
+# OS X
+.DS_Store
