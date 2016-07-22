@@ -1,6 +1,8 @@
 # Ignore subfolders (databases) in hdb/ but retain files
 hdb/*/*
 
+logs/*.txt
+
 # History files
 .Rhistory
 .Rapp.history
