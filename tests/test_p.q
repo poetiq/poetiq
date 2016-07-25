@@ -18,7 +18,7 @@
 		upd[`mtm] prices;
 		/ equity musteq 100575f;
 		/ issue with testing the view above
-		equity musteq cash + exec sum pnl from pnl;
+		100575f musteq cash + exec sum pnl from pnl;
 	};
 	should["calculate position after fills"]{
 		upd[`fill] each txns;
