@@ -1,8 +1,8 @@
 # Set up environment variables
 
-export POETIC=$(pwd)
-export KDBHDB=${POETIC}/hdb
-export KDBTESTS=${POETIC}/tests
-export KDBLOGS=${POETIC}/logs
+export POETIQ=$(pwd)
+export KDBHDB=${POETIQ}/hdb
+export KDBTESTS=${POETIQ}/tests
+export KDBLOGS=${POETIQ}/logs
 
-export POETICBASEPORT=5000
+export POETIQBASEPORT=5000
