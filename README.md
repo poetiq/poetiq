@@ -1,5 +1,11 @@
 # POETIQ - Platform O' Electronic Trading In Q
 
+## Overview ##
+
+See the [flowchart](https://www.lucidchart.com/invitations/accept/fa9324ad-321c-4871-abeb-24b040068009).
+
+## Use ##
+
 Test mark-to-market method of calculating P&L. This test can also be found in the `tests/ec.q` directory.
 
         \l p.q
