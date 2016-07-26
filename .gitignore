@@ -1,7 +1,7 @@
 # Ignore subfolders (databases) in hdb/ but retain files
 hdb/*/*
 
-logs/*.txt
+logs/*.log
 
 # History files
 .Rhistory
@@ -27,7 +27,6 @@ vignettes/*.pdf
 Archive/
 
 #sublime
-*.sublime-project
 *.sublime-workspace
 terminal.glue
 
