@@ -1,8 +1,8 @@
 REM Set up environment variables
 
-set POETIC=%cd%
-set KDBHDB=%POETIC%\hdb
-set KDBTESTS=%POETIC%\tests
-set KDBLOGS=%POETIC%\logs
+set POETIQ=%cd%
+set KDBHDB=%POETIQ%\hdb
+set KDBTESTS=%POETIQ%\tests
+set KDBLOGS=%POETIQ%\logs
 
-set POETICBASEPORT=5000
+set POETIQBASEPORT=5000

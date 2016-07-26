@@ -3,30 +3,42 @@ User story:  As a strategy evaluator, I want to see the equity curve in a time s
 Requirement: on-disk quote must have `p#sym and time sorted within sym. This is aj speed requirement.
 Resources:
 	http://www.accountingformanagement.org/adjusting-marketable-securities-to-market-value/
+	http://ibkb.interactivebrokers.com/node/56
 \
 
-\l acct.q
+\l p.q
 \e 1
-fills_:([] acct: 6#first -1?0Ng; dt: 1 3 5 7 9 11 ; sym: `AAPL`AAPL`AAPL`AAPL`AAPL`AAPL; side:`BUY`SELL`BUY`SELL`SELL`BUY; sz:6 -5 4 -3 -8 1; px: 10.0 11.0 10.0 11.0 9.0 8.0)
-quotes: ([] t: 1 3 5 7 9 11; sym: `AAPL`AAPL`AAPL`AAPL`AAPL`AAPL; bid: 10.0 11.0 10.0 11.0 9.0 8.0; ask: 10.0 12.0 10.0 11.0 9.0 8.0)
+txns: ([] dt: 1 2 3 4; sym: 4#`AAPL; sz: 100 200 -200 -50; px: 50 52 53 53.5)
+prices: ([] sym: 4#`AAPL; dt: 1 2 3 4; cl: 50.5 52 53 54)
+/ performance requirements from http://code.kx.com/wiki/Reference/aj :
+`sym`dt xasc `prices
+update `g#sym from `prices
 
-f: fills_ 1
-
-.trade.allocate[`FIFO; fills_ 0]
-i::{[a;s] select from .inventory.acct[a;s]}
-i[f`acct;`BUY]
-.inventory.acct[f`acct][`BUY]
-
-.trade.allocate[`FIFO; fills_ 1]
-
-
-/todo: how to access function outside namespace? fifo 
-/todo: what's the command for view recalc check? need to time the a view if it's worthwhile to define it globally and use it
-
-acct exec acct from fills_ 0
-
-.inventory.portfolio
-.inventory.past
-
-lm 0<fifo[enlist 6; enlist 5]
-
+{upd[`fill;x]} each txns
+upd[`mtm; prices]
+equity
+/ 100575f
+positions
+/
+sym | sz cost dt
+----| ----------
+AAPL| 50 54   4 
+\
+pnl
+/
+sym  dt pnl
+-----------
+AAPL 2  200
+AAPL 3  300
+AAPL 4  50 
+AAPL 4  25 
+\
+/ alternatively, batch calculation:
+pnlCalc[txns;prices]
+/
+dt sym  sz   px   cl   pnl
+--------------------------
+1  AAPL 100  50   50.5 50 
+2  AAPL 200  52   52   150
+3  AAPL -200 53   53   300
+4  AAPL -50  53.5 54   75 
