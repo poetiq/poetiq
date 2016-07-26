@@ -2,6 +2,7 @@
 hdb/*/*
 
 logs/*.log
+logs/*.txt
 
 # History files
 .Rhistory

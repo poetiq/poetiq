@@ -1,1 +1,6 @@
 host,port,proctype,procname
+localhost,{KDBBASEPORT},discovery,discovery1
+localhost,{KDBBASEPORT}+1,housekeeping,housekeeping1
+localhost,{KDBBASEPORT}+2,hdb,equitysim
+localhost,{KDBBASEPORT}+3,p,p1
+localhost,{KDBBASEPORT}+4,kill,killpoetiq

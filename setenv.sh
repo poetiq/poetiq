@@ -1,15 +1,17 @@
 # Set up environment variables
 
-export POETIC=$(pwd)
+export POETIQ=$(pwd)
 export KDBCODE=${POETIQ}/code
 export KDBCONFIG=${POETIQ}/config
 export KDBLOG=${POETIQ}/logs
-export KDBHDB=${POETIC}/hdb
+export KDBHDB=${POETIQ}/hdb
 export KDBLIB=${POETIQ}/lib
-export KDBTESTS=${POETIC}/tests
+export KDBTESTS=${POETIQ}/tests
 export KDBHTML=${POETIQ}/html
 
-export POETICBASEPORT=5000
+export KDBBASEPORT=5000
+
+export KDBSTACKID="-stackid ${KDBBASEPORT}"
 
 # if using the email facility, modify the library path for the email lib depending on OS
 # e.g. linux:
