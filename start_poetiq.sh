@@ -10,3 +10,12 @@ q torq.q -load ${KDBCODE}/processes/housekeeping.q ${KDBSTACKID} -proctype house
 
 echo "Starting hdb equitysim ..."
 q torq.q -load ${KDBHDB}/equitysim ${KDBSTACKID} -proctype hdb -procname equitysim -localtime -g 1 -T 60 -w 4000 </dev/null >$KDBLOG/equitysim.txt 2>&1 &
+
+echo "Starting gateway ..."
+q torq.q -load ${KDBCODE}/processes/gateway.q ${KDBSTACKID} -proctype gateway -procname gateway1 -.servers.CONNECTIONS hdb rdb -localtime -g 1 -w 4000 </dev/null >$KDBLOG/gateway.txt 2>&1 &
+
+# echo "Starting portfolio tracker ..."
+# q torq.q -load ${KDBCODE}/processes/p.q ${KDBSTACKID} -proctype p -procname p1 -localtime -debug
+
+# echo "Starting backtest feed ..."
+# q torq.q -load ${KDBCODE}/processes/backtestfeed.q ${KDBSTACKID} -proctype backtestfeed -procname backtestfeed1 -localtime </dev/null >$KDBLOG/backtestfeed.txt 2>&1 &
