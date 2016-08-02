@@ -4,5 +4,6 @@ localhost,{KDBBASEPORT}+1,housekeeping,housekeeping1
 localhost,{KDBBASEPORT}+2,hdb,equitysim
 localhost,{KDBBASEPORT}+3,p,p1
 localhost,{KDBBASEPORT}+4,kill,killpoetiq
-localhost,{KDBBASEPORT}+5,backtestfeed,backtestfeed1
+localhost,{KDBBASEPORT}+5,backtester,backtester1
 localhost,{KDBBASEPORT}+6,gateway,gateway1
+localhost,{KDBBASEPORT}+7,alphamodel,alpha1

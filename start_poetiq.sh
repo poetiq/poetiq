@@ -17,5 +17,8 @@ q torq.q -load ${KDBCODE}/processes/gateway.q ${KDBSTACKID} -proctype gateway -p
 # echo "Starting portfolio tracker ..."
 # q torq.q -load ${KDBCODE}/processes/p.q ${KDBSTACKID} -proctype p -procname p1 -localtime -debug
 
-# echo "Starting backtest feed ..."
-# q torq.q -load ${KDBCODE}/processes/backtestfeed.q ${KDBSTACKID} -proctype backtestfeed -procname backtestfeed1 -localtime </dev/null >$KDBLOG/backtestfeed.txt 2>&1 &
+# echo "Starting backtester ..."
+# q torq.q -load ${KDBCODE}/processes/backtester.q ${KDBSTACKID} -proctype backtester -procname backtester1 -localtime </dev/null >$KDBLOG/backtestfeed.txt 2>&1 &
+
+# echo "Starting Moving Average Crossover algorithm ..."
+# q torq.q -load ${KDBCODE}/algorithms/movavg.q ${KDBSTACKID} -proctype alphamodel -procname alpha1 -localtime </dev/null >$KDBLOG/alpha.txt 2>&1 &
