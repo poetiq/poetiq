@@ -3,6 +3,7 @@ positions: update `u#sym from `sym xkey flip `sym`sz`cost`dt!"sifi"$\:()
 pnl: update `g#sym, `s#dt from flip `sym`dt`pnl!"sif"$\:()
 cash: 100000
 equity:: cash + exec sum pnl from pnl
+ec:: select ec: cash + sum pnl by dt from pnl
 
 upd: ()!()
 

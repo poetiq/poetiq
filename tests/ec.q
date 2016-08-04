@@ -7,6 +7,7 @@ Resources:
 \
 
 \l p.q
+\l w.q
 \e 1
 txns: ([] dt: 1 2 3 4; sym: 4#`AAPL; sz: 100 200 -200 -50; px: 50 52 53 53.5)
 prices: ([] sym: 4#`AAPL; dt: 1 2 3 4; cl: 50.5 52 53 54)
