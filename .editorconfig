@@ -1,0 +1,4 @@
+# 2 space indentation on Github and other editors
+[*.{q,k}]
+indent_style = tab
+indent_size = 2
