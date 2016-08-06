@@ -7,3 +7,4 @@ localhost,{KDBBASEPORT}+4,kill,killpoetiq
 localhost,{KDBBASEPORT}+5,backtester,backtester1
 localhost,{KDBBASEPORT}+6,gateway,gateway1
 localhost,{KDBBASEPORT}+7,alphamodel,alpha1
+localhost,{KDBBASEPORT}+8,gui,gui1
