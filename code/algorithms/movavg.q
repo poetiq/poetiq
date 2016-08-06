@@ -5,7 +5,6 @@ params[`end]:@[value;`end;2016.06.01];
 
 
 .algo.upd[`quote]:{[tm;x]
-	show tm;
 	fast:avg history[50;`bidclose];
 	slow:avg history[200;`bidclose];
 

@@ -7,11 +7,10 @@ reload:{
 .proc.getattributes:{`date`tables!(@[value;`date;`date$()];tables[])}
 
 / OHLC data
-/ begin, end, syms, minutes
-ohlc:{[b;e;s;m]
+ohlc:{[bgn;end;syms;mns]
 	.lg.o[`ohlc;"Fetching bars"];
 	t:select bidopen:first bid,bidhigh:max bid,bidlow:min bid,bidclose:last bid,askopen:first ask,askhigh:max ask,asklow:min ask,askclose:last ask
-	by time:date+m xbar time.minute,sym from quote where date within(b;e),sym in s;
+	by time:date+mns xbar time.minute,sym from quote where date within(bgn;end),sym in syms;
 	0!`time xgroup t
  };
 

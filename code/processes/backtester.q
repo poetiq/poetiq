@@ -1,36 +1,40 @@
-i:0
-data:()
+/ Backtest feed
 
-/ end of feed
-eof:{not i<n and n:count data}
-
-loaddata:{[bgn;end;syms;mns]
-	h:.servers.gethandlebytype[`gateway;`roundrobin];
-	neg[h](`.gw.asyncexec;(`ohlc;bgn;end;syms;minutes);`hdb);
-	data::h[];
- };
+data:([] sym:())
 
 reset:{i::0;}
 
-init:{[bgn;end;syms;mns]
-	reset[];
-	loaddata[bgn;end;syms;mns];
-	@[neg .z.w;(`upd;`init;"Backtester initialized");"failed to send ready signal to ",string .z.w];
+loaddata:{[bgn;end;syms;delta]
+	.lg.o[`backtest;"loading data"];
+	h:.servers.gethandlebytype[`gateway;`roundrobin];
+	neg[h](`.gw.asyncexec;(`ohlc;bgn;end;syms;delta);`hdb);
+	$[98h~type data::h[];.lg.o[`backtest;"data loaded"];.lg.e[`backtest;data]];
+	reset[]
  };
 
-/ handle, time, quotes
-send:{[h;t;x] i+::1; @[neg h;(`upd;`quote;(t;x));"failed to send data to ",string h];}
+init:{[bgn;end;syms;delta]
+	.lg.o[`backtest;"initializing backtester"];
+	loaddata[bgn;end;syms;delta];
+	/ trick to prevent enlisted dict from converting to a table
+	scope:(enlist[::]!enlist[::]),exec bgn:min time,end:max time,n:count i from data;
+	(neg first first .u.w`data)(`upd;`init;enlist scope);
+ };
 
-done:{@[neg x;(`upd;`done;enlist`);"failed to send completion signal to ",string x];}
+/ Overwrite selector (get ith bar)
+.u.sel:{[x;y](first over key@;ungroup value@)@\:1!select from data where i=get`i}
 
-stepnext:{$[not eof[];send[.z.w] . bar i;done .z.w]}
+/ Overwrite publisher (increase current bar number)
+.u.pub:{
+	$[not i<n and n:count data;
+		eof[];
+		[x .(y;z);i+::1;]]
+ }@[value;`.u.pub;{{[t;x]}}]
 
-/ get ith bar
-bar:{(first over key@;ungroup value@)@\:1!select from data where i=x}
-
-schema:{0!delete from data}
-
-who:{.z.w}
+/ End of feed
+eof:{
+	.lg.o[`backtest;"backtest complete"];
+	{[w](neg first w)(`upd;`eof;enlist`)}each .u.w`data;
+ };
 
 .servers.startup[]
 
@@ -38,7 +42,7 @@ who:{.z.w}
 bgn:2016.05.01
 end:2016.06.01
 syms:`AAPL`MSFT
-minutes:5
+delta:0D00:05
 
-loaddata[bgn;end;syms;minutes]
+loaddata[bgn;end;syms;delta]
 data

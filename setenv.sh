@@ -7,6 +7,7 @@ export KDBLOG=${POETIQ}/logs
 export KDBHDB=${POETIQ}/hdb
 export KDBLIB=${POETIQ}/lib
 export KDBTESTS=${POETIQ}/tests
+export KDBSPECS=${POETIQ}/specs
 export KDBHTML=${POETIQ}/html
 
 export KDBBASEPORT=5000
