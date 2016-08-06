@@ -1,5 +1,4 @@
 # POETIQ - Platform O' Electronic Trading In Q
-
 ## Overview ##
 
 See the [flowchart](https://www.lucidchart.com/invitations/accept/fa9324ad-321c-4871-abeb-24b040068009).
@@ -47,3 +46,11 @@ Alternatively, batch calculation should yield equivalent result:
     2  AAPL 200  52   52   150
     3  AAPL -200 53   53   300
     4  AAPL -50  53.5 54   75 
+
+### HDB:
+Create a HDB `equitysim` with simulated equity data for development purposes:
+````
+cd hdb
+q buildhdb.q
+````
+

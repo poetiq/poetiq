@@ -22,3 +22,4 @@ upd[`mtm]:{
 pnlCalc:{[t;q]
 	update pnl: (sz*cl-px) + 0^(prev sums sz)*deltas cl by sym from aj0 [`sym`dt; t; q]
 	}
+

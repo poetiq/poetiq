@@ -1,6 +1,7 @@
 # Ignore subfolders (databases) in hdb/ but retain files
 hdb/*/*
 
+logs/*.log
 logs/*.txt
 
 # History files
@@ -27,9 +28,9 @@ vignettes/*.pdf
 Archive/
 
 #sublime
-*.sublime-project
 *.sublime-workspace
 terminal.glue
 
 # OS X
+=======
 .DS_Store
