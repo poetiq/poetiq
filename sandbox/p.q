@@ -1,4 +1,4 @@
-
+\l ec.q
 positions: update `u#sym from `sym xkey flip `sym`sz`cost`dt!"sifi"$\:()
 pnl: update `g#sym, `s#dt from flip `sym`dt`pnl!"sif"$\:()
 cash: 100000
@@ -22,4 +22,6 @@ upd[`mtm]:{
 pnlCalc:{[t;q]
 	update pnl: (sz*cl-px) + 0^(prev sums sz)*deltas cl by sym from aj0 [`sym`dt; t; q]
 	}
-
+/ neg[.z.w] -8!(enlist `hist)!enlist 0!`dt`val xcol ec]
+.z.ts:{ if[`ec in system "B"; 0N!"redrawing"; ec]}
+\t 100

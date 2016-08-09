@@ -47,4 +47,3 @@ dt sym  sz   px   cl   pnl
 h:neg hopen `:localhost:5001
 h(`upd;`fill; txns 0)
 h(`upd;`mtm; 1#prices)
-.z.ts:{ if[`ec in system "B"; 0N!"redrawing";neg[.z.w] -8!(enlist `hist)!enlist 0!`dt`val xcol ec]}
