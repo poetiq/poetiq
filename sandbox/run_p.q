@@ -6,11 +6,19 @@ Resources:
 	http://ibkb.interactivebrokers.com/node/56
 \
 
-\l p.q
-\l w.q
-\e 1
-txns: ([] dt: 1 2 3 4; sym: 4#`AAPL; sz: 100 200 -200 -50; px: 50 52 53 53.5)
-prices: ([] sym: 4#`AAPL; dt: 1 2 3 4; cl: 50.5 52 53 54)
+\l ../hdb/equitysim
+\S 104831
+now: 2016.05.02
+txns: update size * nt?-1 1 from .Q.ind[trade; asc (nt:20)?count trade]
+prices: select from daily where date=now
+select from daily where sym=`AAPL
+
+h:neg hopen `:localhost:5001
+h(`upd;`fill; txns 0)
+h(`upd;`mtm; prices)
+select from trade where sym=`AAPL
+
+prices: select from daily where sym=`AAPL
 / performance requirements from http://code.kx.com/wiki/Reference/aj :
 `sym`dt xasc `prices
 update `g#sym from `prices
@@ -45,5 +53,5 @@ dt sym  sz   px   cl   pnl
 4  AAPL -50  53.5 54   75 
 \
 h:neg hopen `:localhost:5001
-h(`upd;`fill; txns 0)
-h(`upd;`mtm; 1#prices)
+h(`upd;`fill; txns 2)
+h(`upd;`mtm; 2#prices)
