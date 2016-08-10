@@ -3,7 +3,7 @@ subs:flip `handle`view!"is"$\:()
 sub:{`subs upsert (.z.w; x); x}
 pubsub:{pub[.z.w] sub[x]}
 .z.pc: {delete from `subs where handle=x}
-pub:{neg[x] -8!value y}
+pub:{neg[x] -8!0!update dt + 2016.01.01 from value y}
 loadPage:{pubsub[`ec]}
 
 /
