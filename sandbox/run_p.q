@@ -8,16 +8,30 @@ Resources:
 
 \l ../hdb/equitysim
 \S 104831
-now: 2016.05.02
+
 txns: update size * nt?-1 1 from .Q.ind[trade; asc (nt:20)?count trade]
 prices: select from daily where date=now
+events: select distinct date from daily
+events: update e:`fill from txns
+update e:mtm from prices
+select from txns where date < 
+exec date from events where i=0
 select from daily where sym=`AAPL
+trade asof 	`sym`date`time!(`IBM;09:30:00.0)
+trade asof (`date`time)!(2016.05.02;09:30:00.434)
+clock: 2016.05.01
+\ts select aa:{[d;s;p;sz] t:(`date`sym`price`size)!(d;s;p;sz); h (`upd;`fill; t) }'[date;sym;price;size] from trade
+\ts 
+-22!txns
+
 
 h:neg hopen `:localhost:5001
 h(`upd;`fill; txns 0)
 h(`upd;`mtm; prices)
 select from trade where sym=`AAPL
 
+select from txns where date=2016.05.02
+-11!txns
 prices: select from daily where sym=`AAPL
 / performance requirements from http://code.kx.com/wiki/Reference/aj :
 `sym`dt xasc `prices
