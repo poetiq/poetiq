@@ -1,5 +1,6 @@
 /q p.q -p 5001
 \l ec.q
+\e 1
 positions: update `u#sym from `sym xkey flip `sym`sz`cost`date!"sifd"$\:()
 pnl: update `g#sym, `s#date from flip `sym`date`pnl!"sdf"$\:()
 cash: 100000
@@ -9,12 +10,13 @@ ec:: select ec: cash + sum pnl by date from pnl
 upd: ()!()
 
 upd[`fill] :{
-	show x;
+	/show x;
 	`positions upsert exec sym:x`sym, sum sz, sz wavg cost, last date from (0^positions[x`sym]), select sz:size, cost:price, date from enlist x;
-	if[ not positions [ x`sym; `cost ] = x`price; ; upd [`mtm; select sym, date, close:price from enlist x] ];
+	if[ not positions [ x`sym; `cost ] = x`price; ; upd [`mtm; select sym, date, close:price from x] ];
 	}
 
 upd[`mtm]:{
+	x: $[1<count first x;flip x;enlist x];
 	p: update pnl: sz*close-cost from aj[`sym`date; select from `positions; select sym, date, close from x ];
 	`pnl insert select sym, date, pnl from p;
 	`positions upsert select sym, sz, cost:close, date from p;
