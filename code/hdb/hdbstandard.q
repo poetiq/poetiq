@@ -1,9 +1,9 @@
-// reload function
+/ reload function
 reload:{
 	.lg.o[`reload;"reloading HDB"];
 	system"l ."}
 
-// Get the relevant HDB attributes
+/ get the relevant HDB attributes
 .proc.getattributes:{`date`tables!(@[value;`date;`date$()];tables[])}
 
 / OHLC data
@@ -14,11 +14,22 @@ ohlc:{[bgn;end;syms;mns]
 	0!`time xgroup t
  };
 
+/ sorted dict with `time`table`data (for backtesting)
+events:{[tbls;bgn;end;syms;mns]
+	.lg.o[`events;"fetching events"];
+	`time xasc (,/){[tbl;bgn;end;syms;mns]
+		t:?[tbl;enlist(within;(+;`date;`time);(enlist;`bgn;`end));0b;()];
+		{[tbl;x]`time`tbl`data!(x[`date]+x`time;tbl;x)}[tbl]each t
+	}[;bgn;end;syms;mns]each tbls
+ };
+
+
 \
-bgn:2016.05.01
-end:2016.06.01
-syms:`AAPL`MSFT
-minutes:5
+tbls:`trade`quote;
+bgn:2016.05.01;
+end:2016.05.10;
+syms:`AAPL`MSFT;
+mns:5;
 
 ohlc[bgn;end;syms;minutes]
-0!`time xgroup t
+events[tbls;bgn;end;syms;mns]
