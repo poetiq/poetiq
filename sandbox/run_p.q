@@ -10,62 +10,29 @@ Resources:
 \S 104831
 
 txns: update size * nt?-1 1 from .Q.ind[trade; asc (nt:20)?count trade]
-prices: select from daily where date=now
-events: select distinct date from daily
-events: update e:`fill from txns
-update e:mtm from prices
-select from txns where date < 
-exec date from events where i=0
-select from daily where sym=`AAPL
-trade asof 	`sym`date`time!(`IBM;09:30:00.0)
-trade asof (`date`time)!(2016.05.02;09:30:00.434)
-clock: 2016.05.01
-\ts select aa:{[d;s;p;sz] t:(`date`sym`price`size)!(d;s;p;sz); h (`upd;`fill; t) }'[date;sym;price;size] from trade
-\ts 
--22!txns
-
-
+prices: select from daily
+events : {`timestamp`event`data!(x`timestamp;`fill;x)} each update timestamp:date + time from select from txns
+events,: {`timestamp`event`data!(x`timestamp;`mtm; flip delete timestamp from x)} each 
+0!?[`prices;();enlist[`timestamp]!enlist (+;`date;23:59:59.999);cols[`prices]!cols `prices]
+`timestamp xasc `events
 h:neg hopen `:localhost:5001
+{h(`upd;x`event;x`data)} each events
+
+/
+select by timestamp:date + 23:59:59.999 from prices 
+`timestamp xasc `events
+
+"p"$2016.05.03
+{h(`upd;x`event;x`data)} each 
+select data from {`timestamp`event`data!(x`timestamp;`mtm; x,'x`date)} each 0!`date xgroup prices
+funcSelect: 
+
+parse "select by timestamp:date + 23:59:59.999 from prices"
+
+update timestamp:date + 23:59:59.999 from prices
+/
 h(`upd;`fill; txns 0)
-h(`upd;`mtm; prices)
+h(`upd;`mtm; 2#prices)
+
 select from trade where sym=`AAPL
 
-select from txns where date=2016.05.02
--11!txns
-prices: select from daily where sym=`AAPL
-/ performance requirements from http://code.kx.com/wiki/Reference/aj :
-`sym`dt xasc `prices
-update `g#sym from `prices
-
-{upd[`fill;x]} each txns
-upd[`mtm; prices]
-equity
-/ 100575f
-positions
-/
-sym | sz cost dt
-----| ----------
-AAPL| 50 54   4 
-\
-pnl
-/
-sym  dt pnl
------------
-AAPL 2  200
-AAPL 3  300
-AAPL 4  50 
-AAPL 4  25 
-\
-/ alternatively, batch calculation:
-pnlCalc[txns;prices]
-/
-dt sym  sz   px   cl   pnl
---------------------------
-1  AAPL 100  50   50.5 50 
-2  AAPL 200  52   52   150
-3  AAPL -200 53   53   300
-4  AAPL -50  53.5 54   75 
-\
-h:neg hopen `:localhost:5001
-h(`upd;`fill; txns 2)
-h(`upd;`mtm; 2#prices)
