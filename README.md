@@ -1,7 +1,7 @@
 # POETIQ - Platform O' Electronic Trading In Q
 ## Overview ##
 
-See the [flowchart](https://www.lucidchart.com/invitations/accept/fa9324ad-321c-4871-abeb-24b040068009).
+See the [flowchart](https://www.lucidchart.com/documents/view/470ba64c-d651-4fca-95a8-b1bec2ce62de).
 
 ## Use ##
 
