@@ -14,22 +14,53 @@ ohlc:{[bgn;end;syms;mns]
 	0!`time xgroup t
  };
 
-/ sorted dict with `time`table`data (for backtesting)
-events:{[tbls;bgn;end;syms;mns]
+/ row order in which the specified tables should be replayed
+replayorder:{[tbls;bgn;end;syms]
+	`time xasc (,/){![?[x;();0b;enlist[`time]!enlist(+;`time;`date)];();0b;`tbl`row!(enlist x;`i)]}each tbls
+ };
+
+loadchunk:{[order]
+	t:first o:(key;value)@\:exec row by tbl from order;
+	t!({`row xkey update row:y from .Q.ind[value x;y]} '). o
+ };
+
+/ returns data and a table depicting the order
+events:{[tbls;bgn;end;syms]
 	.lg.o[`events;"fetching events"];
-	`time xasc (,/){[tbl;bgn;end;syms;mns]
+	data:tbls!(?[;enlist(within;(+;`date;`time);(enlist;`bgn;`end));0b;()]@)each tbls;
+	order:`time xasc (,/){![?[x;();0b;enlist[`time]!enlist(+;`time;`date)];();0b;`tbl`row!(enlist x;`i)]}each tbls;
+	`data`order!(data;order)
+ };
+
+/ sorted dict with events (`time`table`data) for backtesting
+events2:{[tbls;bgn;end;syms]
+	.lg.o[`events;"fetching events"];
+	`time xasc (,/){[tbl;bgn;end;syms]
 		t:?[tbl;enlist(within;(+;`date;`time);(enlist;`bgn;`end));0b;()];
 		{[tbl;x]`time`tbl`data!(x[`date]+x`time;tbl;x)}[tbl]each t
-	}[;bgn;end;syms;mns]each tbls
+	}[;bgn;end;syms]each tbls
  };
 
 
 \
 tbls:`trade`quote;
-bgn:2016.05.01;
-end:2016.05.10;
+bgn:2016.05.10;
+end:2016.05.20;
 syms:`AAPL`MSFT;
 mns:5;
 
-ohlc[bgn;end;syms;minutes]
-events[tbls;bgn;end;syms;mns]
+\ts ohlc[bgn;end;syms;mns]
+\ts events[tbls;bgn;end;syms] / 6054 326487424
+\ts e:events2[tbls;bgn;end;syms] / 1322 128845328
+
+order:1000#replayorder[tbls;bgn;end;syms]
+chunk:loadchunk order
+
+count order
+chunk`quote
+
+\l .
+select from quote
+select min date from daily
+`date`time xasc update row:i from select from quote
+

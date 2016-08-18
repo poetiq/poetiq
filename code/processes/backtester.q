@@ -1,22 +1,49 @@
 / Backtest feed
 
-data:([] sym:())
-
 reset:{i::0;}
 
-loaddata:{[bgn;end;syms;delta]
-	.lg.o[`backtest;"loading data"];
+chunksize:"j"$1e4;	/ chunk size
+curchunk:(0;chunksize);	/ current chunk
+
+nextchunk:{:curchunk::curchunk[1]+/:(1;chunksize)};
+
+/ sets and returns `order (replay order)
+getorder:{[tbls;bgn;end;syms]
+	.lg.o[`backtest;"getting order in which tables should be replayed"];
 	h:.servers.gethandlebytype[`gateway;`roundrobin];
-	neg[h](`.gw.asyncexec;(`ohlc;bgn;end;syms;delta);`hdb);
-	$[98h~type data::h[];.lg.o[`backtest;"data loaded"];.lg.e[`backtest;data]];
-	reset[]
+	neg[h](`.gw.asyncexec;(`replayorder;tbls;bgn;end;syms);`hdb);
+	 / deferred async (block current process)
+	$[98h~type r:h[];[.lg.o[`getorder;"order retrieved"];:order::r;];.lg.e[`getorder;r]];
  };
 
-init:{[bgn;end;syms;delta]
+loadchunk:{[order]
+	.lg.o[`loadchunk;"loading rows "," - "sv string curchunk];
+	h:.servers.gethandlebytype[`gateway;`roundrobin];
+	neg[h](`.gw.asyncexec;(`loadchunk;order);`hdb);
+	$[99h~type r:h[]; / deferred sync
+		/ update local tables with current chunks
+		[(@[`.;;:;]').(key;value)@\:r; .lg.o[`getorder;"chunk retrieved"];];
+		.lg.e[`getorder;r]];
+ };
+
+loaddata:{[tbls;bgn;end;syms]
+	.lg.o[`backtest;"loading data"];
+	h:.servers.gethandlebytype[`gateway;`roundrobin];
+	neg[h](`.gw.asyncexec;(`events;tbls;bgn;end;syms);`hdb);
+	$[99h~type r::h[]; / send sync chaser
+		/ set data and order variables
+		[(@[`.;;:;]'). flip(flip(key;value)@\:r`data),enlist(`order;r`order);.lg.o[`backtest;"data loaded"]];
+		.lg.e[`backtest;data]];
+	reset[];
+	loaded::1b;
+ };
+
+init:{[tbls;bgn;end;syms]
 	.lg.o[`backtest;"initializing backtester"];
-	loaddata[bgn;end;syms;delta];
+	if[not loaded;loaddata[tbls;bgn;end;syms]];
 	/ trick to prevent enlisted dict from converting to a table
-	scope:(enlist[::]!enlist[::]),exec bgn:min time,end:max time,n:count i from data;
+	scope:(enlist[]!enlist[]),exec bgn:min time,end:max time,n:count i from order;
+	.lg.o[`init;"sending init signal to subscribers"];
 	(neg first first .u.w`data)(`upd;`init;enlist scope);
  };
 
@@ -39,10 +66,17 @@ eof:{
 .servers.startup[]
 
 \
-bgn:2016.05.01
-end:2016.06.01
-syms:`AAPL`MSFT
-delta:0D00:05
+tbls:`trade`quote;
+bgn:2016.05.01;
+end:2016.06.01;
+syms:`AAPL`MSFT;
 
-loaddata[bgn;end;syms;delta]
-data
+init[bgn;end;syms;delta]
+
+getorder[tbls;bgn;end;syms]
+tables[]
+loadchunk select from order where i within curchunk
+nextchunk[]
+trade
+quote
+order
