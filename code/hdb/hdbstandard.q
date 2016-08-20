@@ -24,12 +24,10 @@ loadchunk:{[order]
 	t!({`row xkey update row:y from .Q.ind[value x;y]} '). o
  };
 
-/ returns data and a table depicting the order
+/ dict with tblname!data
 events:{[tbls;bgn;end;syms]
 	.lg.o[`events;"fetching events"];
-	data:tbls!(?[;enlist(within;(+;`date;`time);(enlist;`bgn;`end));0b;()]@)each tbls;
-	order:`time xasc (,/){![?[x;();0b;enlist[`time]!enlist(+;`time;`date)];();0b;`tbl`row!(enlist x;`i)]}each tbls;
-	`data`order!(data;order)
+	tbls!(?[;((within;`date;(enlist;bgn;end));(in;`sym;enlist syms));0b;()]@)each tbls
  };
 
 / sorted dict with events (`time`table`data) for backtesting
@@ -57,10 +55,4 @@ order:1000#replayorder[tbls;bgn;end;syms]
 chunk:loadchunk order
 
 count order
-chunk`quote
-
-\l .
-select from quote
-select min date from daily
-`date`time xasc update row:i from select from quote
 
