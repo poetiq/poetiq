@@ -22,7 +22,7 @@
 /q tick.q SRC [DST] [-p 5010] [-o h]
 system"l tick/",(src:first .z.x,enlist"sym"),".q"
 
-if[not system"p";system"p 5010"]
+/ if[not system"p";system"p 5010"]
 
 \l tick/u.q
 \d .u
@@ -34,18 +34,36 @@ ts:{if[d<x;if[d<x-1;system"t 0";'"more than one day?"];endofday[]]};
 
 if[system"t";
  .z.ts:{pub'[t;value each t];@[`.;t;@[;`sym;`g#]0#];i::j;ts .z.D};
+
  upd:{[t;x]
- if[not -16=type first first x;if[d<"d"$a:.z.P;.z.ts[]];a:"n"$a;x:$[0>type first x;a,x;(enlist(count first x)#a),x]];
- t insert x;if[l;l enlist (`upd;t;x);j+:1];}];
+ if[not -12=type first first x;
+     if[d<"d"$a:.z.P;.z.ts[]
+         ];
+     /a:"n"$a;
+     x:$[0>type first x;
+         a,x;
+         (enlist(count first x)#a),x
+         ]
+    ];
+ t insert x;
+ if[l;l enlist (`upd;t;x);j+:1];
+     }
+ ];
 
 if[not system"t";system"t 1000";
  .z.ts:{ts .z.D};
  upd:{[t;x]ts"d"$a:.z.P;
- if[not -16=type first first x;a:"n"$a;x:$[0>type first x;a,x;(enlist(count first x)#a),x]];
+ if[not -12=type first first x;
+     /a:"n"$a;
+     x:$[0>type first x;
+         a,x;
+         (enlist(count first x)#a),x
+         ]
+     ];
  f:key flip value t;pub[t;$[0>type first x;enlist f!x;flip f!x]];if[l;l enlist (`upd;t;x);i+:1];}];
 
 \d .
-.u.tick[src;.z.x 1];
+.u.tick[src;ssr[.z.x 1;"\\";"/"]];
 
 \
  globals used
@@ -62,7 +80,7 @@ if[not system"t";system"t 1000";
 >q tick/ssl.q
 
 /run
->q tick.q sym  .  -p 5010	/tick
->q tick/r.q :5010 -p 5011	/rdb
->q sym            -p 5012	/hdb
->q tick/ssl.q sym :5010		/feed
+>q tick.q sym  .  -p 5010   /tick
+>q tick/r.q :5010 -p 5011   /rdb
+>q sym            -p 5012   /hdb
+>q tick/ssl.q sym :5010     /feed

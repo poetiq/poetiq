@@ -2,7 +2,7 @@
 params:enlist[::]!enlist[::];
 params[`syms]:@[value;`syms;`];								/ list of syms to subscribe for, (`) means all syms
 params[`delta]:@[value;`delta;5];							/ the time between each bar, (`) means ticks
-params[`tables]:@[value;`tables;`data];				/ list of table to subscribe to, default (`) means all tables
+params[`tables]:@[value;`tables;`trade`quote];				/ list of table to subscribe to, default (`) means all tables
 
 / ALPHA MODEL SPECIFIC LOGIC
 \d .am
@@ -28,6 +28,7 @@ feedconnected:{0<count select from .sub.SUBSCRIPTIONS where proctype in .am.feed
 connect:{
 	.lg.o[`init;"searching for servers"];
 	.servers.startup[];
+	if[.am.mode=`backtest;.bt.init . get[`params]`tables`bgn`end`syms];
 	subscribe[];
 	/ If no feed has connected, block the process until a connection is established
 	if[not .am.feedconnected[];.os.sleep[.am.connsleepint];.z.s[]]
@@ -36,7 +37,6 @@ connect:{
 init:{
 	.lg.o[`init;"initializing"];
 	connect[];
-	if[.am.mode=`backtest;.bt.init . get[`params]`bgn`end`syms`delta];
  };
 
 upd:()!()
@@ -46,7 +46,7 @@ upd[`init]:{[x]
 	.lg.o[`backtest;"backtester loaded. Initializing variables"];
 	show scope::x;
 	i::0;
-	.bt.start[];
+	/ .bt.start[];
  };
 
 / On quote event [timestamp, quotes]
