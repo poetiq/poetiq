@@ -10,3 +10,7 @@ localhost,{KDBBASEPORT}+7,alphamodel,alpha1
 localhost,{KDBBASEPORT}+8,gui,gui1
 localhost,{KDBBASEPORT}+9,oms,oms1
 localhost,{KDBBASEPORT}+10,fillsim,fillsim1
+localhost,{KDBBASEPORT}+11,tickerplant,tickerplant1
+localhost,{KDBBASEPORT}+12,cx,cx1
+localhost,{KDBBASEPORT}+13,simfeed,simfeed1
+localhost,{KDBBASEPORT}+14,bttickerplant,bttickerplant1

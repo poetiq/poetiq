@@ -51,8 +51,7 @@ if[system"t";
  		if[not -12=type first first x;
   		if[d<"d"$a:.z.P;.z.ts[]];
     	/a:"n"$a;
-    	x:$[0>type first x;a,x;(enlist(count first x)#a),x]
-  		];
+    	x:$[0>type first x;a,x;(enlist(count first x)#a),x]];
  		t insert x;
  		if[l;l enlist (`upd;t;x);j+:1];
    }
@@ -60,12 +59,15 @@ if[system"t";
 
 if[not system"t";system"t 1000";
 	.z.ts:{ts .z.D};
-	upd:{[t;x]ts"d"$a:.z.P;
-	if[not -12=type first first x;
-  	/a:"n"$a;
-    x:$[0>type first x;a,x;(enlist(count first x)#a),x]
-  	];
- 	f:key flip value t;pub[t;$[0>type first x;enlist f!x;flip f!x]];if[l;l enlist (`upd;t;x);i+:1];}
+	upd:{[t;x]
+		ts"d"$a:.z.P;
+		if[not -12=type first first x;
+  		/a:"n"$a;
+    	x:$[0>type first x;a,x;(enlist(count first x)#a),x]];
+ 		f:key flip value t;
+ 		pub[t;$[0>type first x;enlist f!x;flip f!x]];
+ 		if[l;l enlist (`upd;t;x);i+:1];
+ 	 }
  ];
 
 \d .
@@ -90,3 +92,7 @@ if[not system"t";system"t 1000";
 >q tick/r.q :5010 -p 5011   /rdb
 >q sym            -p 5012   /hdb
 >q tick/ssl.q sym :5010     /feed
+
+t:`quote
+x:(2016.05.02;`IBM;09:30:00.004;41.95;42.93;19;46;"H";"N")
+.u.upd[t;x]

@@ -1,3 +1,3 @@
 \d .servers
-CONNECTIONS:`gateway
+CONNECTIONS:`gateway`bttickerplant
 STARTUP:1b

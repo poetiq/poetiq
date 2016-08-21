@@ -65,9 +65,9 @@ q:{
  i:qx n:qn+til x;p:qp n;qn+:x;
  (s i;p-qb n;p+qa n;`long$vol x;`long$vol x;x?m;e i)}
 
-feed:{h$[rand 2;
+feed:{$[rand 2;
  (".u.upd";`trade;t 1+rand maxn);
- (".u.upd";`quote;q 1+rand qpt*maxn)];}
+ (".u.upd";`quote;q 1+rand qpt*maxn)]}
 
 feedm:{h$[rand 2;
  (".u.upd";`trade;(enlist a#x),t a:1+rand maxn);
@@ -85,3 +85,6 @@ h:.servers.gethandlebytype[`tickerplant;`any]
 
 init 0
 .z.ts:feed
+
+\
+feed[]
