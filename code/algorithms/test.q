@@ -4,7 +4,7 @@ params[`end]:@[value;`end;2016.06.01];
 
 
 .algo.upd[`quote]:{[tm;x]
-	0N!tm;
+	/ 0N!tm;
  };
 
 \

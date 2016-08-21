@@ -4,7 +4,13 @@ localhost,{KDBBASEPORT}+1,housekeeping,housekeeping1
 localhost,{KDBBASEPORT}+2,hdb,equitysim
 localhost,{KDBBASEPORT}+3,p,p1
 localhost,{KDBBASEPORT}+4,kill,killpoetiq
-localhost,{KDBBASEPORT}+5,backtester,backtester1
+localhost,{KDBBASEPORT}+5,backtestfeed,backtestfeed1
 localhost,{KDBBASEPORT}+6,gateway,gateway1
 localhost,{KDBBASEPORT}+7,alphamodel,alpha1
 localhost,{KDBBASEPORT}+8,gui,gui1
+localhost,{KDBBASEPORT}+9,oms,oms1
+localhost,{KDBBASEPORT}+10,fillsim,fillsim1
+localhost,{KDBBASEPORT}+11,tickerplant,tickerplant1
+localhost,{KDBBASEPORT}+12,cx,cx1
+localhost,{KDBBASEPORT}+13,simfeed,simfeed1
+localhost,{KDBBASEPORT}+14,bttickerplant,bttickerplant1

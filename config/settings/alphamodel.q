@@ -7,7 +7,7 @@ loadprocesscode:1b
 
 \d .servers
 STARTUP:1b
-CONNECTIONS:`backtester
+CONNECTIONS:`backtester`oms
 
 \d .lg
 if[`test~.eng.mode;outmap[`INF]:0]

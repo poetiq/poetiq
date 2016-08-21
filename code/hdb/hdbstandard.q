@@ -1,9 +1,9 @@
-// reload function
+/ reload function
 reload:{
 	.lg.o[`reload;"reloading HDB"];
 	system"l ."}
 
-// Get the relevant HDB attributes
+/ get the relevant HDB attributes
 .proc.getattributes:{`date`tables!(@[value;`date;`date$()];tables[])}
 
 / OHLC data
@@ -14,11 +14,9 @@ ohlc:{[bgn;end;syms;mns]
 	0!`time xgroup t
  };
 
-\
-bgn:2016.05.01
-end:2016.06.01
-syms:`AAPL`MSFT
-minutes:5
-
-ohlc[bgn;end;syms;minutes]
-0!`time xgroup t
+/ dict with tblname!data
+/ all tables must have at least `date`sym columns
+events:{[tbls;bgn;end;syms]
+	.lg.o[`events;"fetching events"];
+	tbls!(?[;((within;`date;(enlist;bgn;end));(in;`sym;enlist syms));0b;()]@)each tbls
+ };
