@@ -20,17 +20,15 @@ loaddata:{[tbls;bgn;end;syms]
 / get the ith event
 event:{{[t;x](t;value exec from t where i=x)}. value first each exec tbl,row from order where i=x};
 
-feed:{$[eof[]; h(".u.end";`); [h(enlist[".u.upd"],event i);i+::1]];};
+/ no lookup
+feed:{h`.u.upd,x;i+::1;};
 
-setscope:{
-	s:k!"SPPS"$x k:`tbls`bgn`end`syms;
-	scope::@[s;`bgn`end;:;first each s`bgn`end];
- };
+/ looks up event on each loop
+feed2:{$[eof[]; h(`.u.end;`); [h(`.u.upd,event i);i+::1]];};
 
-init:{
-	loaddata . value scope;
-	reset[];
- };
+setscope:{scope::@[s:k!"SPPS"$x k:`tbls`bgn`end`syms;`bgn`end;:;first each s`bgn`end];};
+
+init:{loaddata . value scope;reset[];};
 
 / use the discovery service to find the tickerplant to publish data to
 .servers.startup[]
@@ -39,22 +37,28 @@ h:.servers.gethandlebytype[`bttickerplant;`any]
 setscope .proc.params
 init 0
 
+/ ticks are preloaded (slightly faster)
 run:{
 	reset[];
 	.lg.o[`backtest;"feeding events"];
-	while[not eof[];feed[]];
+	feed each ({[x;y](x;value exec from x where i=y)}'). value exec tbl,row from order;;
+	h(`.u.end;`);
 	.lg.o[`backtest;"events fed"];
  };
 
-run[]
+/ ticks are looked up on each loop
+run2:{
+	reset[];
+	.lg.o[`backtest;"feeding events"];
+	while[not eof[];feed2[]];
+	.lg.o[`backtest;"events fed"];
+ };
+
+run[] / 2406 4753312
+/ run2[] / 2694 4194880
 
 \
 scope
 trade
 quote
 order
-
-event i
-
-feed[]
-reset[]
