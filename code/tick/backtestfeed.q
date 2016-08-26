@@ -45,7 +45,7 @@ run:{
 	.lg.o[`backtest;"events fed"];
  };
 
-run[]
+if[not `wait in key .proc.params;run[]]
 
 \
 scope
