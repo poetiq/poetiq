@@ -14,3 +14,4 @@ localhost,{KDBBASEPORT}+11,tickerplant,tickerplant1
 localhost,{KDBBASEPORT}+12,cx,cx1
 localhost,{KDBBASEPORT}+13,simfeed,simfeed1
 localhost,{KDBBASEPORT}+14,bttickerplant,bttickerplant1
+localhost,{KDBBASEPORT}+15,bundler,bundler1
