@@ -22,7 +22,10 @@ event:{{[t;x](t;value exec from t where i=x)}. value first each exec tbl,row fro
 
 feed:{h`.u.upd,x;i+::1;};
 
-setscope:{scope::@[s:k!"SPPS"$x k:`tbls`bgn`end`syms;`bgn`end;:;first each s`bgn`end];};
+setscope:{
+	s:k!"SPPS"$x k:`tbls`bgn`end`syms;
+	scope::@[s;`bgn`end;:;first each s`bgn`end];
+ };
 
 init:{loaddata . value scope;reset[];};
 
@@ -33,6 +36,7 @@ h:.servers.gethandlebytype[`bttickerplant;`any]
 setscope .proc.params
 init 0
 
+/ ticks are preloaded (slightly faster)
 run:{
 	reset[];
 	.lg.o[`backtest;"feeding events"];
