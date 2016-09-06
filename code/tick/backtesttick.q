@@ -2,7 +2,7 @@
 system"l tick/",(src:first .z.x,enlist"sym"),".q"
 
 / add date column to schemas
-{x set `date`sym`time xcols update date:() from get x}each tables[];
+{if[not `date in cols get x; x set `date`sym`time xcols update date:() from get x]}each tables[];
 
 \l tick/u.q
 \d .u

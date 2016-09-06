@@ -1,4 +1,4 @@
-var serverurl = "//localhost:5001/",
+var serverurl = "//localhost:5016/",
 	ws,
 	c = connect();
 
@@ -27,6 +27,15 @@ function toUTC(x) {
 function recreateChart(data) {
 	// var d = [ [420000000,1],[420000005, 5]];
 	$('#container').highcharts('StockChart', {
+		chart : {
+			events : {
+				load : function () {
+					var series = this.series[0];
+					//series.addPoint([x,y], true, true);
+					series.setData(data.map(function(x){return [toUTC(x.time), x.ec]}))
+				}
+			}
+		},
 		rangeSelector : {
 			selected : 1
 		},
@@ -36,7 +45,7 @@ function recreateChart(data) {
 		series : [{
 			name : "ec",
 			//data: data,
-			data : data.map(function(x){return [toUTC(x.dt), x.ec]}),
+			data : data.map(function(x){return [toUTC(x.time), x.ec]}),
 			// data: d,
 			tooltip: {
 				valueDecimals: 2
