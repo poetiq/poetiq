@@ -1,3 +1,4 @@
+\e 1
 reset:{i::0; n::count order;}
 
 eof:{i>=n}
@@ -5,7 +6,7 @@ eof:{i>=n}
 curtime::exec first time from order where i=get`i
 
 / determines the order in which the data should be replayed
-orderdata:{[tbls]`time xasc (,/){![?[x;();0b;enlist[`time]!enlist(+;`time;`date)];();0b;`tbl`row!(enlist x;`i)]}each tbls}
+orderdata:{[tbls]update countdown:((1 _deltas time),0Wp) from `time xasc (,/){![?[x;();0b;enlist[`time]!enlist(+;`time;`date)];();0b;`tbl`row!(enlist x;`i)]}each tbls}
 
 / loads data from the hdb
 loaddata:{[tbls;bgn;end;syms]
@@ -20,7 +21,11 @@ loaddata:{[tbls;bgn;end;syms]
 / get the ith event
 event:{{[t;x](t;value exec from t where i=x)}. value first each exec tbl,row from order where i=x};
 
-feed:{h`.u.upd,x;i+::1;};
+/feed:{h`.u.upd,x;i+::1;};
+
+feed:{[x;countdown]
+	while[ p|(.z.p < deadline & p:hswitch "pause")];
+	deadline::countdown+tsent::.z.p; h`.u.upd,x;i+::1; hswitch "pause:1b";};
 
 setscope:{
 	s:k!"SPPS"$x k:`tbls`bgn`end`syms;
@@ -32,7 +37,8 @@ init:{loaddata . value scope;reset[];};
 / use the discovery service to find the tickerplant to publish data to
 .servers.startup[]
 h:.servers.gethandlebytype[`bttickerplant;`any]
-
+hswitch:.servers.gethandlebytype[`btswitch;`any]
+deadline:.z.p; 
 setscope .proc.params
 init 0
 
@@ -40,12 +46,14 @@ init 0
 run:{
 	reset[];
 	.lg.o[`backtest;"feeding events"];
-	feed each {[x;y](x;value exec from x where i=y)}.'flip value exec tbl,row from order;
+	/feed each {[x;y](x;value exec from x where i=y)}.'flip value exec tbl,row from order;
+	feed .' {[x;y;z] ((x;value exec from x where i=y); z)}.'flip value exec tbl,row,countdown from order;
 	h(`.u.end;`);
 	.lg.o[`backtest;"events fed"];
  };
 
 if[not `wait in key .proc.params;run[]]
+
 
 \
 scope
