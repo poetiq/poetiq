@@ -6,14 +6,15 @@ system"l tick/",(src:first .z.x,enlist"sym"),".q"
 
 \l tick/u.q
 \d .u
-b: `int$()
+
+b: `int$();
 tick:{[x;y] init[];};
-hswitch:hopen`::5017
+hswitch:.servers.gethandlebytype[`btswitch;`any];
 
 / callback when subscriber is done. Removes the handle from (b)acklog
 done:{
 	if[0=cb:-1 + count b; (neg hswitch) "pause:0b"];
-	0N!"removing a job at ", (string .z.N) , " from handle ", (string .z.w) , "; remaining jobs: ", string cb; 
+	/0N!"removing a job at ", (string .z.N) , " from handle ", (string .z.w) , "; remaining jobs: ", string cb; 
 	b::b _b?.z.w;};
 
 / variation of (pub)lish with callback tracking. Maintains (b)acklog of jobs for which no callback has yet been received
@@ -21,24 +22,15 @@ pub_aware:{[t;x]
 	{[t;x;w]
 		if[count x:sel[x]w 1; 
 		   b,::first w; 
-		   {0N!.z.N}();
+		   /{0N!.z.N}();
 		   (neg first w)(`.m.marshal;`upd;(t;x);`.u.done)] / example 3 from http://code.kx.com/wiki/Cookbook/Callbacks
 	}[t;x]each w t
 	};
 
 upd:{[t;x]
 	f:key flip value t;
-	/0N!get `b;
-	/while[0=count b;
 		pub_aware[t;$[0>type first x;enlist f!x;flip f!x]];
  };
 
 \d .
 .u.tick[src;ssr[.z.x 1;"\\";"/"]];
-/
-\p 5014
-\e 1
-b:1b
-h:hopen`::5005
-
-while[b; {neg[h] "t::.z.N"}(); 0N!.z.W;]

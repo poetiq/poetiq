@@ -16,6 +16,7 @@ opencloseonly:1b		// only log open and closing of connections
 // Server connection details
 \d .servers
 enabled:0b			// disable server tracking
+CONNECTIONS: `btswitch
 
 \d .timer
 enabled:0b 			// disable the timer
