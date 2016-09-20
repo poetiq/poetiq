@@ -1,6 +1,8 @@
+#!/bin/bash
+
 # Set up environment variables
 
-export POETIQ=$(pwd)
+export POETIQ="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)/.."
 export KDBCODE=${POETIQ}/code
 export KDBCONFIG=${POETIQ}/config
 export KDBLOG=${POETIQ}/logs
