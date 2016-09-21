@@ -78,12 +78,12 @@ function get_cmd()
 	cmd=$(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.cfg | cut -d ',' -f 3)
 	if [[ ! "$OSTYPE" =~ *win* ]]; then
 		if [ $DEBUG -eq 0 ]; then
-			CMD="nohup $QBIN $cmd </dev/null >$KDBLOG/$PROCNAME 2>&1 &"
+			CMD="nohup q $cmd </dev/null >$KDBLOG/$PROCNAME 2>&1 &"
 		else
-			CMD="$QBIN $cmd -debug"
+			CMD="q $cmd -debug"
 		fi
 	else
-		CMD="$QBIN $cmd -new_console:t:'$PROCNAME'"
+		CMD="q $cmd -new_console:t:'$PROCNAME'"
 	fi
 	CMD=$(eval echo \""${CMD}"\")
 }
