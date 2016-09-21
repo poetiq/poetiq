@@ -24,7 +24,7 @@ event:{{[t;x](t;value exec from t where i=x)}. value first each exec tbl,row fro
 /feed:{h`.u.upd,x;i+::1;};
 
 feed:{[x;countdown]
-	while[ p|(.z.p < deadline & p:hswitch "pause")];
+	while[ p|((.z.p < deadline) & p:hswitch "pause")];
 	deadline::countdown+tsent::.z.p; h`.u.upd,x;i+::1; hswitch "pause:1b";};
 
 setscope:{

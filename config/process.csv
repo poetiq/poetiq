@@ -17,3 +17,4 @@ localhost,{KDBBASEPORT}+14,bttickerplant,bttickerplant1
 localhost,{KDBBASEPORT}+15,bundler,bundler1
 localhost,{KDBBASEPORT}+16,portfolio,portfolio1
 localhost,{KDBBASEPORT}+17,btswitch,btswitch1
+localhost,{KDBBASEPORT}+18,optimiser,optimiser1

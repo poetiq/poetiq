@@ -23,6 +23,9 @@ pub_aware:{[t;x]
 		if[count x:sel[x]w 1; 
 		   b,::first w; 
 		   /{0N!.z.N}();
+		   /{0N!string first w}();
+		   /{0N!string t}();
+		   /{0N!show x}();
 		   (neg first w)(`.m.marshal;`upd;(t;x);`.u.done)] / example 3 from http://code.kx.com/wiki/Cookbook/Callbacks
 	}[t;x]each w t
 	};
