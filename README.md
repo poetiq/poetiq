@@ -13,13 +13,15 @@ q buildhdb.q
 ````
 
 ## Usage ##
-Linux/OSX users should run `start_poetiq.sh` to start the system and `stop_poetiq.sh` to stop the system. Windows users should use the equivalent `.bat` files.
+Linux/OSX users should load the launch control with `source bin/control.sh`, which provides the following functions for controlling processes: `startp`, `stopp`, `restartp` and `queryp`.
 
-To debug a process and run it in the foreground, run e.g.
+Processes are defined in `/config/start.cfg` and can be controlled with e.g.
 ````
-q torq.q -load ${KDBCODE}/processes/backtestfeed.q ${KDBSTACKID} -proctype backtestfeed -procname backtestfeed1 -localtime -debug
+startp -p discovery discovery1 --debug
 ````
-Remember to run `setenv.sh` in any new shell session to set environment variables.
+Specifying the `--debug` flag will run the process in the foreground (useful for debugging).
+
+Windows users should run `start_poetiq.bat` to start the system and `stop_poetiq.bat` to stop the system. 
 
 ## Testing ##
 Poetiq uses the [qspec](https://github.com/nugend/qspec) framework for testing and behavior-driven development. To run a test, run
