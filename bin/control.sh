@@ -31,9 +31,15 @@ function get_procs ()
 
 function get_params ()
 {
-	LOGLEVEL=""; DEBUG=0
+	unset PROCTYPE;	unset PROCNAME
+	unset W; unset G
+	unset LOGTYPE; unset LOGN; unset LOGWAIT; LOGLEVEL=""
+	DEBUG=0
 	caller=${FUNCNAME[1]}
-	if [ $# -lt 2 ]; then ${caller}_usage $caller; fi
+	if [ $# -lt 2 ]; then
+		${caller}_usage $caller
+		return 2
+	fi
 
 	while (( "$#" )); do
 		case "$1" in
@@ -54,7 +60,7 @@ function get_params ()
 			;;
 			-g) # garbage collect
 				if [ -z "$2" ]; then ${caller}_usage $caller; fi
-				G="$1 $2"
+				G="$2"
 				shift 2
 			;;
 			--debug) # run process in foreground
@@ -63,8 +69,23 @@ function get_params ()
 			;;
 			--log) # get log level
 				if [ -z "$2" ]; then ${caller}_usage $caller; fi
-				LOGLEVEL="$1 $2"
+				LOGLEVEL="$2"
 				shift 2
+			;;
+			-t) # get log type
+				if [ -z "$2" ]; then ${caller}_usage $caller; fi
+				# if [[ ! "$2" =~ "out|err|usage" ]]; then ${caller}_usage $caller; fi
+				LOGTYPE="$2"
+				shift 2
+			;;
+			-n) # get number of log lines
+				if [ -z "$2" ]; then ${caller}_usage $caller; fi
+				LOGN="$2"
+				shift 2
+			;;
+			-[fF]) # get log wait/stream flag
+				LOGWAIT=1
+				shift
 			;;
 			*) ${caller}_usage $caller;;
 		esac
@@ -78,7 +99,7 @@ function get_cmd()
 	cmd=$(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.cfg | cut -d ',' -f 3)
 	if [[ ! "$OSTYPE" =~ *win* ]]; then
 		if [ $DEBUG -eq 0 ]; then
-			CMD="nohup q $cmd </dev/null >$KDBLOG/$PROCNAME 2>&1 &"
+			CMD="nohup q $cmd </dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
 		else
 			CMD="q $cmd -debug"
 		fi
@@ -107,11 +128,11 @@ function starth ()
 	get_cmd
 
 	if [ $DEBUG -eq 0 ]; then
-		loginfo "Starting process $(procname) in the background:"
+		loginfo "Starting process $(procname) in the background"
 	else
-		loginfo "Starting process $(procname) in the foreground:"
+		loginfo "Starting process $(procname) in the foreground"
 	fi
-	echo $CMD
+	# echo $CMD
 	eval $CMD
 }
 
@@ -203,6 +224,33 @@ function restartp_usage ()
 	startp_usage $1
 }
 
+function tailp ()
+{
+	get_params $*
+	if [ $? -eq 2 ]; then return 0; fi
+	local LOGFILE=$KDBLOG/${LOGTYPE}_${PROCNAME}.log
+
+	if [ -z $LOGTYPE ]; then tailp_usage; return 2; fi
+	if [ ! -h "$LOGFILE" ]; then
+		logerr "No log file found for $(procname)"
+		exit_or_return 1
+	fi
+
+	local CMD="tail"
+	if [ ! -z $LOGN ]; then CMD+=" -n $LOGN"; fi
+	if [ ! -z $LOGWAIT ]; then CMD+=" -F"; fi
+	CMD+=" $LOGFILE"
+
+	eval ${CMD}
+}
+
+function tailp_usage ()
+{
+	echo -e "Usage:"
+	echo -e "\t${1} -p <proctype> <procname> -t <out|err|usage> -n <lines> [-F]"
+	exit_or_return 1
+}
+
 function procname ()
 {
 	echo "${POWDER_BLUE}<${PROCTYPE},${PROCNAME}>${NORMAL}"
@@ -212,3 +260,5 @@ export -f queryp
 export -f startp
 export -f stopp
 export -f stopallp
+export -f restartp
+export -f tailp
