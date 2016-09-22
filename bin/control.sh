@@ -15,7 +15,7 @@ function check_cfg_exists ()
 	if [ ! -f $KDBCONFIG/start.cfg ]; then
 		local m="Config file $KDBCONFIG/start.cfg not found"
 		if [ ${FUNCNAME[1]} == "show" ]; then
-			logconsoleerr "$m"
+			logerr "$m"
 		else
 			logerr "$m"
 		fi
@@ -42,7 +42,7 @@ function get_params ()
 				PROCTYPE=$2
 				PROCNAME=$3
 				if [ -z "${PROCTYPE}" ] || [ -z "${PROCNAME}" ]; then
-					logconsoleerr "Process not found"
+					logerr "Process not found"
 					return 2
 				fi
 				shift 3
@@ -101,15 +101,15 @@ function starth ()
 	check_cfg_exists
 	queryh
 	if [ -n "$PID" ]; then
-		loginfo "Process is already running. Use restart if you want to restart the process"
+		logwarn "Process $(procname) is already running. Use restart if you want to restart the process"
 		return 0
 	fi
 	get_cmd
 
 	if [ $DEBUG -eq 0 ]; then
-		loginfo "Starting process $PROCTYPE,$PROCNAME in the background:"
+		loginfo "Starting process $(procname) in the background:"
 	else
-		loginfo "Starting process $PROCTYPE,$PROCNAME in the foreground:"
+		loginfo "Starting process $(procname) in the foreground:"
 	fi
 	echo $CMD
 	eval $CMD
@@ -129,10 +129,10 @@ function queryp ()
 	if [ $? -eq 2 ]; then return 0; fi
 	queryh
 	if [ -z "$PID" ]; then
-		logconsoleerr "${PROCTYPE},${PROCNAME} is not running"
+		logerr "$(procname) is not running"
 		return 0
 	else
-		loginfo "${PROCTYPE},${PROCNAME} is running with PID $PID"
+		loginfo "$(procname) is running with PID $PID"
 		return 1
 	fi
 }
@@ -161,7 +161,7 @@ function stoph ()
 {
 	queryh
 	if [ -n "$PID" ]; then
-		loginfo "Stopping $PROCTYPE,$PROCNAME"
+		loginfo "Stopping $(procname)"
 		if [ "$OSTYPE" == "cygwin" ]; then
 			kill $PID
 		else
@@ -169,6 +169,11 @@ function stoph ()
 			kill $PID
 		fi
 	fi
+}
+
+function stopallp ()
+{
+	echo "Not yet implemented"
 }
 
 function queryp_usage ()
@@ -198,6 +203,12 @@ function restartp_usage ()
 	startp_usage $1
 }
 
+function procname ()
+{
+	echo "${POWDER_BLUE}<${PROCTYPE},${PROCNAME}>${NORMAL}"
+}
+
 export -f queryp
 export -f startp
 export -f stopp
+export -f stopallp
