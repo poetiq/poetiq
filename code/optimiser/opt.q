@@ -1,6 +1,6 @@
 upd: ()!()
 
 upd[`signal] :{
-	show x;
+	(neg hbtt) (`.u.upd;`order; value first x);
 	}
 

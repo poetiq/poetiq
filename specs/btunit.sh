@@ -14,6 +14,9 @@ q torq.q -load ${KDBCODE}/processes/portfolio.q ${KDBSTACKID} -trap -proctype po
 echo "Starting optimiser ..."
 q torq.q -load ${KDBCODE}/processes/optimiser.q ${KDBSTACKID} -trap -proctype optimiser -procname optimiser1 -localtime -debug -new_console:sHnc:t:'optimiser' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 &
 
+echo "Starting fillsim ..."
+q torq.q -load ${KDBCODE}/processes/fillsim.q ${KDBSTACKID} -trap -proctype fillsim -procname fillsim1 -localtime -debug -new_console:sVnc:t:'fillsim' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 &
+
 echo "Starting feed ..."
-q torq.q -load code/tick/backtestfeed.q ${KDBSTACKID} -trap -proctype backtestfeed -procname backtestfeed1 -localtime -tbls mtm fill signal -bgn 2016.05.02 -end 2016.05.31 -syms AAPL PRU GOOG MSFT -debug -new_console:sVnc:t:'btfeed' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 & # -bgn 2016.05.02 -end 2016.05.02 -syms GOOG IBM MSFT
+q torq.q -load code/tick/backtestfeed.q ${KDBSTACKID} -trap -proctype backtestfeed -procname backtestfeed1 -localtime -tbls mtm signal -bgn 2016.05.02 -end 2016.05.31 -syms AAPL PRU GOOG MSFT -debug -new_console:sVnc:t:'btfeed' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 & # -bgn 2016.05.02 -end 2016.05.02 -syms GOOG IBM MSFT
 
