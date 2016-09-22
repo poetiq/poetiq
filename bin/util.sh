@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# http://stackoverflow.com/questions/4332478/read-the-current-text-color-in-a-xterm/4332530#4332530
+BLACK=$(tput setaf 0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+LIME_YELLOW=$(tput setaf 190)
+POWDER_BLUE=$(tput setaf 153)
+BLUE=$(tput setaf 4)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+BRIGHT=$(tput bold)
+NORMAL=$(tput sgr0)
+BLINK=$(tput blink)
+REVERSE=$(tput smso)
+UNDERLINE=$(tput smul)
+
 log () {
 	if [ ! -f $3 ]; then
 		touch $3
@@ -8,22 +25,17 @@ log () {
 }
 
 logerr () {
-	log "ERROR" "$1" ${2-${LOG_FILE}}
+	log "${RED}ERROR${NORMAL}" "$1" ${2-${LOG_FILE}}
 }
 
 logwarn () {
-	log "WARN" "$1" ${2-${LOG_FILE}}
+	log "${YELLOW}WARN${NORMAL}" "$1" ${2-${LOG_FILE}}
 }
 
 loginfo () {
-	log "INFO" "$1" ${2-${LOG_FILE}}
-}
-
-logconsoleerr () {
-	echo -e "\033[0;31m$1\033[0m"
+	log "${GREEN}INFO${NORMAL}" "$1" ${2-${LOG_FILE}}
 }
 
 export -f logerr
 export -f logwarn
 export -f loginfo
-export -f logconsoleerr
