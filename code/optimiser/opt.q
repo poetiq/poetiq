@@ -1,6 +1,6 @@
 upd: ()!()
 
 upd[`signal] :{
-	(neg hbtt) (`.u.upd;`order; value first x);
+	x: select sym, date, sz: units[1] signal, time from x;
+	(neg hbtt) (`.u.upd;`targetsz; value first x);
 	}
-
