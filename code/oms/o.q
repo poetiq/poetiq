@@ -1,10 +1,9 @@
-\e 1
 upd: ()!()
 
 upd[`targetsz] :{
-	currpos:: hportfolio "positions";
-	'break;
-	if[count x; (neg hbtt) (`.u.upd;`order; value first x)];
+	currpos: delete cost,time from hportfolio "positions";
+	delta: (select sym, sz from x) pj neg currpos;
+	if[count delta; (neg hbtt) (`.u.upd;`order; select sym, size:sz from delta)];
 	}
 
 
