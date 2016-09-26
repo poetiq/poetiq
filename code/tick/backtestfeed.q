@@ -52,6 +52,13 @@ run:{
 	.lg.o[`backtest;"events fed"];
  };
 
+/ run custom batch feed of events from order table
+batch:{[r]
+	.lg.o[`backtest;"feeding events"];
+	feed .' {[x;y;z] ((x;value exec from x where i=y); z)}.'flip value exec tbl,row,countdown from order $[0>type r;enlist r;r];
+	.lg.o[`backtest;"events fed"];
+ };
+
 if[not `wait in key .proc.params;run[]]
 
 
