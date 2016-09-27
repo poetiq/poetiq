@@ -4,5 +4,5 @@ mtm:flip`time`date`sym`close!"ndsf"$\:()
 signal:flip`sym`date`signal`time!"sdin"$\:()
 targetsz:flip`sym`date`sz`time!"sdin"$\:()
 targetw:flip`sym`date`w`time!"sdfn"$\:()
-order:flip`sym`date`size`time!"sdin"$\:()
-fill:flip`date`sym`time`price`size!"dsnfj"$\:() / flip`date`sym`time`price`size`stop`cond`ex!"dstfjbcc"$:\()
+order:flip`sym`size!"sj"$\:() / aim towards flip `sym`dir`size`price`tif`id!"siffs"$\:()		`symbol$	();
+fill:flip`sym`price`size!"dsnfj"$\:() / flip`date`sym`time`price`size`stop`cond`ex!"dstfjbcc"$:\()

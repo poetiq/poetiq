@@ -6,7 +6,7 @@ system"l tick/",(src:first .z.x,enlist"sym"),".q"
 
 \l tick/u.q
 \d .u
-
+P::eventp + .z.P - capturedp
 b: `int$();
 tick:{[x;y] init[];};
 hswitch:.servers.gethandlebytype[`btswitch;`any];
@@ -31,6 +31,9 @@ pub_aware:{[t;x]
 	};
 
 upd:{[t;x]
+	$[-12=type first first x;
+		/wip P::;
+    x:$[0>type first x;a,x;(enlist(count first x)#a),x]];
 	f:key flip value t;
 		pub_aware[t;$[0>type first x;enlist f!x;flip f!x]];
  };
