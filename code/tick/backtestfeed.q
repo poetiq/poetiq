@@ -21,11 +21,15 @@ loaddata:{[tbls;bgn;end;syms]
 / get the ith event
 event:{{[t;x](t;value exec from t where i=x)}. value first each exec tbl,row from order where i=x};
 
-/feed:{h`.u.upd,x;i+::1;};
-
-feed:{[x;countdown]
+feed:{[x;countdown;eventp]
 	while[ p|((.z.p < deadline) & p:hswitch "pause")];
-	deadline::countdown+tsent::.z.p; h`.u.upd,x;i+::1; hswitch "pause:1b";};
+	deadline::countdown+sentp::.z.p;
+	/(neg hswitch) ("sentp",string sentp," ;eventp", string eventp) (::); / async flush, see http://code.kx.com/wiki/Cookbook/IPCInANutshell
+	(neg hswitch) (set;`sentp;sentp);
+	(neg hswitch) (set;`eventp;eventp);
+	(neg hswitch) (::);
+	h`.u.upd,x;i+::1;
+	hswitch "pause:1b";};
 
 setscope:{
 	s:k!"SPPS"$x k:`tbls`bgn`end`syms;
@@ -38,7 +42,7 @@ init:{loaddata . value scope;reset[];};
 .servers.startup[]
 h:.servers.gethandlebytype[`bttickerplant;`any]
 hswitch:.servers.gethandlebytype[`btswitch;`any]
-deadline:.z.p; 
+deadline:.z.p;
 setscope .proc.params
 init 0
 
@@ -47,7 +51,7 @@ run:{
 	reset[];
 	.lg.o[`backtest;"feeding events"];
 	/feed each {[x;y](x;value exec from x where i=y)}.'flip value exec tbl,row from order;
-	feed .' {[x;y;z] ((x;value exec from x where i=y); z)}.'flip value exec tbl,row,countdown from order;
+	feed .' {[x;y;z;time] ((x;value exec from x where i=y); z; time)}.'flip value exec tbl,row,countdown,time from order;
 	h(`.u.end;`);
 	.lg.o[`backtest;"events fed"];
  };

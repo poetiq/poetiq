@@ -1,4 +1,4 @@
-positions: update `u#sym from `sym xkey flip `sym`sz`cost!"sifp"$\:()
+positions: update `u#sym from `sym xkey flip `sym`sz`cost!"sif"$\:()
 pnl: update `g#sym, `s#time from flip `sym`time`pnl!"spf"$\:()
 cash: 100000
 equity:: cash + exec sum pnl from pnl

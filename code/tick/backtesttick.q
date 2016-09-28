@@ -2,7 +2,7 @@
 system"l tick/",(src:first .z.x,enlist"sym"),".q"
 
 / add date column to schemas
-{if[not `date in cols get x; x set `date`sym`time xcols update date:() from get x]}each tables[];
+/{if[not `date in cols get x; x set `date`sym`time xcols update date:() from get x]}each tables[];
 
 \l tick/u.q
 \d .u
@@ -32,7 +32,7 @@ pub_aware:{[t;x]
 
 upd:{[t;x]
 	f:key flip value t;
-		pub_aware[t;$[0>type first x;enlist f!x;flip f!x]];
+	pub_aware[t;$[0>type first x;enlist f!x;flip f!x]];
  };
 
 \d .
