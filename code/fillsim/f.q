@@ -1,4 +1,3 @@
-hswitch:.servers.gethandlebytype[`btswitch;`any];
 control: update `u#sym from `sym xkey flip `sym`refprx!"sf"$\:() / gbaker/qx/marketmaker.q has `sym`size`spread`refprx
 
 / assumptions: 
