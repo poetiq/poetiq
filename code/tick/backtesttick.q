@@ -32,6 +32,7 @@ pub_aware:{[t;x]
 
 upd:{[t;x]
 	f:key flip value t;
+	show raze string t, (hswitch "clock"), -3!f!x;
 	pub_aware[t;$[0>type first x;enlist f!x;flip f!x]];
  };
 

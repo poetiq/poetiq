@@ -1,4 +1,3 @@
-\e 1
 reset:{i::0; n::count order;}
 
 eof:{i>=n}
