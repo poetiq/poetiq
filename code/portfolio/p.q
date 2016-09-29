@@ -16,7 +16,7 @@ upd[`mtm]:{
 	p: update pnl: sz*close-cost from (delete time from positions) lj select by sym from x;
 	if[count p;
 		`pnl insert select sym, time, pnl from p;
-		`positions upsert select sym, sz, cost:close, time from p;
+		`positions upsert select sym, sz, cost:close, from p;
 		];
 	}
 
