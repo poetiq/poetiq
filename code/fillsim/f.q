@@ -6,7 +6,7 @@ control: update `u#sym from `sym xkey flip `sym`refprx!"sf"$\:() / gbaker/qx/mar
 upd: ()!();
 upd[`order]:{
 	x: select sym, price: 100.5, size:size from x;
-	show hswitch "clock";
+	show raze string hswitch["clock[]"],-3!x;
 	(neg hbtt) (`.u.upd;`fill; value first x);
 	}
 

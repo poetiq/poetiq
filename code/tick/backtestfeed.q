@@ -21,14 +21,17 @@ loaddata:{[tbls;bgn;end;syms]
 event:{{[t;x](t;value exec from t where i=x)}. value first each exec tbl,row from order where i=x};
 
 feed:{[x;countdown;eventp]
-	while[ p|((.z.p < deadline) & p:hswitch "pause")];
+
+	while[ p|((deadline > now:.z.p) & p:hswitch "pause")]; / debug line: ;show p, deadline, now, countdown,sentp,eventp;
 	deadline::countdown+sentp::.z.p;
 	/(neg hswitch) ("sentp",string sentp," ;eventp", string eventp) (::); / async flush, see http://code.kx.com/wiki/Cookbook/IPCInANutshell
-	(neg hswitch) (set;`sentp;sentp);
-	(neg hswitch) (set;`eventp;eventp);
-	(neg hswitch) (::);
-	h`.u.upd,x;i+::1;
-	hswitch "pause:1b";};
+	hswitch raze "eventp:",string eventp,";sentp:",string sentp;pause:1b";
+	/hswitch (set;`eventp;eventp);
+	/(neg hswitch) (set;`sentp;sentp);
+	/(neg hswitch) (set;`eventp;eventp);
+	/(neg hswitch) (::);
+	/hswitch "pause:1b";
+	h`.u.upd,x;i+::1;};
 
 setscope:{
 	s:k!"SPPS"$x k:`tbls`bgn`end`syms;

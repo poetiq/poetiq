@@ -13,15 +13,16 @@ hswitch:.servers.gethandlebytype[`btswitch;`any];
 
 / callback when subscriber is done. Removes the handle from (b)acklog
 done:{
-	if[0=cb:-1 + count b; (neg hswitch) "pause:0b"];
+	b::b _b?.z.w;
+	if[0=cb:count b; (neg hswitch) "pause:0b"];
 	/0N!"removing a job at ", (string .z.N) , " from handle ", (string .z.w) , "; remaining jobs: ", string cb; 
-	b::b _b?.z.w;};
+	};
 
 / variation of (pub)lish with callback tracking. Maintains (b)acklog of jobs for which no callback has yet been received
 pub_aware:{[t;x]
 	{[t;x;w]
 		if[count x:sel[x]w 1; 
-		   b,::first w; 
+		   b,::first w;
 		   /{0N!.z.N}();
 		   /{0N!string first w}();
 		   /{0N!string t}();
@@ -32,7 +33,8 @@ pub_aware:{[t;x]
 
 upd:{[t;x]
 	f:key flip value t;
-	show raze string t, (hswitch "clock"), -3!f!x;
+	show raze string t, hswitch["clock[]"], -3!f!x;
+	if[0=count w t; :done[]];
 	pub_aware[t;$[0>type first x;enlist f!x;flip f!x]];
  };
 
