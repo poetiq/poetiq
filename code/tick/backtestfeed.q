@@ -25,7 +25,7 @@ feed:{[x;countdown;eventp]
 	while[ p|((deadline > now:.z.p) & p:hswitch "pause")]; / debug line: ;show p, deadline, now, countdown,sentp,eventp;
 	deadline::countdown+sentp::.z.p;
 	/(neg hswitch) ("sentp",string sentp," ;eventp", string eventp) (::); / async flush, see http://code.kx.com/wiki/Cookbook/IPCInANutshell
-	hswitch raze "eventp:",string eventp,";sentp:",string sentp;pause:1b";
+	hswitch raze "eventp:",(string eventp),";sentp:",(string sentp), ";pause:1b";
 	/hswitch (set;`eventp;eventp);
 	/(neg hswitch) (set;`sentp;sentp);
 	/(neg hswitch) (set;`eventp;eventp);
