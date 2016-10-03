@@ -1,0 +1,13 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+  	- docker info
+    - docker build -t poetiq/build-agent .
+
+test:
+  override:
+  	- mkdir -p $CIRCLE_TEST_REPORTS/junit
+    - docker run -v $PWD:/poetiq poetiq/poetiq bash -c "$QHOME/runci.sh"

@@ -5,31 +5,35 @@
 #		docker build -t poetiq/build-agent .
 #
 # To run:
-# 	docker run -ti poetiq/build-agent
+#		docker run -ti poetiq/build-agent
 
 FROM ubuntu
 
-# Install packages
-RUN dpkg --add-architecture i386 \
+ENV QHOME=/opt/q \
+		QPATH=/opt/q \
+		PROJECT_DIR=/root/dev
+
+RUN mkdir -p ${PROJECT_DIR} \
+	&& dpkg --add-architecture i386 \
 	&& apt-get update \
   && apt-get install -y \
   unzip \
   git \
+  wget \
   libc6:i386 \
   libncurses5:i386 \
   libstdc++6:i386 \
   && rm -rf /var/lib/apt/lists/*
 
-ENV QHOME=/opt/q \
-		QPATH=/opt/q
-
 WORKDIR $QHOME
 
 ADD ./etc/testq.sh .
+ADD ./etc/runci.sh .
 ADD linuxx86.zip /tmp
 
 # Install kdb+
-RUN unzip /tmp/linuxx86.zip -d /opt \
+RUN wget -P /tmp https://kx.com/347_d0szre-fr8917_llrsT4Yle-5839sdX/3.4/linuxx86.zip \
+	&& unzip /tmp/linuxx86.zip -d /opt \
 	&& ln -s $QPATH/l32/q /usr/bin/q \
 	&& rm /tmp/*
 
@@ -43,4 +47,5 @@ RUN git clone https://github.com/nugend/qutil.git qpackages/qutil --depth=1 \
 	&& chmod +x testq.sh \
 	&& ln -s $QHOME/testq.sh /usr/bin/testq
 
+WORKDIR ${PROJECT_DIR}
 CMD ["bash"]

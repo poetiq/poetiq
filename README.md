@@ -1,4 +1,5 @@
 # POETIQ - Platform O' Electronic Trading In Q
+[![CircleCI](https://circleci.com/gh/poetiq/poetiq.svg?style=svg)](https://circleci.com/gh/poetiq/poetiq)
 
 ## Overview ##
 Poetiq is an algorithmic trading engine built in kdb+/Q. It uses the [TorQ](https://github.com/AquaQAnalytics/TorQ) framework as its foundation.
