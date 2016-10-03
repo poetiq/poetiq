@@ -1,51 +1,58 @@
 # Dockerfile for kdb+ CI build agent
-# Download the kdb+ Linux (x86) binary from https://kx.com/download to this folder.
 #
 # To build:
-#		docker build -t poetiq/build-agent .
+#		docker build --build-arg KDB_URL=https://kx.com/<YOUR KEY>/<VERSION>/linuxx86.zip -t poetiq/poetiq .
 #
 # To run:
-#		docker run -ti poetiq/build-agent
+#		docker run -ti poetiq/poetiq
 
-FROM ubuntu
+FROM ubuntu:16.04
 
 ENV QHOME=/opt/q \
 		QPATH=/opt/q \
-		PROJECT_DIR=/root/dev
+		POETIQ=/poetiq
 
-RUN mkdir -p ${PROJECT_DIR} \
+RUN mkdir -p $POETIQ \
 	&& dpkg --add-architecture i386 \
 	&& apt-get update \
   && apt-get install -y \
-  unzip \
-  git \
   wget \
+  unzip \
   libc6:i386 \
   libncurses5:i386 \
   libstdc++6:i386 \
   && rm -rf /var/lib/apt/lists/*
 
-WORKDIR $QHOME
-
-ADD ./etc/testq.sh .
-ADD ./etc/runci.sh .
-ADD linuxx86.zip /tmp
+ARG KDB_URL
 
 # Install kdb+
-RUN wget -P /tmp https://kx.com/347_d0szre-fr8917_llrsT4Yle-5839sdX/3.4/linuxx86.zip \
-	&& unzip /tmp/linuxx86.zip -d /opt \
-	&& ln -s $QPATH/l32/q /usr/bin/q \
+RUN wget -P /tmp ${KDB_URL} \
+	&& unzip /tmp/$(basename ${KDB_URL}) -d $(dirname $QHOME) \
+	&& ln -s $QHOME/l32/q /usr/bin/q \
 	&& rm /tmp/*
 
+WORKDIR $QHOME
+
 # Install qutil and qspec
-RUN git clone https://github.com/nugend/qutil.git qpackages/qutil --depth=1 \
-	&& git clone https://github.com/nugend/qspec.git qpackages/qspec --depth=1 \
+RUN wget -O qutil.zip https://github.com/nugend/qutil/archive/master.zip \
+	&& wget -O qspec.zip https://github.com/nugend/qspec/archive/master.zip \
+	&& unzip '*.zip' \
+	&& mkdir qpackages \
+	&& mv qutil-master qpackages/qutil \
+	&& mv qspec-master qpackages/qspec \
+	&& rm *.zip \
 	&& ln -s $QHOME/qpackages/qutil/lib/bootstrap.q bootstrap.q \
 	&& ln -s $QHOME/qpackages/qutil/lib qutil \
 	&& ln -s $QHOME/qpackages/qspec/lib qspec \
-	&& cat qpackages/qutil/q_q.sample >> q.q \
-	&& chmod +x testq.sh \
-	&& ln -s $QHOME/testq.sh /usr/bin/testq
+	&& cp -f qpackages/qutil/q_q.sample q.q
 
-WORKDIR ${PROJECT_DIR}
+ADD bin/ci/*.sh /root/
+
+RUN	chmod +x $HOME/testq.sh \
+	&& chmod +x $HOME/runci.sh \
+	&& ln -s $HOME/testq.sh /usr/bin/testq \
+	&& ln -s $HOME/runci.sh /usr/bin/runci
+
+WORKDIR $POETIQ
+
 CMD ["bash"]

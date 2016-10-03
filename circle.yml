@@ -3,11 +3,12 @@ machine:
     - docker
 
 dependencies:
+  cache_directories:
+    - "~/docker"
+
   override:
-    - docker info
-    - docker build -t poetiq/build-agent .
+    - bin/ci/build_docker_image.sh $PWD ${KDB_URL}
 
 test:
   override:
-    - mkdir -p $CIRCLE_TEST_REPORTS/junit
-    - docker run -v $PWD:/poetiq poetiq/poetiq bash -c "$QHOME/runci.sh"
+     - bin/ci/runtest.sh $PWD

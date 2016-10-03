@@ -1,3 +1,9 @@
-*
-!etc/testq.sh
-!linuxx86.zip
+.git
+.gitignore
+.DS_Store
+hdb
+lib
+html
+logs
+docs
+sandbox
