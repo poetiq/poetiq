@@ -15,7 +15,7 @@ echo "Starting oms ..."
 q torq.q -load ${KDBCODE}/processes/oms.q ${KDBSTACKID} -trap -proctype oms -procname oms1 -localtime -debug -new_console:sHnc:t:'oms' -e 1 -.clients.enabled 0 -.usage.enabled 0 # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 &
 
 echo "Starting fillsim ..."
-q torq.q -load ${KDBCODE}/processes/fillsim.q ${KDBSTACKID} -trap -proctype fillsim -procname fillsim1 -localtime -debug -new_console:s8TV:t:'fillsim' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 &
+q torq.q -load ${KDBCODE}/processes/fillsim.q ${KDBSTACKID} -trap -proctype fillsim -procname fillsim1 -localtime -debug -new_console:s8TV:t:'fillsim' -e 1 -.clients.enabled 0 -.usage.enabled 0 # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 &
 
 echo "Starting portfolio ..."
 q torq.q -load ${KDBCODE}/processes/portfolio.q ${KDBSTACKID} -trap -proctype portfolio -procname portfolio1 -localtime -debug -new_console:s9TV:t:'portfolio' -e 1 -.clients.enabled 0 -.usage.enabled 0 #</dev/null >$KDBLOG/gateway.txt 2>&1 &
