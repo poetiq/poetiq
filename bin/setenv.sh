@@ -3,7 +3,7 @@
 # Set up environment variables
 
 export POETIQ="$(dirname $(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd))"
-export KDBCODE=${POETIQ}/code
+export KDBCODE=${POETIQ}/src
 export KDBCONFIG=${POETIQ}/config
 export KDBLOG=${POETIQ}/logs
 export KDBHDB=${POETIQ}/hdb

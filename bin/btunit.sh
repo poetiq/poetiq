@@ -21,5 +21,5 @@ echo "Starting portfolio ..."
 q torq.q -load ${KDBCODE}/processes/portfolio.q ${KDBSTACKID} -trap -proctype portfolio -procname portfolio1 -localtime -debug -new_console:s9TV:t:'portfolio' -e 1 -.clients.enabled 0 -.usage.enabled 0 #</dev/null >$KDBLOG/gateway.txt 2>&1 &
 
 echo "Starting feed ..."
-q torq.q -load code/tick/backtestfeed.q ${KDBSTACKID} -wait -trap -proctype backtestfeed -procname backtestfeed1 -localtime -tbls mtm signal -bgn 2016.05.02 -end 2016.05.31 -syms AAPL PRU GOOG MSFT -debug -new_console:s4TV:t:'btfeed' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 & # -bgn 2016.05.02 -end 2016.05.02 -syms GOOG IBM MSFT
+q torq.q -load ${KDBCODE}/tick/backtestfeed.q ${KDBSTACKID} -wait -trap -proctype backtestfeed -procname backtestfeed1 -localtime -tbls mtm signal -bgn 2016.05.02 -end 2016.05.31 -syms AAPL PRU GOOG MSFT -debug -new_console:s4TV:t:'btfeed' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 & # -bgn 2016.05.02 -end 2016.05.02 -syms GOOG IBM MSFT
 

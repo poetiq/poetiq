@@ -1,7 +1,7 @@
 REM Set up environment variables
 
 set POETIQ=%cd%
-set KDBCODE=%POETIQ%\code
+set KDBCODE=%POETIQ%\src
 set KDBCONFIG=%POETIQ%\config
 set KDBLOG=%POETIQ%\logs
 set KDBHDB=%POETIQ%\hdb
