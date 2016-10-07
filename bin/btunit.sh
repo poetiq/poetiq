@@ -3,7 +3,7 @@
 source ./setenv.sh
 
 echo "Starting hdb ..."
-q torq.q -load sandbox/datalab.q ${KDBSTACKID} -proctype hdb -procname equitysim -localtime -g 1 -T 60 -w 4000 -debug -new_console:nc:t:'hdb' #</dev/null >$KDBLOG/equitysim.txt 2>&1 &
+q torq.q -load ${KDBCODE}/alpha/cl-deltas.q ${KDBHDB}/equitysim ${KDBSTACKID} -proctype hdb -procname equitysim -localtime -g 1 -T 60 -w 4000 -debug -new_console:nc:t:'hdb' #</dev/null >$KDBLOG/equitysim.txt 2>&1 &
 
 echo "Starting gateway ..."
 q torq.q -load ${KDBCODE}/processes/gateway.q ${KDBSTACKID} -proctype gateway -procname gateway1 -.servers.CONNECTIONS hdb rdb -localtime -g 1 -w 4000 -debug -new_console:sVnc:t:'gateway' #</dev/null >$KDBLOG/gateway.txt 2>&1 &
