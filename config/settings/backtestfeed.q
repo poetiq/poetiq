@@ -1,5 +1,5 @@
 \d .servers
-CONNECTIONS:`gateway`bttickerplant`btswitch
+CONNECTIONS:`gateway`bttickerplant`btctrl
 STARTUP:1b
 
 \d .usage

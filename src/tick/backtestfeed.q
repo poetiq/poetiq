@@ -45,7 +45,7 @@ init:{loaddata . value scope;reset[];};
 / use the discovery service to find the tickerplant to publish data to
 .servers.startup[]
 h:.servers.gethandlebytype[`bttickerplant;`any]
-hswitch:.servers.gethandlebytype[`btswitch;`any]
+hswitch:.servers.gethandlebytype[`btctrl;`any]
 deadline:.z.p;
 passedspan: 0D0;
 sentp: 0Wp;

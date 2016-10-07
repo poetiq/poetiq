@@ -9,7 +9,7 @@ system"l tick/",(src:first .z.x,enlist"sym"),".q"
 
 b: `int$();
 tick:{[x;y] init[];};
-hswitch:.servers.gethandlebytype[`btswitch;`any];
+hswitch:.servers.gethandlebytype[`btctrl;`any];
 
 / callback when subscriber is done. Removes the handle from (b)acklog
 done:{
