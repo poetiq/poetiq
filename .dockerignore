@@ -1,0 +1,9 @@
+.git
+.gitignore
+.DS_Store
+hdb
+lib
+html
+logs
+docs
+sandbox
