@@ -17,7 +17,7 @@ export KDBBASEPORT=5000
 
 export KDBSTACKID="-stackid ${KDBBASEPORT}"
 
-cd ${POETIQ}
+cd ${POETIQ}/src/torq
 
 # if using the email facility, modify the library path for the email lib depending on OS
 # e.g. linux:
