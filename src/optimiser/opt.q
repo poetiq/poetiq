@@ -1,6 +1,6 @@
 upd: ()!()
 
-twevent:{[s;d;w;t] 
+twevent:{[s;d;w;t]
 	([]sym:enlist s;date:enlist d;w:enlist w;time:enlist t)
 	}
 
@@ -15,7 +15,6 @@ upd[`signal] :{
 	w:currw upsert (sym:sym;sz:tw);
 	balw:`float$(1-tw)%(-1+count syms);
 	balance:update sz:balw from w where not sym=sym;
-	/ delta:balance pj neg currw;
 	events:{twevent[first x;date;last x;time]} each value each 0!balance;
 	{(neg hbtt) (`.u.upd;`targetw; value first x)} each events;
 	}

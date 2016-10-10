@@ -3,7 +3,7 @@ pnl: update `g#sym, `s#time from flip `sym`time`pnl!"spf"$\:()
 cash: 100000
 equity:: cash + exec sum pnl from pnl
 ec:: select ec: cash + sum pnl by time from pnl
-w::select sz*cost%equity by sym from positions / portfolio weights
+w::select last sz*cost%equity by sym from positions / portfolio weights
 
 upd: ()!()
 

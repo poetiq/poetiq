@@ -1,3 +1,5 @@
+\l hdb/equitysim
+
 upd: ()!()
 
 upd[`targetsz] :{
@@ -14,8 +16,12 @@ pweights: {[w]
 upd[`targetw] :{
 	currw:pweights[hportfolio "w"];
 	sig:1!select sym, sz:w from x;
-	filterw:select from currw where sym=first exec sym from x;
+	filterw:pweights[select from currw where sym=first exec sym from x];
 	delta:sig pj neg filterw;
+	sym:exec sym from x;
+	date:exec date from x;
+	price:value first select px:avg bid from quote where (date=date) and sym=sym;
+	order:select sym, size:floor (sz*hportfolio "equity")%price from delta;
 	break;
-
+	if[count order; (neg hbtt) (`.u.upd;`order;value first order)];
 	}
