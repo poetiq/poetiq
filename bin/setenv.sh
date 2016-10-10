@@ -4,7 +4,8 @@
 
 export POETIQ="$(dirname $(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd))"
 export KDBCODE=${POETIQ}/src
-export KDBCONFIG=${POETIQ}/config
+export KDBCONFIG=${POETIQ}/src/torq/config
+export KDBAPPCONFIG=${POETIQ}/config
 export KDBLOG=${POETIQ}/logs
 export KDBHDB=${POETIQ}/hdb
 export KDBLIB=${POETIQ}/lib
