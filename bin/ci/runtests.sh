@@ -9,6 +9,6 @@ mkdir -p ${CIRCLE_TEST_REPORTS}/junit
 TEST_RESULT=$(docker run -v $POETIQ_PATH:/poetiq ${IMAGE_FULL_NAME} runci)
 EXIT_CODE=$?
 
-TEST_RESULT > ${CIRCLE_TEST_REPORTS}/junit/test_results.xml
+echo $TEST_RESULT > ${CIRCLE_TEST_REPORTS}/junit/test_results.xml
 
-exit EXIT_CODE
+exit $EXIT_CODE
