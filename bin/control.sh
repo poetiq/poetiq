@@ -12,8 +12,8 @@ function exit_or_return ()
 
 function check_cfg_exists ()
 {
-	if [ ! -f $KDBCONFIG/start.cfg ]; then
-		local m="Config file $KDBCONFIG/start.cfg not found"
+	if [ ! -f $KDBCONFIG/start.csv ]; then
+		local m="Config file $KDBCONFIG/start.csv not found"
 		if [ ${FUNCNAME[1]} == "show" ]; then
 			logerr "$m"
 		else
@@ -26,7 +26,7 @@ function check_cfg_exists ()
 function get_procs ()
 {
 	check_cfg_exists
-	tail -n +2 $KDBCONFIG/start.cfg | cut -d ',' -f 1,2
+	tail -n +2 $KDBCONFIG/start.csv | cut -d ',' -f 1,2
 }
 
 function get_params ()
@@ -95,7 +95,7 @@ function get_params ()
 function get_cmd()
 {
 	local cmd=""
-	cmd=$(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.cfg | cut -d ',' -f 3)
+	cmd=$(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)
 	if [[ ! "$OSTYPE" =~ *win* ]]; then
 		if [ $DEBUG -eq 0 ]; then
 			CMD="nohup q $cmd </dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
