@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BIN="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+BIN="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source $BIN/util.sh
 source $BIN/setenv.sh
 
@@ -36,23 +36,22 @@ function get_params ()
 	unset LOGTYPE; unset LOGN; unset LOGWAIT; LOGLEVEL=""
 	DEBUG=0
 	caller=${FUNCNAME[1]}
+
 	if [ $# -lt 2 ]; then
 		${caller}_usage $caller
 		return 2
 	fi
 
+	PROCTYPE=$1
+	PROCNAME=$2
+	if [ -z "${PROCTYPE}" ] || [ -z "${PROCNAME}" ]; then
+		logerr "Proc type and proc name must be specified"
+		return 2
+	fi
+	shift 2
+
 	while (( "$#" )); do
 		case "$1" in
-			-p) # get proc type and proc name
-				if [ -z "$2" ]; then ${caller}_usage $caller; fi
-				PROCTYPE=$2
-				PROCNAME=$3
-				if [ -z "${PROCTYPE}" ] || [ -z "${PROCNAME}" ]; then
-					logerr "Process not found"
-					return 2
-				fi
-				shift 3
-			;;
 			-w) # get workspace size
 				if [ -z "$2" ]; then ${caller}_usage $caller; fi
 				W="$1 $2"
@@ -139,7 +138,7 @@ function starth ()
 function startp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} -p <proctype> <procname> [-w <size>] [--log <loglevel>] [--debug]"
+	echo -e "\t${1} <proctype> <procname> [-w <size>] [--log <loglevel>] [--debug]"
 	exit_or_return 1
 }
 
@@ -200,14 +199,14 @@ function stopallp ()
 function queryp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} -p <proctype> <procname>"
+	echo -e "\t${1} <proctype> <procname>"
 	exit_or_return 1
 }
 
 function stopp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} -p <proctype> <procname>"
+	echo -e "\t${1} <proctype> <procname>"
 	exit 1
 }
 
@@ -247,7 +246,7 @@ function tailp ()
 function tailp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} -p <proctype> <procname> -t <out|err|usage> -n <lines> [-F]"
+	echo -e "\t${1} <proctype> <procname> -t <out|err|usage> -n <lines> [-F]"
 	exit_or_return 1
 }
 
