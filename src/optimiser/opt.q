@@ -1,21 +1,18 @@
 upd: ()!()
 
 twevent:{[s;d;w;t]
+	/ Generates a targetw event.
 	([]sym:enlist s;date:enlist d;w:enlist w;time:enlist t)
 	}
 
+signals:1!flip`sym`signal!"sj"$\:()
+
 upd[`signal] :{
-	currw:pweights[hportfolio "w"];
-	date::first exec date from x;
-	time::first exec time from x;
-	sig:$[0>s:first exec signal from x;0;s];
-	sym:first exec sym from x;
-	syms:$[sym in s:exec sym from currw;s;s,sym];
-	tw:`float$sig*1%count syms;
-	w:currw upsert (sym:sym;sz:tw);
-	balw:`float$(1-tw)%(-1+count syms);
-	balance:update sz:balw from w where not sym=sym;
-	events:{twevent[first x;date;last x;time]} each value each 0!balance;
+	`signals upsert (sym:first exec sym from x;signal:first exec signal from x);
+	tw:exec 1%count sym from signals where signal>0;
+	tws:select sym, tw:`float$tw*signal from update signal:0 from signals where signal<1;
+	d::first exec date from x; t::first exec time from x;
+	events:{twevent[first x;d;last x;t]} each value each tws;
 	{(neg hbtt) (`.u.upd;`targetw; value first x)} each events;
 	}
 

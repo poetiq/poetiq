@@ -22,6 +22,11 @@ upd[`order]:{
 		(neg hbtt) (`.u.upd;`fill; value first x);]
 	}
 
+getpx:{[sym]
+	now: hswitch["clock[]"];
+	value first select first price from trade where sym=sym, (date+time)>now
+	}
+
 /
 fixture sample for upcoming TDD
 x: ([] sym:`AA`GOOG; size: 100 200) / order (this one is bundled, to be executed at the same time)

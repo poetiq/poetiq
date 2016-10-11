@@ -1,5 +1,4 @@
 .servers.startup[]
 hbtt: .servers.gethandlebytype[`bttickerplant;`any]
-hportfolio: .servers.gethandlebytype[`portfolio;`any]
 btt: .sub.getsubscriptionhandles[`bttickerplant;();()!()]
 subinfo:.sub.subscribe[`signal;`;1b;0b;first btt]
