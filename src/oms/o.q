@@ -8,17 +8,11 @@ upd[`targetsz] :{
 	if[count delta; (neg hbtt) (`.u.upd;`order; value first select sym, size:sz from delta)];
 	}
 
-pweights: {[w]
-	/ Returns an empty weights table of the correct types if current weights table is null.
-	$[0=count w;([sym:`$()]sz:`float$());w]
-	}
-
 upd[`targetw] :{
-	currw:select from pweights[hportfolio "w"] where sym=first exec sym from x;
+	currw:$[0=count w:hportfolio "w";([sym:`$()]sz:`float$());w];
 	targw:select sym, sz:w from x;
-	delta:targw pj neg currw;
-	price:hfill (`getpx;first exec sym from x);
-	order:select sym, size:floor(sz*hportfolio "equity")%price from delta;
+	delta:select last sz, px:last hfill (`getpx;first sym) by sym from targw pj neg currw;
+	orders:select sym, size:floor (hportfolio "equity")*sz%px from delta;
 	/ break;
-	if[count order; (neg hbtt) (`.u.upd;`order;value first order)];
+	if[count orders; (neg hbtt) (`.u.upd;`order;value flip orders)];
 	}

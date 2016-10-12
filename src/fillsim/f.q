@@ -18,13 +18,13 @@ upd[`order]:{
 	show raze string hswitch["clock[]"],-3!x;
 	now: hswitch["clock[]"];
 	if[count x: delete from x where size=0;
-		x:x lj select first price by sym from trade where sym in (exec sym from x), (date+time)>now;
-		(neg hbtt) (`.u.upd;`fill; value first x);]
+		orders:x lj select first price by sym from trade where sym in (exec sym from x), (date+time)>now;
+		{(neg hbtt) (`.u.upd;`fill;x)} each value each orders;]
 	}
 
-getpx:{[sym]
+getpx:{
 	now: hswitch["clock[]"];
-	value first select first price from trade where sym=sym, (date+time)>now
+	value first select first price from trade where sym=x, (date+time)>now
 	}
 
 /

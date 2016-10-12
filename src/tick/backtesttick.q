@@ -10,6 +10,7 @@ system"l tick/",(src:first .z.x,enlist"sym"),".q"
 b: `int$();
 tick:{[x;y] init[];};
 hswitch:.servers.gethandlebytype[`btswitch;`any];
+/ i:0;
 
 / callback when subscriber is done. Removes the handle from (b)acklog
 done:{
@@ -35,6 +36,7 @@ upd:{[t;x]
 	f:key flip value t;
 	show raze string t, hswitch["clock[]"], -3!f!x;
 	if[0=count w t; :done[]];
+	/ i+::1;
 	pub_aware[t;$[0>type first x;enlist f!x;flip f!x]];
  };
 
