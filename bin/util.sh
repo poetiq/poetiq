@@ -15,7 +15,7 @@ POWDER_BLUE=$(tput setaf 153)
 # BRIGHT=$(tput bold)
 # BLINK=$(tput blink)
 # REVERSE=$(tput smso)
-# UNDERLINE=$(tput smul)
+UNDERLINE=$(tput smul)
 
 log () {
 	if [ ! -f $3 ]; then touch $3; fi

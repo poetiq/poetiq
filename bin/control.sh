@@ -94,17 +94,16 @@ function get_params ()
 
 function get_cmd()
 {
-	local cmd=""
-	cmd=$(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)
-	if [[ ! "$OSTYPE" =~ *win* ]]; then
-		if [ $DEBUG -eq 0 ]; then
-			CMD="nohup q $cmd </dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
-		else
-			CMD="q $cmd -debug"
-		fi
-	else
-		CMD="q $cmd -new_console:t:'$PROCNAME'"
+	CMD="q $(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)"
+
+	if [ $DEBUG -ne 0 ]; then
+		CMD+=" -debug"
+	elif [[ "$OSTYPE" =~ darwin*|linux*|bsd*|solaris* ]]; then
+		CMD+="</dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
 	fi
+
+	if [[ "$OSTYPE" == "msys" ]]; then CMD+=" -new_console:t:'$PROCNAME'"; fi
+
 	CMD=$(eval echo \""${CMD}"\")
 }
 
@@ -121,7 +120,7 @@ function starth ()
 	check_cfg_exists
 	queryh
 	if [ -n "$PID" ]; then
-		logwarn "Process $(procname) is already running. Use restart if you want to restart the process"
+		logwarn "Process $(procname) is already running. Use restart if you want to restart the process."
 		return 0
 	fi
 	get_cmd
@@ -149,10 +148,10 @@ function queryp ()
 	if [ $? -eq 2 ]; then return 0; fi
 	queryh
 	if [ -z "$PID" ]; then
-		logerr "$(procname) is not running"
+		loginfo "$(procname) is ${UNDERLINE}not${NORMAL} running"
 		return 0
 	else
-		loginfo "$(procname) is running with PID $PID"
+		loginfo "$(procname) is running with PID = $PID"
 		return 1
 	fi
 }
@@ -210,6 +209,31 @@ function stopp_usage ()
 	exit 1
 }
 
+# function listp ()
+# {
+# 	# regex="([0-9]+)(?=.*-proctype\s+(\w+))(?=.*-procname\s+(\w+)).*"
+# 	regex="([0-9]+)(.*?)(-proctype\s+)(\w+)(.*?-procname\s+)(\w+)(.*?)"
+# 	cmd="ps -e -o 'pid,args'"
+
+# 	eval $cmd | while read -r line; do
+# 		if [[ $line =~ $regex ]]; then
+# 			PID=${BASH_REMATCH[0]}
+# 			PROCTYPE=${BASH_REMATCH[1]}
+# 			PROCNAME=${BASH_REMATCH[2]}
+# 			echo -e "Match: $PID\t$PROCTYPE\t$PROCNAME\n"
+
+# 		fi
+# 	done
+
+# 	# if [[ "$OSTYPE" =~ darwin* ]]; then
+# 	# 	PID=$(ps -e -o 'pid,args' | grep -E "\-(proctype.*procname)")
+# 	# elif [ "$OSTYPE" == "cygwin" ]; then
+# 	# 	PID=$(pstree -pal | grep -E "\-(proctype.*procname)")
+# 	# else
+# 	# 	PID=$(ps -elf | grep -E "\-(proctype.*procname)")
+# 	# fi
+# }
+
 function restartp ()
 {
 	get_params $*
@@ -246,7 +270,7 @@ function tailp ()
 function tailp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} <proctype> <procname> -t <out|err|usage> -n <lines> [-F]"
+	echo -e "\t${1} <proctype> <procname> -t <out|err|usage> [-n <lines>] [-F]"
 	exit_or_return 1
 }
 
@@ -260,4 +284,5 @@ export -f startp
 export -f stopp
 export -f stopallp
 export -f restartp
+# export -f listp
 export -f tailp
