@@ -6,15 +6,15 @@ KDB_URL=$2
 VERSION_TAG=$(git --git-dir $POETIQ_PATH/.git log $CIRCLE_BRANCH -n 1 --pretty=format:%H -- Dockerfile circle.yml bin/ci/)
 IMAGE_FULL_NAME="poetiq/poetiq:${VERSION_TAG}"
 
+echo -e "Commit SHA1:\t${CIRCLE_SHA1}"
 echo -e "Image SHA1:\t${VERSION_TAG}"
-echo -e "Git SHA1:\t${CIRCLE_SHA1}"
 echo -e "Image name:\t${IMAGE_FULL_NAME}\n"
 
 CACHE_DIR=$(readlink -f ~/docker)
 IMAGE_ARCHIVE="${CACHE_DIR}/poetiq.tar"
 
 if [ -e "${IMAGE_ARCHIVE}" ]; then
-	echo -e "Using existing image: ${IMAGE_ARCHIVE}\n"
+	echo -e "Loading archive: ${IMAGE_ARCHIVE}\n"
 	docker load -i "${IMAGE_ARCHIVE}"
 fi
 

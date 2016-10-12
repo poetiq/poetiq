@@ -6,4 +6,9 @@ IMAGE_FULL_NAME="poetiq/poetiq:${VERSION_TAG}"
 
 mkdir -p ${CIRCLE_TEST_REPORTS}/junit
 
-docker run -v $POETIQ_PATH:/poetiq ${IMAGE_FULL_NAME} runci > ${CIRCLE_TEST_REPORTS}/junit/test_results.xml
+TEST_RESULT=$(docker run -v $POETIQ_PATH:/poetiq ${IMAGE_FULL_NAME} runci)
+EXIT_CODE=$?
+
+echo $TEST_RESULT > ${CIRCLE_TEST_REPORTS}/junit/test_results.xml
+
+exit $EXIT_CODE

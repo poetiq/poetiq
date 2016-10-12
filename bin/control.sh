@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BIN="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+BIN="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source $BIN/util.sh
 source $BIN/setenv.sh
 
@@ -12,8 +12,8 @@ function exit_or_return ()
 
 function check_cfg_exists ()
 {
-	if [ ! -f $KDBCONFIG/start.cfg ]; then
-		local m="Config file $KDBCONFIG/start.cfg not found"
+	if [ ! -f $KDBCONFIG/start.csv ]; then
+		local m="Config file $KDBCONFIG/start.csv not found"
 		if [ ${FUNCNAME[1]} == "show" ]; then
 			logerr "$m"
 		else
@@ -26,7 +26,7 @@ function check_cfg_exists ()
 function get_procs ()
 {
 	check_cfg_exists
-	tail -n +2 $KDBCONFIG/start.cfg | cut -d ',' -f 1,2
+	tail -n +2 $KDBCONFIG/start.csv | cut -d ',' -f 1,2
 }
 
 function get_params ()
@@ -36,23 +36,22 @@ function get_params ()
 	unset LOGTYPE; unset LOGN; unset LOGWAIT; LOGLEVEL=""
 	DEBUG=0
 	caller=${FUNCNAME[1]}
+
 	if [ $# -lt 2 ]; then
 		${caller}_usage $caller
 		return 2
 	fi
 
+	PROCTYPE=$1
+	PROCNAME=$2
+	if [ -z "${PROCTYPE}" ] || [ -z "${PROCNAME}" ]; then
+		logerr "Proc type and proc name must be specified"
+		return 2
+	fi
+	shift 2
+
 	while (( "$#" )); do
 		case "$1" in
-			-p) # get proc type and proc name
-				if [ -z "$2" ]; then ${caller}_usage $caller; fi
-				PROCTYPE=$2
-				PROCNAME=$3
-				if [ -z "${PROCTYPE}" ] || [ -z "${PROCNAME}" ]; then
-					logerr "Process not found"
-					return 2
-				fi
-				shift 3
-			;;
 			-w) # get workspace size
 				if [ -z "$2" ]; then ${caller}_usage $caller; fi
 				W="$1 $2"
@@ -95,17 +94,16 @@ function get_params ()
 
 function get_cmd()
 {
-	local cmd=""
-	cmd=$(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.cfg | cut -d ',' -f 3)
-	if [[ ! "$OSTYPE" =~ *win* ]]; then
-		if [ $DEBUG -eq 0 ]; then
-			CMD="nohup q $cmd </dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
-		else
-			CMD="q $cmd -debug"
-		fi
-	else
-		CMD="q $cmd -new_console:t:'$PROCNAME'"
+	CMD="q $(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)"
+
+	if [ $DEBUG -ne 0 ]; then
+		CMD+=" -debug"
+	elif [[ "$OSTYPE" =~ darwin*|linux*|bsd*|solaris* ]]; then
+		CMD+="</dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
 	fi
+
+	if [[ "$OSTYPE" == "msys" ]]; then CMD+=" -new_console:t:'$PROCNAME'"; fi
+
 	CMD=$(eval echo \""${CMD}"\")
 }
 
@@ -122,7 +120,7 @@ function starth ()
 	check_cfg_exists
 	queryh
 	if [ -n "$PID" ]; then
-		logwarn "Process $(procname) is already running. Use restart if you want to restart the process"
+		logwarn "Process $(procname) is already running. Use restart if you want to restart the process."
 		return 0
 	fi
 	get_cmd
@@ -139,7 +137,7 @@ function starth ()
 function startp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} -p <proctype> <procname> [-w <size>] [--log <loglevel>] [--debug]"
+	echo -e "\t${1} <proctype> <procname> [-w <size>] [--log <loglevel>] [--debug]"
 	exit_or_return 1
 }
 
@@ -150,10 +148,10 @@ function queryp ()
 	if [ $? -eq 2 ]; then return 0; fi
 	queryh
 	if [ -z "$PID" ]; then
-		logerr "$(procname) is not running"
+		loginfo "$(procname) is ${UNDERLINE}not${NORMAL} running"
 		return 0
 	else
-		loginfo "$(procname) is running with PID $PID"
+		loginfo "$(procname) is running with PID = $PID"
 		return 1
 	fi
 }
@@ -200,16 +198,41 @@ function stopallp ()
 function queryp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} -p <proctype> <procname>"
+	echo -e "\t${1} <proctype> <procname>"
 	exit_or_return 1
 }
 
 function stopp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} -p <proctype> <procname>"
+	echo -e "\t${1} <proctype> <procname>"
 	exit 1
 }
+
+# function listp ()
+# {
+# 	# regex="([0-9]+)(?=.*-proctype\s+(\w+))(?=.*-procname\s+(\w+)).*"
+# 	regex="([0-9]+)(.*?)(-proctype\s+)(\w+)(.*?-procname\s+)(\w+)(.*?)"
+# 	cmd="ps -e -o 'pid,args'"
+
+# 	eval $cmd | while read -r line; do
+# 		if [[ $line =~ $regex ]]; then
+# 			PID=${BASH_REMATCH[0]}
+# 			PROCTYPE=${BASH_REMATCH[1]}
+# 			PROCNAME=${BASH_REMATCH[2]}
+# 			echo -e "Match: $PID\t$PROCTYPE\t$PROCNAME\n"
+
+# 		fi
+# 	done
+
+# 	# if [[ "$OSTYPE" =~ darwin* ]]; then
+# 	# 	PID=$(ps -e -o 'pid,args' | grep -E "\-(proctype.*procname)")
+# 	# elif [ "$OSTYPE" == "cygwin" ]; then
+# 	# 	PID=$(pstree -pal | grep -E "\-(proctype.*procname)")
+# 	# else
+# 	# 	PID=$(ps -elf | grep -E "\-(proctype.*procname)")
+# 	# fi
+# }
 
 function restartp ()
 {
@@ -247,7 +270,7 @@ function tailp ()
 function tailp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} -p <proctype> <procname> -t <out|err|usage> -n <lines> [-F]"
+	echo -e "\t${1} <proctype> <procname> -t <out|err|usage> [-n <lines>] [-F]"
 	exit_or_return 1
 }
 
@@ -261,4 +284,5 @@ export -f startp
 export -f stopp
 export -f stopallp
 export -f restartp
+# export -f listp
 export -f tailp
