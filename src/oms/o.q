@@ -13,6 +13,5 @@ upd[`targetw] :{
 	targw:select sym, sz:w from x;
 	delta:select last sz, px:last hfill (`getpx;first sym) by sym from targw pj neg currw;
 	orders:select sym, size:floor (hportfolio "equity")*sz%px from delta;
-	/ break;
 	if[count orders; (neg hbtt) (`.u.upd;`order;value flip orders)];
 	}

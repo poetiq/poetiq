@@ -9,7 +9,7 @@
 / supported order types:
 /   - none explicitly. Implicitly: MARKET(?), MOC, MOO
 
-/ Order bundles are submitted in a table but to be processed one row at a time (TODO)
+/ Order bundles are submitted in a table but to be processed one row at a time (DONE)
 
 \l hdb/equitysim / requires trade table; order filled instantaneously at price traded at the time following the order
 
