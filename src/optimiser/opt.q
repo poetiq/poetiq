@@ -4,8 +4,8 @@ upd: ()!()
 
 upd[`signal] :{
 	`alphas upsert x;
-	targetws:wfun . args;
-	break;
+	targetws:wfun . enlist alphas;
+	/ break;
 	(neg hbtt) (`.u.upd;`targetw; value flip targetws)
 	}
 
