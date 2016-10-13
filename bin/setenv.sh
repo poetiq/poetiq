@@ -2,6 +2,8 @@
 
 # Set up environment variables
 
+export QBIN=$(find $QHOME -name q -type f)
+
 export POETIQ="$(dirname $(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd))"
 
 export TORQHOME=../TorQ
@@ -23,6 +25,7 @@ export KDBBASEPORT=5000
 export KDBSTACKID="-stackid ${KDBBASEPORT}"
 
 cd ${TORQHOME}
+
 
 # if using the email facility, modify the library path for the email lib depending on OS
 # e.g. linux:

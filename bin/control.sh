@@ -4,6 +4,8 @@ BIN="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source $BIN/util.sh
 source $BIN/setenv.sh
 
+if [ -z $QBIN ]; then logerr "Q binary not found"; fi
+
 # exit script or send interrupt signal to stop execution of function if in console mode
 function exit_or_return ()
 {
@@ -94,12 +96,15 @@ function get_params ()
 
 function get_cmd()
 {
-	CMD="q $(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)"
+	CMD="$QBIN $(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)"
 
 	if [ $DEBUG -ne 0 ]; then
 		CMD+=" -debug"
+		# Use rlwrap if available
+		if hash rlwrap 2>/dev/null; then CMD="rlwrap $CMD"; fi
 	elif [[ "$OSTYPE" =~ darwin*|linux*|bsd*|solaris* ]]; then
-		CMD+="</dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
+		CMD="nohup $CMD"
+		CMD+=" </dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
 	fi
 
 	if [[ "$OSTYPE" == "msys" ]]; then CMD+=" -new_console:t:'$PROCNAME'"; fi
