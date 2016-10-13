@@ -4,6 +4,10 @@ upd: ()!()
 
 upd[`signal] :{
 	`alphas upsert x;
-	targetws:wfun . enlist alphas;
+	targetws:wfun . args;
+	break;
 	(neg hbtt) (`.u.upd;`targetw; value flip targetws)
 	}
+
+wfun:{select sym, date, w:eqw long signal, time from x}
+args::alphas
