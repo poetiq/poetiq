@@ -1,0 +1,22 @@
+echo,cmd
+"Starting discovery service ...", q torq.q -load ${KDBCODE}/processes/discovery.q ${KDBSTACKID} -proctype discovery -procname discovery1 -localtime -debug #</dev/null >$KDBLOG/discovery.txt 2>&1 &
+
+"Starting housekeeping ...", q torq.q -load ${KDBCODE}/processes/housekeeping.q ${KDBSTACKID} -proctype housekeeping -procname housekeeping1 -localtime -debug #</dev/null >$KDBLOG/housekeeping.txt 2>&1 &
+
+"Starting backtest control ...", q torq.q -load ${PROC}/btctrl.q ${KDBSTACKID} -trap -proctype btctrl -procname btctrl1 -localtime -debug -e 1 -.clients.enabled 0 -.usage.enabled 0 #-.zpsignore.enabled 0
+
+"Starting tickerplant ...", q ${PROC}/bttickerplant.q equitysim ${KDBHDB} ${KDBSTACKID} -trap -proctype bttickerplant -procname bttickerplant1 -localtime -debug -e 1 -c 25 200
+
+"Starting hdb ...", q torq.q -load ${MOD}/alpha/cl-deltas.q ${KDBHDB}/equitysim ${KDBSTACKID} -proctype hdb -procname equitysim -localtime -g 1 -T 60 -w 4000 -debug -new_console:nc:t:'hdb' #</dev/null >$KDBLOG/equitysim.txt 2>&1 &
+
+"Starting gateway ...", q torq.q -load ${KDBCODE}/processes/gateway.q ${KDBSTACKID} -proctype gateway -procname gateway1 -.servers.CONNECTIONS hdb rdb -localtime -g 1 -w 4000 -debug -new_console:sVnc:t:'gateway' #</dev/null >$KDBLOG/gateway.txt 2>&1 &
+
+"Starting optimiser ...", q torq.q -load ${PROC}/optimiser.q ${KDBSTACKID} -trap -proctype optimiser -procname optimiser1 -localtime -debug -new_console:nc:t:'optimiser' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 &
+
+"Starting oms ...", q torq.q -load ${PROC}/oms.q ${KDBSTACKID} -trap -proctype oms -procname oms1 -localtime -debug -new_console:sHnc:t:'oms' -e 1 -.clients.enabled 0 -.usage.enabled 0 # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 &
+
+"Starting fillsim ...", q torq.q -load ${PROC}/fillsim.q ${KDBSTACKID} -trap -proctype fillsim -procname fillsim1 -localtime -debug -new_console:s8TV:t:'fillsim' -e 1 -.clients.enabled 0 -.usage.enabled 0 # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 &
+
+"Starting portfolio ...", q torq.q -load ${PROC}/portfolio.q ${KDBSTACKID} -trap -proctype portfolio -procname portfolio1 -localtime -debug -new_console:s9TV:t:'portfolio' -e 1 -.clients.enabled 0 -.usage.enabled 0 #</dev/null >$KDBLOG/gateway.txt 2>&1 &
+
+"Starting feed ...", q torq.q -load ${MOD}/tick/backtestfeed.q ${KDBSTACKID} -wait -trap -proctype backtestfeed -procname backtestfeed1 -localtime -tbls mtm signal -bgn 2016.05.02 -end 2016.05.31 -syms AAPL PRU GOOG MSFT -debug -new_console:s4TV:t:'btfeed' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 & # -bgn 2016.05.02 -end 2016.05.02 -syms GOOG IBM MSFT
