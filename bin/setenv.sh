@@ -5,20 +5,26 @@
 export QBIN=$(find $QHOME -name q -type f)
 
 export POETIQ="$(dirname $(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd))"
-export KDBCODE=${POETIQ}/src
-export KDBCONFIG=${POETIQ}/config
-export KDBLOG=${POETIQ}/logs
+
+export TORQHOME=../TorQ
+export KDBCONFIG=${TORQHOME}/config
+export KDBCODE=${TORQHOME}/code
+export KDBLOG=${TORQHOME}/logs
+export KDBHTML=${TORQHOME}/html
+export KDBLIB=${TORQHOME}/lib
+
+export KDBAPPCONFIG=${POETIQ}/config
 export KDBHDB=${POETIQ}/hdb
-export KDBLIB=${POETIQ}/lib
+export MOD=${POETIQ}/src
+export PROC=${POETIQ}/src/processes
+
 export KDBTESTS=${POETIQ}/tests
-export KDBSPECS=${POETIQ}/specs
-export KDBHTML=${POETIQ}/html
 
 export KDBBASEPORT=5000
 
 export KDBSTACKID="-stackid ${KDBBASEPORT}"
 
-cd ${POETIQ}
+cd ${TORQHOME}
 
 
 # if using the email facility, modify the library path for the email lib depending on OS
