@@ -1,26 +1,24 @@
 #!/bin/bash
 
 # http://stackoverflow.com/questions/4332478/read-the-current-text-color-in-a-xterm/4332530#4332530
-BLACK=$(tput setaf 0)
+NORMAL=$(tput sgr0)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
-LIME_YELLOW=$(tput setaf 190)
+# BLACK=$(tput setaf 0)
+# BLUE=$(tput setaf 4)
+# MAGENTA=$(tput setaf 5)
+# CYAN=$(tput setaf 6)
+# WHITE=$(tput setaf 7)
+# LIME_YELLOW=$(tput setaf 190)
 POWDER_BLUE=$(tput setaf 153)
-BLUE=$(tput setaf 4)
-MAGENTA=$(tput setaf 5)
-CYAN=$(tput setaf 6)
-WHITE=$(tput setaf 7)
-BRIGHT=$(tput bold)
-NORMAL=$(tput sgr0)
-BLINK=$(tput blink)
-REVERSE=$(tput smso)
+# BRIGHT=$(tput bold)
+# BLINK=$(tput blink)
+# REVERSE=$(tput smso)
 UNDERLINE=$(tput smul)
 
 log () {
-	if [ ! -f $3 ]; then
-		touch $3
-	fi
+	if [ ! -f $3 ]; then touch $3; fi
 	printf "%s |%s| %s[%s] | - %s\n" "$(date +%Y.%m.%dT%T.%3N)" "${1-INFO}" "$0" $$ "$2" | tee -a $3
 }
 

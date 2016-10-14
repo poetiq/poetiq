@@ -29,6 +29,7 @@ Archive/
 
 #sublime
 *.sublime-workspace
+*.sublime-project
 terminal.glue
 
 # OS X

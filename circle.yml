@@ -1,0 +1,14 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+
+  override:
+    - bin/ci/build_docker_image.sh $PWD ${KDB_URL}
+
+test:
+  override:
+     - bin/ci/runtests.sh $PWD

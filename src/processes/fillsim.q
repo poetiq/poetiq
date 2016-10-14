@@ -1,5 +1,5 @@
 .servers.startup[]
 hbtt: .servers.gethandlebytype[`bttickerplant;`any]
-hswitch: .servers.gethandlebytype[`btswitch;`any]
+hswitch: .servers.gethandlebytype[`btctrl;`any]
 btt: .sub.getsubscriptionhandles[`bttickerplant;();()!()]
 subinfo:.sub.subscribe[`order;`;1b;0b;first btt]
