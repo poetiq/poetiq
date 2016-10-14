@@ -9,7 +9,7 @@
 / supported order types:
 /   - none explicitly. Implicitly: MARKET(?), MOC, MOO
 
-/ Order bundles are submitted in a table but to be processed one row at a time (TODO)
+/ Order bundles are submitted in a table but to be processed one row at a time (DONE)
 
 \l hdb/equitysim / requires trade table; order filled instantaneously at price traded at the time following the order
 
@@ -18,8 +18,13 @@ upd[`order]:{
 	show raze string hswitch["clock[]"],-3!x;
 	now: hswitch["clock[]"];
 	if[count x: delete from x where size=0;
-		x:x lj select first price by sym from trade where sym in (exec sym from x), (date+time)>now;
-		(neg hbtt) (`.u.upd;`fill; value first x);]
+		orders:x lj select first price by sym from trade where sym in (exec sym from x), (date+time)>now;
+		{(neg hbtt) (`.u.upd;`fill;x)} each value each orders;]
+	}
+
+getpx:{
+	now: hswitch["clock[]"];
+	value first select first price from trade where sym=x, (date+time)>now
 	}
 
 /

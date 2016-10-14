@@ -1,6 +1,10 @@
+alphas:1!flip`sym`date`signal`time!"sdin"$\:()
+
 upd: ()!()
 
 upd[`signal] :{
-	x: select sym, date, sz: units[1] signal, time from x;
-	(neg hbtt) (`.u.upd;`targetsz; value first x);
+	`alphas upsert x;
+	target:wfun . enlist alphas; / For equal weight strategy.
+	/ target:wfun[x]; / For single unit strategy.
+	(neg hbtt) (`.u.upd; eventtype; value flip target)
 	}

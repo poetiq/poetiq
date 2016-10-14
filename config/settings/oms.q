@@ -1,6 +1,6 @@
 \d .servers
 STARTUP:1b
-CONNECTIONS:`discovery`bttickerplant`portfolio
+CONNECTIONS:`discovery`bttickerplant`portfolio`fillsim
 
 \d .proc
 loadprocesscode: 1b
