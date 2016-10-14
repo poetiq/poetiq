@@ -4,10 +4,7 @@ upd: ()!()
 
 upd[`signal] :{
 	`alphas upsert x;
-	targetws:wfun . enlist alphas;
-	/ break;
-	(neg hbtt) (`.u.upd;`targetw; value flip targetws)
+	target:wfun . enlist alphas; / For equal weight strategy.
+	/ target:wfun[x]; / For single unit strategy.
+	(neg hbtt) (`.u.upd; eventtype; value flip target)
 	}
-
-wfun:{select sym, date, w:eqw long signal, time from x}
-args::alphas
