@@ -1,0 +1,16 @@
+host,port,proctype,procname
+localhost,5000,discovery,discovery1
+localhost,5001,housekeeping,housekeeping1
+localhost,5002,hdb,equitysim
+localhost,5004,kill,killpoetiq
+localhost,5005,backtestfeed,backtestfeed1
+localhost,5006,gateway,gateway1
+localhost,5008,gui,gui1
+localhost,5009,oms,oms1
+localhost,5010,fillsim,fillsim1
+localhost,5013,simfeed,simfeed1
+localhost,5014,bttickerplant,bttickerplant1
+localhost,5015,bundler,bundler1
+localhost,5016,portfolio,portfolio1
+localhost,5017,btctrl,btctrl1
+localhost,5018,optimiser,optimiser1
