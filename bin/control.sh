@@ -172,6 +172,13 @@ function queryh ()
 	fi
 }
 
+function queryp_usage ()
+{
+	echo -e "Usage:"
+	echo -e "\t${1} <proctype> <procname>"
+	exit_or_return 1
+}
+
 # main stop function
 function stopp ()
 {
@@ -194,23 +201,21 @@ function stoph ()
 	fi
 }
 
-function stopallp ()
-{
-	echo "Not yet implemented"
-}
-
-function queryp_usage ()
-{
-	echo -e "Usage:"
-	echo -e "\t${1} <proctype> <procname>"
-	exit_or_return 1
-}
-
 function stopp_usage ()
 {
 	echo -e "Usage:"
 	echo -e "\t${1} <proctype> <procname>"
 	exit 1
+}
+
+function stopallp ()
+{
+	while read -r line; do
+		PROCTYPE=$(echo $line | awk '{print $2}')
+		PROCNAME=$(echo $line | awk '{print $3}')
+		stoph
+	done < <(listp | tail -n +2)
+	unset PROCTYPE PROCNAME
 }
 
 function listp ()
