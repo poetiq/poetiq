@@ -99,12 +99,11 @@ function get_cmd()
 	CMD="$QBIN $(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)"
 
 	if [ $DEBUG -ne 0 ]; then
-		CMD+=" -debug"
 		# Use rlwrap if available
 		if hash rlwrap 2>/dev/null; then CMD="rlwrap $CMD"; fi
+		CMD+=" -debug"
 	elif [[ "$OSTYPE" =~ darwin*|linux*|bsd*|solaris* ]]; then
-		CMD="nohup $CMD"
-		CMD+=" </dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
+		CMD="nohup $CMD </dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
 	fi
 
 	if [[ "$OSTYPE" == "msys" ]]; then CMD+=" -new_console:t:'$PROCNAME'"; fi
@@ -125,7 +124,7 @@ function starth ()
 	check_cfg_exists
 	queryh
 	if [ -n "$PID" ]; then
-		logwarn "Process $(procname) is already running. Use restart if you want to restart the process."
+		logwarn "$(procname) is already running. Use restart if you want to restart the process."
 		return 0
 	fi
 	get_cmd
@@ -214,30 +213,25 @@ function stopp_usage ()
 	exit 1
 }
 
-# function listp ()
-# {
-# 	# regex="([0-9]+)(?=.*-proctype\s+(\w+))(?=.*-procname\s+(\w+)).*"
-# 	regex="([0-9]+)(.*?)(-proctype\s+)(\w+)(.*?-procname\s+)(\w+)(.*?)"
-# 	cmd="ps -e -o 'pid,args'"
+function listp ()
+{
+	local REGEX="([0-9]+).*-proctype ([A-Za-z0-9_-]+).*-procname ([A-Za-z0-9_-]+).*"
+	local OUTPUT="PID\tPROCTYPE\tPROCNAME"
 
-# 	eval $cmd | while read -r line; do
-# 		if [[ $line =~ $regex ]]; then
-# 			PID=${BASH_REMATCH[0]}
-# 			PROCTYPE=${BASH_REMATCH[1]}
-# 			PROCNAME=${BASH_REMATCH[2]}
-# 			echo -e "Match: $PID\t$PROCTYPE\t$PROCNAME\n"
+	if [[ $OSTYPE =~ darwin* ]]; then
+		local CMD="ps -e -o 'pid,args'"
+	else
+		local CMD="ps -elf"
+	fi
 
-# 		fi
-# 	done
+	while read -r line; do
+		if [[ $line =~ $REGEX ]]; then
+			OUTPUT+="\n${BASH_REMATCH[1]}\t${BASH_REMATCH[2]}\t${BASH_REMATCH[3]}"
+		fi
+	done < <(eval $CMD)
 
-# 	# if [[ "$OSTYPE" =~ darwin* ]]; then
-# 	# 	PID=$(ps -e -o 'pid,args' | grep -E "\-(proctype.*procname)")
-# 	# elif [ "$OSTYPE" == "cygwin" ]; then
-# 	# 	PID=$(pstree -pal | grep -E "\-(proctype.*procname)")
-# 	# else
-# 	# 	PID=$(ps -elf | grep -E "\-(proctype.*procname)")
-# 	# fi
-# }
+	echo -e $OUTPUT | column -t -s $'\t' | sort -k 2
+}
 
 function restartp ()
 {
@@ -281,7 +275,7 @@ function tailp_usage ()
 
 function procname ()
 {
-	echo "${POWDER_BLUE}<${PROCTYPE},${PROCNAME}>${NORMAL}"
+	echo "${POWDER_BLUE}<${PROCTYPE} ${PROCNAME}>${NORMAL}"
 }
 
 export -f queryp
@@ -289,5 +283,5 @@ export -f startp
 export -f stopp
 export -f stopallp
 export -f restartp
-# export -f listp
+export -f listp
 export -f tailp

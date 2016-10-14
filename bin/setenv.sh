@@ -2,7 +2,7 @@
 
 # Set up environment variables
 
-export QBIN=$(find $QHOME -name q -type f)
+export QBIN=$(find $QHOME -name q -type f | head -n 1)
 
 export POETIQ="$(dirname $(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd))"
 export KDBCODE=${POETIQ}/src
