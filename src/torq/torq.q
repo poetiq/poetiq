@@ -6,89 +6,10 @@ loaded:1b
 // Initialised flag - used to check if the process is still initialisation
 initialised:0b
 
-generalusage:@[value;`generalusage;"General:
- This script should form the basis of a production kdb+ environment.
- It can be sourced from other files if required, or used as a launch script before loading other files/directories
- using either -load or -loaddir flags
- Currently each process has to know two things about itself - it's name and type.  These can be
-  - read from a file (the default behaviour)
-  - supplied on the command line
-  - set previously if sourced from other files (set .proc.proctype and .proc.procname)
- By default these are read from $KDBCONFIG/process.csv with schema
- host,port,proctype,procname
- The process uses it's own host (either hostname or ip address) as a lookup to work out it's type and name.
- It will also check for hosts of 'localhost' if it can't find anything else, but this is a convenience and not for
- production environments.
- The name and type of the process are used to determine various things :
-  - the name of the log files to write to
-  - which config to load
-  - which code to load
- It will also be useful for service discovery"]
-
-// Usage errors
-// The environment usage info
-envusage:@[value;`envusage;"Required environment variables:
- KDBCODE:\t\t\tthe base code directory.  This will be checked for certain folders e.g. $KDBCODE/common;$KDBCODE/handlers
- KDBCONFIG:\t\t\twhere the process configuration lives
- KDBLOG:\t\t\twhere log files are written to
- KDBHTML:\t\t\tcontains html files
- KDBLIB:\t\t\tcontains supporting library files"]
-
-envoptusage:@[value;`envoptusage;"Optional environment variables:
- KDBAPPCONFIG:\t\t\twhere the app specific configuation can be found"]
-
-// the standard options
-stdoptionusage:@[value;`stdoptionusage;"Standard options:
- [-procname x -proctype y]:\tthe process name and process type.  Read from $KDBCONFIG/process.csv if not defined
- [-procfile x]:\t\t\tthe full path of the process.csv file to use to getthe details on the current process
- [-load x [y..z]]:\t\t\tthe file or database directory to load
- [-loaddir x [y..z]]:\t\t\tload all .q,.k files in specified directory
- [-trap]:\t\t\tany errors encountered during initialisation when loading external files will be caught and logged, processing will continue
- [-stop]:\t\t\tstop loading the file if an error is encountered
- [-noredirect]:\t\t\tdo not redirect std out/std err to a file (useful for debugging)
- [-noredirectalias]:\t\tdo not create an alias for the log files (aliases drop the timestamp suffix)
- [-noconfig]:\t\t\tdo not load configuration
- [-nopi]:\t\t\treset the definition of .z.pi to the initial value (useful for debugging)
- [-debug]:\t\t\tequivalent to [-nopi -noredirect]
- [-localtime]:\t\t\tuse local time instead of GMT
- [-usage]:\t\t\tprint usage info
- [-test]:\t\t\tset to run unit tests"]
-
-// extra info - used to extend the usage info
-extrausage:@[value;`extrausage;""]
-
-configusage:@[value;`configusage;"Config management:
- More options are available in the configuration scripts.
- All default TorQ configuration is stored in $KDBCONFIG (in the settings directory). The config is stored in q scripts.
- Unless the -noconfig flag is set, the process will attempt to read the default config module from this directory.
- Within the module, default.q will be read, followed by {proctype}.q, then {procname}.q.
- Neither {proctype}.q nor {procname}.q have to be present or fully populated.
- Values in {procname}.q will override those in {proctype}.q which will override default.q.
- The idea is to allow processes to live in different process groups, and have the configuration shared between them.
- So for example by default all processes log all messages to disk.  You can create a process type called \"tickerplant\"
- and switch off logging for all tickerplants by setting .usage.logtodisk:0b in $KDBCONFIG/tickerplant.q.
- However, perhaps for one specific tickerplant in the group you want to switch logging on either temporarily or permanently.
- You can do this in $KDBCONFIG/tickerplantname.q
- Application specific configuration may be stored in a user defined directory and read after the TorQ default module.
- If the environment variable $KDBAPPCONFIG is set, then TorQ will attempt to load app specific config from $KDBAPPCONFIG (in the settings subdirectory).
- Within the app specific module, config is read in the same order as the default module (default.q, then {proctype}.q, then {procname}.q).
- The app specific config will not be read if the $KDBAPPCONFIG is not set or does not match the user defined directory. No app specific config will be read if the -noconfig flag is set.
- default.q, {proctype}.q and {procname}.q do not have to be present or fully populated."]
-
-helpusage:@[value;`helpusage;"Help:
- if help.q from code.kx is loaded, use help` for more information.
- if api.q is loaded, you should be able to access api information from the commandline.  Use
-	.api.f[symbol or string pattern] e.g. .api.f[`proc] to find a function/variable
-	.api.p[symbol or string pattern] e.g. .api.p[`timer] to find a publically marked function/variable
-	.api.u[symbol or string pattern] e.g. .api.u[`] to find a publically marked, user defined function (i.e. don't show .q functions)"]
-
-// If the usage value has been overridden, use that.  Else concat the req environment, with the stdoptions, with the extra usage info
-getusage:{@[value;`.proc.usage;generalusage,"\n\n",envusage,"\n\n",envoptusage,"\n\n",stdoptionusage,"\n\n",extrausage,"\n\n",configusage,"\n\n",helpusage,"\n\n"]}
 
 // The required environment variables
-// The base script must have KDBCODE, KDBCONFIG, KDBLOG, KDBHTML and KDBLIB set
 envvars:@[value;`envvars;`symbol$()]
-envvars:distinct `KDBCODE`KDBCONFIG`KDBLOG`KDBHTML`KDBLIB,envvars
+envvars:distinct envvars
 // The script may have optional environment variables
 // KDBAPPCONFIG may be defined for loading app specific config
 {if[not ""~getenv[x]; envvars::distinct x,envvars]}`KDBAPPCONFIG
