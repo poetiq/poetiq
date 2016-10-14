@@ -176,7 +176,7 @@ stop:`stop in key params
 if[trap and stop; .log.o[`init;"trap mode and stop mode are both set to true.  Stop mode will take precedence"]];
 
 // Set up the environment if not set
-settorqenv'[`KDBCODE`KDBCONFIG`KDBLOG`KDBLIB`KDBHTML;("code";"config";"logs";"lib";"html")];
+/settorqenv'[`KDBCODE`KDBCONFIG`KDBLOG`KDBLIB`KDBHTML;("code";"config";"logs";"lib";"html")];
 
 // Check the environment is set up correctly
 .err.env[envvars]
@@ -229,7 +229,16 @@ file:$[`procfile in key params;
 	first `$params `procfile;
  	first getconfigfile["process.csv"]];
 
-readprocs:{[file]@[@/[;(`port;`host`proctype`procname);("I"$string value each .rmvr.removeenvvar each;"S"$.rmvr.removeenvvar each)]("****";enlist",")0:;file;{.lg.e[`procfile;"failed to read process file ",(string x)," : ",y]}[file]]}
+readprocs:{[file]
+	@[
+		@/[;
+			(`port;`host`proctype`procname);
+			("I"$string value each .rmvr.removeenvvar each;"S"$.rmvr.removeenvvar each)
+		  ]("****";enlist",")0:;
+	       file;
+	       {.lg.e[`procfile;"failed to read process file ",(0N!string x)," : ",y]}[file]
+	  ]
+	}
 
 // Read in the processfile
 // Pull out the applicable rows
