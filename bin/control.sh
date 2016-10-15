@@ -33,9 +33,8 @@ function get_procs ()
 
 function get_params ()
 {
-	unset PROCTYPE;	unset PROCNAME
-	unset W; unset G
-	unset LOGTYPE; unset LOGN; unset LOGWAIT; LOGLEVEL=""
+	unset PROCTYPE PROCNAME W G LOGTYPE LOGN LOGWAIT
+	LOGLEVEL=""
 	DEBUG=0
 	caller=${FUNCNAME[1]}
 
@@ -105,8 +104,6 @@ function get_cmd()
 	elif [[ "$OSTYPE" =~ darwin*|linux*|bsd*|solaris* ]]; then
 		CMD="nohup $CMD </dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
 	fi
-
-	if [[ "$OSTYPE" == "msys" ]]; then CMD+=" -new_console:t:'$PROCNAME'"; fi
 
 	CMD=$(eval echo \""${CMD}"\")
 }
