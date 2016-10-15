@@ -23,3 +23,16 @@ q torq.q -load ${KDBCODE}/processes/portfolio.q ${KDBSTACKID} -trap -proctype po
 echo "Starting feed ..."
 q torq.q -load ${KDBCODE}/tick/backtestfeed.q ${KDBSTACKID} -wait -trap -proctype backtestfeed -procname backtestfeed1 -localtime -tbls mtm signal -bgn 2016.05.02 -end 2016.05.31 -syms AAPL PRU GOOG MSFT -debug -new_console:s4TV:t:'btfeed' # </dev/null >$KDBLOG/bttickerplant.txt 2>&1 & # -bgn 2016.05.02 -end 2016.05.02 -syms GOOG IBM MSFT
 
+
+
+# Proposed new setup
+
+# source bin/control.sh
+
+# startp hdb equitysim 							--debug --args -new_console:nc:t:'hdb'
+# startp gateway gateway1						--debug --args -new_console:sVnc:t:'gateway'
+# startp optimiser optimiser1				--debug --args -new_console:nc:t:'optimiser'
+# startp oms oms1										--debug --args -new_console:sHnc:t:'oms'
+# startp fillsim fillsim1						--debug --args -new_console:s8TV:t:'fillsim'
+# startp portfolio portfolio1				--debug --args -new_console:s9TV:t:'portfolio'
+# startp backtestfeed backtestfeed1	--debug --args -new_console:s4TV:t:'btfeed' -wait -trap -tbls mtm signal -bgn 2016.05.02 -end 2016.05.31 -syms AAPL PRU GOOG MSFT

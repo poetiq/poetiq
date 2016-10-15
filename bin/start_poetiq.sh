@@ -13,3 +13,13 @@ q torq.q -load ${KDBCODE}/processes/btctrl.q ${KDBSTACKID} -trap -proctype btctr
 
 echo "Starting tickerplant ..."
 q ${KDBCODE}/processes/bttickerplant.q equitysim ${KDBHDB} ${KDBSTACKID} -trap -proctype bttickerplant -procname bttickerplant1 -localtime -debug -new_console:nc:t:'tickerplant' -e 1 -c 25 200
+
+
+# Proposed new setup
+
+# source bin/control.sh
+
+# startp discovery discovery1					--debug --args -new_console:nc:t:'discovery'
+# startp housekeeping housekeeping1		--debug --args -new_console:sVnc:t:'housekeeping'
+# startp btctrl btctrl1 							--debug	--args -new_console:s2THnc:t:'btctrl'
+# startp bttickerplant bttickerplant1	--debug --args -new_console:nc:t:'tickerplant'

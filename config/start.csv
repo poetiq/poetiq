@@ -3,3 +3,10 @@ discovery,discovery1,torq.q -load ${KDBCODE}/processes/discovery.q ${KDBSTACKID}
 housekeeping,housekeeping1,torq.q -load ${KDBCODE}/processes/housekeeping.q ${KDBSTACKID} -proctype housekeeping -procname housekeeping1 -localtime
 hdb,equitysim,torq.q -load ${KDBHDB}/equitysim ${KDBSTACKID} -proctype hdb -procname equitysim -localtime -g 1 -T 60 -w 4000
 gateway,gateway1,torq.q -load ${KDBCODE}/processes/gateway.q ${KDBSTACKID} -proctype gateway -procname gateway1 -.servers.CONNECTIONS hdb rdb -localtime -g 1 -w 4000
+btctrl,btctrl1,torq.q -load ${KDBCODE}/processes/btctrl.q ${KDBSTACKID} -proctype btctrl -procname btctrl1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0
+bttickerplant,bttickerplant1,${KDBCODE}/processes/bttickerplant.q equitysim ${KDBHDB} ${KDBSTACKID} -proctype bttickerplant -procname bttickerplant1 -localtime -e 1 -c 25 200
+optimiser,optimiser1,torq.q -load ${KDBCODE}/processes/optimiser.q ${KDBSTACKID} -proctype optimiser -procname optimiser1 -localtime
+oms,torq.q -load ${KDBCODE}/processes/oms.q ${KDBSTACKID} -proctype oms -procname oms1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0
+fillsim,fillsim1,torq.q -load ${KDBCODE}/processes/fillsim.q ${KDBSTACKID} -proctype fillsim -procname fillsim1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0
+portfolio,portfolio1,torq.q -load ${KDBCODE}/processes/portfolio.q ${KDBSTACKID} -proctype portfolio -procname portfolio1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0
+backtestfeed,backtestfeed1,torq.q -load ${KDBCODE}/tick/backtestfeed.q ${KDBSTACKID} -proctype backtestfeed -procname backtestfeed1 -localtime
