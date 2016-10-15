@@ -100,7 +100,10 @@ function get_params ()
 
 function get_cmd()
 {
-	CMD="$QBIN $(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)"
+	CMD=$(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)
+	# Exit if process is not recognized
+	if [ -z $CMD ]; then return 1; fi
+	CMD="$QBIN $CMD"
 
 	if [[ ! -z $CUSTOM_ARGS ]]; then CMD+=" $CUSTOM_ARGS"; fi
 
@@ -129,9 +132,14 @@ function starth ()
 	queryh
 	if [ -n "$PID" ]; then
 		logwarn "$(procname) is already running. Use restart if you want to restart the process."
-		return 0
+		return 1
 	fi
+
 	get_cmd
+	if [ $? -ne 0 ]; then
+		logerr "No startup defition found for $(procname). Please check start.csv."
+		return 1
+	fi
 
 	if [ $DEBUG -eq 0 ]; then
 		loginfo "Starting process $(procname) in the background"
