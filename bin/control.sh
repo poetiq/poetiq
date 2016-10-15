@@ -33,7 +33,7 @@ function get_procs ()
 
 function get_params ()
 {
-	unset PROCTYPE PROCNAME W G LOGTYPE LOGN LOGWAIT
+	unset PROCTYPE PROCNAME W G LOGTYPE LOGN LOGWAIT CUSTOM_ARGS
 	LOGLEVEL=""
 	DEBUG=0
 	caller=${FUNCNAME[1]}
@@ -87,6 +87,11 @@ function get_params ()
 				LOGWAIT=1
 				shift
 			;;
+			--args) # args will consume the remaining args
+				shift
+				CUSTOM_ARGS="$@"
+				break
+			;;
 			*) ${caller}_usage $caller;;
 		esac
 	done
@@ -97,10 +102,12 @@ function get_cmd()
 {
 	CMD="$QBIN $(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)"
 
+	if [[ ! -z $CUSTOM_ARGS ]]; then CMD+=" $CUSTOM_ARGS"; fi
+
 	if [ $DEBUG -ne 0 ]; then
 		# Use rlwrap if available
 		if hash rlwrap 2>/dev/null; then CMD="rlwrap $CMD"; fi
-		CMD+=" -debug"
+		CMD+=" -debug 1b"
 	elif [[ "$OSTYPE" =~ darwin*|linux*|bsd*|solaris* ]]; then
 		CMD="nohup $CMD </dev/null >${KDBLOG}/${PROCNAME}.txt 2>&1 &"
 	fi
@@ -138,7 +145,7 @@ function starth ()
 function startp_usage ()
 {
 	echo -e "Usage:"
-	echo -e "\t${1} <proctype> <procname> [-w <size>] [--log <loglevel>] [--debug]"
+	echo -e "\t${1} <proctype> <procname> [-w <size>] [--log <loglevel>] [--debug] [--args <customargs>]"
 	exit_or_return 1
 }
 
@@ -207,11 +214,12 @@ function stopp_usage ()
 
 function stopallp ()
 {
+	mkfifo tmppipe; (listp | tail -n +2 > tmppipe &)
 	while read -r line; do
 		PROCTYPE=$(echo $line | awk '{print $2}')
 		PROCNAME=$(echo $line | awk '{print $3}')
 		stoph
-	done < <(listp | tail -n +2)
+	done < tmppipe; rm tmppipe
 	unset PROCTYPE PROCNAME
 }
 
@@ -226,11 +234,12 @@ function listp ()
 		local CMD="ps -elf"
 	fi
 
+	mkfifo tmppipe; (eval $CMD > tmppipe &)
 	while read -r line; do
 		if [[ $line =~ $REGEX ]]; then
 			OUTPUT+="\n${BASH_REMATCH[1]}\t${BASH_REMATCH[2]}\t${BASH_REMATCH[3]}"
 		fi
-	done < <(eval $CMD)
+	done < tmppipe; rm tmppipe
 
 	echo -e $OUTPUT | column -t -s $'\t' | sort -k 2
 }
