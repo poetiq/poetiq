@@ -214,12 +214,12 @@ function stopp_usage ()
 
 function stopallp ()
 {
-	mkfifo tmppipe; (listp | tail -n +2 > tmppipe &)
+	mkfifo procpipe && (listp | tail -n +2 > procpipe &)
 	while read -r line; do
 		PROCTYPE=$(echo $line | awk '{print $2}')
 		PROCNAME=$(echo $line | awk '{print $3}')
 		stoph
-	done < tmppipe; rm tmppipe
+	done < procpipe; rm procpipe
 	unset PROCTYPE PROCNAME
 }
 
@@ -234,12 +234,12 @@ function listp ()
 		local CMD="ps -elf"
 	fi
 
-	mkfifo tmppipe; (eval $CMD > tmppipe &)
+	mkfifo listpipe && (eval $CMD > listpipe &)
 	while read -r line; do
 		if [[ $line =~ $REGEX ]]; then
 			OUTPUT+="\n${BASH_REMATCH[1]}\t${BASH_REMATCH[2]}\t${BASH_REMATCH[3]}"
 		fi
-	done < tmppipe; rm tmppipe
+	done < listpipe; rm listpipe
 
 	echo -e $OUTPUT | column -t -s $'\t' | sort -k 2
 }
