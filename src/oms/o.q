@@ -1,4 +1,3 @@
-\l hdb/equitysim
 
 upd: ()!()
 
