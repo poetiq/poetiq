@@ -1,12 +1,12 @@
 proctype,procname,cmd
-discovery,discovery1,torq.q -load ${KDBCODE}/processes/discovery.q ${KDBSTACKID} -proctype discovery -procname discovery1 -localtime -new_console:nc:t:'discovery'
-housekeeping,housekeeping1,torq.q -load ${KDBCODE}/processes/housekeeping.q ${KDBSTACKID} -proctype housekeeping -procname housekeeping1 -localtime -new_console:sVnc:t:'housekeeping'
-hdb,equitysim,torq.q -load ${KDBCODE}/alpha/cl-deltas.q ${KDBHDB}/equitysim ${KDBSTACKID} -proctype hdb -procname equitysim -localtime -g 1 -T 60 -w 4000 -new_console:nc:t:'hdb'
-gateway,gateway1,torq.q -load ${KDBCODE}/processes/gateway.q ${KDBSTACKID} -proctype gateway -procname gateway1 -.servers.CONNECTIONS hdb rdb -localtime -g 1 -w 4000 -new_console:sVnc:t:'gateway'
-btctrl,btctrl1,torq.q -load ${KDBCODE}/processes/btctrl.q ${KDBSTACKID} -proctype btctrl -procname btctrl1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0 -new_console:s2THnc:t:'btctrl'
+discovery,discovery1,${TORQ} -load ${KDBCODE}/processes/discovery.q ${KDBSTACKID} -proctype discovery -procname discovery1 -localtime -new_console:nc:t:'discovery'
+housekeeping,housekeeping1,${TORQ} -load ${KDBCODE}/processes/housekeeping.q ${KDBSTACKID} -proctype housekeeping -procname housekeeping1 -localtime -new_console:sVnc:t:'housekeeping'
+hdb,equitysim,${TORQ} -load ${KDBCODE}/alpha/cl-deltas.q ${KDBHDB}/equitysim ${KDBSTACKID} -proctype hdb -procname equitysim -localtime -g 1 -T 60 -w 4000 -new_console:nc:t:'hdb'
+gateway,gateway1,${TORQ} -load ${KDBCODE}/processes/gateway.q ${KDBSTACKID} -proctype gateway -procname gateway1 -.servers.CONNECTIONS hdb rdb -localtime -g 1 -w 4000 -new_console:sVnc:t:'gateway'
+btctrl,btctrl1,${TORQ} -load ${KDBCODE}/processes/btctrl.q ${KDBSTACKID} -proctype btctrl -procname btctrl1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0 -new_console:s2THnc:t:'btctrl'
 bttickerplant,bttickerplant1,${KDBCODE}/processes/bttickerplant.q equitysim ${KDBHDB} ${KDBSTACKID} -proctype bttickerplant -procname bttickerplant1 -localtime -e 1 -c 25 200 -new_console:nc:t:'tickerplant'
-optimiser,optimiser1,torq.q -load ${KDBCODE}/processes/optimiser.q ${KDBSTACKID} -proctype optimiser -procname optimiser1 -localtime -new_console:nc:t:'optimiser'
-oms,oms1,torq.q -load ${KDBCODE}/processes/oms.q ${KDBSTACKID} -proctype oms -procname oms1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0 -new_console:sHnc:t:'oms'
-fillsim,fillsim1,torq.q -load ${KDBCODE}/processes/fillsim.q ${KDBSTACKID} -proctype fillsim -procname fillsim1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0 -new_console:s8TV:t:'fillsim'
-portfolio,portfolio1,torq.q -load ${KDBCODE}/processes/portfolio.q ${KDBSTACKID} -proctype portfolio -procname portfolio1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0 -new_console:s9TV:t:'portfolio'
-backtestfeed,backtestfeed1,torq.q -load ${KDBCODE}/tick/backtestfeed.q ${KDBSTACKID} -proctype backtestfeed -procname backtestfeed1 -localtime -new_console:s4TV:t:'btfeed' -wait -trap -tbls mtm signal -bgn 2016.05.02 -end 2016.05.31 -syms AAPL PRU GOOG MSFT
+optimiser,optimiser1,${TORQ} -load ${KDBCODE}/processes/optimiser.q ${KDBSTACKID} -proctype optimiser -procname optimiser1 -localtime -new_console:nc:t:'optimiser'
+oms,oms1,${TORQ} -load ${KDBCODE}/processes/oms.q ${KDBSTACKID} -proctype oms -procname oms1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0 -new_console:sHnc:t:'oms'
+fillsim,fillsim1,${TORQ} -load ${KDBCODE}/processes/fillsim.q ${KDBSTACKID} -proctype fillsim -procname fillsim1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0 -new_console:s8TV:t:'fillsim'
+portfolio,portfolio1,${TORQ} -load ${KDBCODE}/processes/portfolio.q ${KDBSTACKID} -proctype portfolio -procname portfolio1 -localtime -e 1 -.clients.enabled 0 -.usage.enabled 0 -new_console:s9TV:t:'portfolio'
+backtestfeed,backtestfeed1,${TORQ} -load ${KDBCODE}/tick/backtestfeed.q ${KDBSTACKID} -proctype backtestfeed -procname backtestfeed1 -localtime -new_console:s4TV:t:'btfeed' -wait -trap -tbls mtm signal -bgn 2016.05.02 -end 2016.05.31 -syms AAPL PRU GOOG MSFT

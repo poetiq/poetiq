@@ -102,10 +102,10 @@ function get_cmd()
 {
 	CMD=$(grep "$PROCTYPE,$PROCNAME" $KDBCONFIG/start.csv | cut -d ',' -f 3)
 	# Exit if process is not recognized
-	if [ -z $CMD ]; then return 1; fi
+	if [ -z "$CMD" ]; then return 1; fi
 	CMD="$QBIN $CMD"
 
-	if [[ ! -z $CUSTOM_ARGS ]]; then CMD+=" $CUSTOM_ARGS"; fi
+	if [ ! -z "$CUSTOM_ARGS" ]; then CMD+=" $CUSTOM_ARGS"; fi
 
 	if [ $DEBUG -ne 0 ]; then
 		# Use rlwrap if available
@@ -147,7 +147,7 @@ function starth ()
 		loginfo "Starting process $(procname) in the foreground"
 	fi
 	# echo $CMD
-	eval $CMD
+	eval "$CMD"
 }
 
 function startp_usage ()
@@ -244,7 +244,7 @@ function listp ()
 
 	mkfifo listpipe && (eval $CMD > listpipe &)
 	while read -r line; do
-		if [[ $line =~ $REGEX ]]; then
+		if [[ "$line" =~ $REGEX ]]; then
 			OUTPUT+="\n${BASH_REMATCH[1]}\t${BASH_REMATCH[2]}\t${BASH_REMATCH[3]}"
 		fi
 	done < listpipe; rm listpipe
