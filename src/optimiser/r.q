@@ -1,13 +1,32 @@
-/ incorporating (r)eturn and (r)isk information into portfolio weights
+///////////////////
+// Equal Weights //
+///////////////////
+/ \d .r
+/ r:{`.a.a upsert x}
 
-eqw:{x*1%sum x}
+/ \d .f
+/ eqw:{x*1%sum x};
+/ long:{x*x>0};
+/ wf:{select sym, date, w:.f.eqw .f.long signal, time from x};
 
-long:{x*x>0}
+/ \d .a
+/ a:1!flip`sym`date`signal`time!"sdin"$\:()
 
-units:{[n;x] n*`long$signum x}
+/ \d .e
+/ e:`targetw
 
-/ Equal weight strategy
-wfun:{select sym, date, w:eqw long signal, time from x}; eventtype:`targetw 
+//////////
+// Unit //
+//////////
+/ \d .r
+/ r:{`.a.a :x}
 
-/ Single unit strategy
-/ wfun:{select sym, date, sz:units[1] signal, time from x}; eventtype:`targetsz
+/ \d .f
+/ units:{[n;x] n*`long$signum x};
+/ wf:{select sym, date, sz:.f.units[1] signal, time from x}
+
+/ \d .a
+/ a:0N
+
+/ \d .e
+/ e:`targetsz
