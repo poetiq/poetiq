@@ -65,7 +65,7 @@ CONNECTIONS:`rdb`hdb										// list of connections to make at start up
 DISCOVERYREGISTER:1b										// whether to register with the discovery service
 CONNECTIONSFROMDISCOVERY:1b									// whether to get connection details from the discovery service (as opposed to the static file).
 TRACKNONTORQPROCESS:1b          								// whether to track and register non torQ processes
-NONTORQPROCESSFILE:hsym first .proc.getconfigfile["nontorqprocess.csv"]   				// non torQ processes file
+/ NONTORQPROCESSFILE:hsym first .proc.getconfigfile["nontorqprocess.csv"]   				// non torQ processes file
 SUBSCRIBETODISCOVERY:1b										// whether to subscribe to the discovery service for new processes becoming available
 DISCOVERYRETRY:0D00:05										// how often to retry the connection to the discovery service.  If 0, no connection is made. This also dictates if the discovery service can connect it and cause it to re-register itself (val > 0)
 HOPENTIMEOUT:2000 										// new connection time out value in milliseconds
@@ -111,7 +111,7 @@ password:`                           		// password for user account
 from:`$"torq@localhost"               		// address for return emails e.g. torq@aquaq.co.uk
 usessl:0b                              		// connect using SSL/TLS
 debug:0i                               		// debug level for email library: 0i = none, 1i=normal, 2i=verbose
-img:`$getenv[`KDBHTML],"/img/AquaQ-TorQ-symbol-small.png"	// default image for bottom of email
+/ img:`$getenv[`KDBHTML],"/img/AquaQ-TorQ-symbol-small.png"	// default image for bottom of email
 
 // heartbeating
 \d .hb
@@ -128,4 +128,4 @@ errortolerance:3f		// and to an error state when it hasn't heartbeated in errort
 \d .u
 broadcast:1b;                   // broadcast publishing is on by default. Availble in kdb version 3.4 or later.
 
-system "\d .",.proc.proctype
+/ system "d .",.proc.proctype

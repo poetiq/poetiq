@@ -267,7 +267,6 @@ readprocfile:{[file]
 	}
 
 .lg.o[`init;"attempting to read required process parameters ",("," sv string req)," from file ",string file];
-/
 // Read in the file, pull out the rows which are applicable and set the local variables
 {@[`.proc;y;:;x y]}[readprocfile[file];req];
 
@@ -275,7 +274,7 @@ readprocfile:{[file]
 $[any null `.proc req;
 	.err.ex[`init;"not all required variables have been set - missing ",(" " sv string req where null `.proc req);2];
 	.lg.o[`init;"read in process parameters of ","; " sv "=" sv' string flip(req;`.proc req)]]
-\
+
 // reset the logging functions to now use the name of the process
 .lg.o:.lg.l[`INF;proctype;procname;;;()!()]
 .lg.e:.lg.err[`ERR;proctype;procname;;;()!()]
