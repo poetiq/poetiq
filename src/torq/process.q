@@ -1,33 +1,15 @@
+
 // use -usage flag to print usage info
 \d .proc
 
-// variable to check to ensure this file is loaded - used in other files
-loaded:1b
-// Initialised flag - used to check if the process is still initialisation
-initialised:0b
-
-
-// The required environment variables
-envvars:@[value;`envvars;`symbol$()]
-envvars:distinct envvars
-// The script may have optional environment variables
-// KDBAPPCONFIG may be defined for loading app specific config
-{if[not ""~getenv[x]; envvars::distinct x,envvars]}`KDBAPPCONFIG
-
 // set the torq environment variables if not already set
 qhome:{q:getenv[`QHOME]; if[q~""; q:$[.z.o like "w*"; "c:/q"; getenv[`HOME],"/q"]]; q}
+/
 settorqenv:{[envvar; default]
  if[""~getenv[envvar];
   .lg.o[`init;(string envvar)," is not defined. Defining it to ",val:qhome[],"/",default];
   setenv[envvar; val]];}
-
-// make sure the path separators are the right way around if running on windows
-if[.z.o like "w*"; {if["\\" in v:getenv[x]; setenv[x;ssr[v;"\\";"/"]]]} each distinct envvars]
-
-// The variables required to be set in each process
-// This is the mimimum set of information that each process must know about itself for registration / advertisement purposes
-req:@[value;`req;`symbol$()]
-req:distinct `proctype`procname,req
+\
 
 version:"1.0"
 application:""
@@ -105,8 +87,6 @@ banner:{
  if[count customtext:.proc.getapplication[];-1 format each customtext;-1 blank]; // prints custom text from file
  -1 full;}
 
-banner[]
-
 // Error functions to check the process is in the correct state when being started
 \d .err
 
@@ -149,38 +129,7 @@ removeenvvar:{
 
 	// cut out each environment variable, and retrieve the meaning
 	raze {$["{"=first x;getenv`$1 _ -1 _ x;x]}each (raze flip 0 1+pos) cut x}
-
-// Process initialisation
-\d .proc
-
-// Read the process parameters
-params:@[value;`.proc.params;()],.Q.opt .z.x
-// check for a usage flag
-if[`usage in key params; -1 .proc.getusage[]; exit 0];
-
-$[`localtime in key .proc.params;
-	[cp:{.z.P};cd:{.z.D};ct:{.z.T}];
-	[cp:{.z.p};cd:{.z.d};ct:{.z.t}]];
-
-localtime:`localtime in key .proc.params
-
-// Check if we are in fail fast mode
-trap:`trap in key params
-.lg.o[`init;"trap mode (initialisation errors will be caught and thrown, rather than causing an exit) is set to ",string trap]
-
-// Check if stop mode is set to true
-initialised:0b
-stop:`stop in key params
-.lg.o[`init;"stop mode (initialisation errors cause the process loading to stop) is set to ",string stop]
-
-if[trap and stop; .log.o[`init;"trap mode and stop mode are both set to true.  Stop mode will take precedence"]];
-
-// Set up the environment if not set
-/settorqenv'[`KDBCODE`KDBCONFIG`KDBLOG`KDBLIB`KDBHTML;("code";"config";"logs";"lib";"html")];
-
-// Check the environment is set up correctly
-.err.env[envvars]
-
+/
 // Need to get some process information for logging / advertisement purposes
 // We can either read these from a file, or from the command line
 // default should be from a file, but overridden from the cmd line
@@ -201,6 +150,9 @@ $[count[req] = count req inter key params;
   0<count req inter key params;
 	.lg.o[`init;"ignoring partial subset of required process parameters found on the command line - reading from file"];
   ()];
+\
+
+\d .proc
 
 getconfig:{[path;level]
         /-check if KDBAPPCONFIG exists
@@ -214,7 +166,7 @@ getconfig:{[path;level]
             appconf:()]];
 
         /-get KDBCONFIG path
-        conf:`$(kc:getenv[`KDBCONFIG]),"/",path;
+        conf:`$(kc:torqconfighome),"/",path;
 
         /-if level is non-zero return appconfig and config files
         (),$[level;
@@ -223,11 +175,6 @@ getconfig:{[path;level]
 
 getconfigfile:getconfig[;0]
 
-// If any of the required parameters are null, try to read them from a file
-// The file can come from the command line, or from the environment path
-file:$[`procfile in key params;
-	first `$params `procfile;
- 	first getconfigfile["process.csv"]];
 
 readprocs:{[file]
 	@[
@@ -266,21 +213,6 @@ readprocfile:{[file]
 	output
 	}
 
-.lg.o[`init;"attempting to read required process parameters ",("," sv string req)," from file ",string file];
-/
-// Read in the file, pull out the rows which are applicable and set the local variables
-{@[`.proc;y;:;x y]}[readprocfile[file];req];
-
-// Check if all the required variables have now been set properly
-$[any null `.proc req;
-	.err.ex[`init;"not all required variables have been set - missing ",(" " sv string req where null `.proc req);2];
-	.lg.o[`init;"read in process parameters of ","; " sv "=" sv' string flip(req;`.proc req)]]
-\
-// reset the logging functions to now use the name of the process
-.lg.o:.lg.l[`INF;proctype;procname;;;()!()]
-.lg.e:.lg.err[`ERR;proctype;procname;;;()!()]
-.lg.w:.lg.l[`WARN;proctype;procname;;;()!()]
-
 // redirect std out or std err to a file
 // if alias is not null, a softlink will be created back to the actual file
 // handle can either be 1 or 2
@@ -314,9 +246,6 @@ logtimestamp:@[value;`logtimestamp;{[x] {[]`$ssr[;;"_"]/[string .z.z;".:T"]}}]
 rolllogauto:{[]
 	.lg.o[`logging;"creating standard out and standard err logs"];
 	createlog[getenv`KDBLOG;procname;logtimestamp[];`suppressalias in key params]}
-
-// Create log files as long as they haven't been switched off
-if[not any `debug`noredirect in key params; rolllogauto[]];
 
 // utilities to load individual files / paths, and also a complete directory
 // this should then be enough to bootstrap
@@ -369,77 +298,4 @@ overrideconfig:{[params]
 		 .lg.o[`init;"Setting ",(string y)," to ",-3!vals];
 		 set[y;vals]}[params] each ov]}
 
-override:{overrideconfig[.proc.params]}
-
-reloadcommoncode:{loaddir getenv[`KDBCODE],"/common";}
-reloadprocesscode:{loaddir getenv[`KDBCODE],"/",string proctype;}
-reloadnamecode:{loaddir getenv[`KDBCODE],"/",string procname;}
-
 \d .
-// Load configuration
-// TorQ loads configuration modules in the order: TorQ Default, then Application Specific
-// Each module loads configuration in the order: default configuration, then process type specific, then process specific
-if[not `noconfig in key .proc.params;
-	// load TorQ Default configuration module
-	.proc.loadconfig[getenv[`KDBCONFIG],"/settings/";] each `default,.proc.proctype,.proc.procname;
-	// check if KDBAPPCONFIG is set and load Appliation specific configuration module
-	$[""~getenv(`KDBAPPCONFIG);
-	.lg.o[`fileload;"environment variable KDBAPPCONFIG not set, not loading app specific config"];
-	[.proc.appconfig:getenv[`KDBAPPCONFIG],"/settings/";
-	.lg.o[`fileload;"environment variable KDBAPPCONFIG set, loading app specific config from ",.proc.appconfig];
-	.proc.loadconfig[.proc.appconfig;] each `default,.proc.proctype,.proc.procname]];
-	// Override config from the command line
-	.proc.override[]]
-
-// Load library code
-.proc.loadcommoncode:@[value;`.proc.loadcommoncode;1b];
-.proc.loadprocesscode:@[value;`.proc.loadprocesscode;1b];
-.proc.loadnamecode:@[value;`.proc.loadnamecode;0b];
-.proc.loadhandlers:@[value;`.proc.loadhandlers;1b];
-.proc.logroll:@[value;`.proc.logroll;1]
-.lg.o[`init;".proc.loadcommoncode flag set to ",string .proc.loadcommoncode];
-.lg.o[`init;".proc.loadprocesscode flag set to ",string .proc.loadprocesscode];
-.lg.o[`init;".proc.loadnamecode flag set to ",string .proc.loadnamecode];
-.lg.o[`init;".proc.loadhandlers flag set to ",string .proc.loadhandlers];
-.lg.o[`init;".proc.logroll flag set to ",string .proc.logroll];
-
-if[.proc.loadcommoncode; .proc.reloadcommoncode[]]
-if[.proc.loadprocesscode;.proc.reloadprocesscode[]]
-if[.proc.loadnamecode;.proc.reloadnamecode[]]
-
-if[`loaddir in key .proc.params;
-	.lg.o[`init;"loaddir flag found - loading files in directory ",first .proc.params`loaddir];
-	.proc.loaddir each .proc.params`loaddir]
-
-// Load message handlers after all the other library code
-if[.proc.loadhandlers;.proc.loaddir getenv[`KDBCODE],"/handlers"]
-
-// If the timer is loaded, and logrolling is set to true, try to log the roll file on a daily basis
-if[.proc.logroll and not any `debug`noredirect in key .proc.params;
-	$[@[value;`.timer.enabled;0b];
-		[.lg.o[`init;"adding timer function to roll std out/err logs on a daily schedule starting at ",string `timestamp$(.proc.cd[]+1)+00:00];
-		 .timer.rep[`timestamp$.proc.cd[]+00:00;0Wp;1D;(`.proc.rolllogauto;`);0h;"roll standard out/standard error logs";1b]];
-		.lg.e[`init;".proc.logroll is set to true, but timer functionality is not loaded - cannot roll logs"]]];
-
-// Load the file specified on the command line
-if[`load in key .proc.params; .proc.loadf each .proc.params`load]
-
-if[any`debug`nopi in key .proc.params;
-	.lg.o[`init;"Resetting .z.pi to kdb+ default value"];
-	.z.pi:show@value@;]
-
-// initialise pubsub
-if[@[value;`.ps.loaded;0b]; .ps.initialise[]]
-// initialise connections
-if[@[value;`.servers.STARTUP;0b]; .servers.startup[]]
-
-.lg.banner[]
-
-// set the initialised flag
-.proc.initialised:1b
-
-if[`test in key .proc.params;
-        $[0<count[getenv[`KDBTESTS]];
-                .proc.loaddir getenv[`KDBTESTS];
-                .lg.e[`init;"environment variable KDBTESTS undefined"]]
-        ]

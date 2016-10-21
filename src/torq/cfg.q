@@ -1,7 +1,9 @@
 / .proc.host: "localhost"
-.proc.proctype:: 1_string system "d"
-.proc.procname:: raze .proc.proctype,"1"
+.proc.proctype:: $[count 1_string system "d";`$v;`proc]
+.proc.procname:: `$raze string .proc.proctype,`1 /.proc.proctype,"1" 
 
+.proc.torqhome: "F:/gdrive/q/TorQ/"
+.proc.torqconfighome: "F:/gdrive/q/TorQ/config"
 / .proc.port: 5000
 
 // Default configuration - loaded by all processes
@@ -16,6 +18,8 @@ loadprocesscode:0b		// whether to load the process specific code defined at ${KD
 loadnamecode:0b			// whether to load the name specific code defined at ${KDBCODE}/{name of process}
 loadhandlers:1b			// whether to load the message handler code defined at ${KDBCODE}/handlers
 logroll:1b			// whether to roll the std out/err logs on a daily basis
+
+params,: (enlist `debug)!() // debug mode by default
 
 // logging config
 \d .lg

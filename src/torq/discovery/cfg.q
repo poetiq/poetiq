@@ -1,4 +1,7 @@
 \d .proc
+
+ports: 5000 + til 5000
+
 typedir: 1!flip `proctype`dirname!flip (
  `dscvry`discovery;
  `hkp`housekeeping;
