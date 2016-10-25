@@ -81,6 +81,29 @@ LOADPASSWORD:1b											// load the external username:password from ${KDBCONFI
 STARTUP:0b    											// whether to automatically make connections on startup
 DISCOVERY:enlist`										// list of discovery services to connect to (if not using process.csv)
 
+
+// called at start up
+startup:{
+	'break;
+	// If DISCOVERY servers have been explicity defined
+	if[count .servers.DISCOVERY;
+                if[not null first .servers.DISCOVERY;
+                        if[count select from procs where hpup in .servers.DISCOVERY; .lg.e[`startup; "host:port in .servers.DISCOVERY list is already present in data read from ",string .proc.file]];
+                        procs,:([]host:`;port:0Ni;proctype:`discovery;procname:`;hpup:.servers.DISCOVERY)]];
+	// Remove any processes that have an active connection
+	connectedprocs: select procname, proctype, hpup from SERVERS;
+	procs: delete from procs where ([] procname; proctype; hpup) in connectedprocs;
+	nontorqprocs: delete from nontorqprocesstab where ([] procname; proctype; hpup) in connectedprocs;
+	// if there aren't any processes left to connect to, then escape
+	if[not any count each (procs;nontorqprocs); .lg.o[`conn;"No new processes to connect to.  Escaping..."];:()];
+	if[CONNECTIONSFROMDISCOVERY or DISCOVERYREGISTER;
+		register[procs;`discovery;0b];
+		retrydiscovery[]];
+	if[not CONNECTIONSFROMDISCOVERY; register[procs;;0b] each $[CONNECTIONS~`ALL;exec distinct proctype from procs;CONNECTIONS]];
+	// try and open dead connections
+	retry[]}
+
+
 // functions to ignore when called async - bypass all permission checking and logging
 \d .zpsignore
 enabled:1b					// whether its enabled
@@ -133,3 +156,7 @@ errortolerance:3f		// and to an error state when it hasn't heartbeated in errort
 broadcast:1b;                   // broadcast publishing is on by default. Availble in kdb version 3.4 or later.
 
 / system "d .",.proc.proctype
+
+
+\d . 
+procs:: ([]host:`;port:0Ni;proctype:`discovery;procname:`;hpup:.servers.DISCOVERY)
