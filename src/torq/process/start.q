@@ -11,25 +11,25 @@
 
 .proc.init["src/torq/process/cfg.q"]
 .proc.init["src/torq/process/fun.q"]
-.proc.init["src/torq/process/run.q"]
 
 if[count cfgpath:raze .Q.opt[.z.x]`cfg;
    .proc.init[cfgpath];
    system "p ",string .proc.port;]
+.proc.init["src/torq/process/run.q"]
+
 
 /
 
 -----------
 process/cfg
 process/fun						/ consider merging into /cfg
+cfg + fun						/ if -cfg
 process/run
 	(common)
 	(handlers)
-
 -----------
-cfg + fun
-run
-	.servers.startup[]
+init[]							/ if typing/reconfiguring running process
+
 
 / ######
 / consider merging (process)/fun into (process)/cfg
