@@ -39,32 +39,32 @@ if[trap and stop; .log.o[`init;"trap mode and stop mode are both set to true.  S
 // Create log files as long as they haven't been switched off
 if[not any `debug`noredirect in key params; rolllogauto[]];
 
-reloadcommoncode:{loaddir .proc.torqhome,"code/common";}
+reloadcommoncode:{loaddir .proc.torqcommon;}
 /reloadprocesscode:{loaddir getenv[`KDBCODE],"/",string proctype;}
 /reloadnamecode:{loaddir getenv[`KDBCODE],"/",string procname;}
 
 // Load library code
 .proc.loadcommoncode:@[value;`.proc.loadcommoncode;1b];
-.proc.loadprocesscode:@[value;`.proc.loadprocesscode;1b];
-.proc.loadnamecode:@[value;`.proc.loadnamecode;0b];
+/.proc.loadprocesscode:@[value;`.proc.loadprocesscode;1b];
+/.proc.loadnamecode:@[value;`.proc.loadnamecode;0b];
 .proc.loadhandlers:@[value;`.proc.loadhandlers;1b];
 .proc.logroll:@[value;`.proc.logroll;1]
 .lg.o[`init;".proc.loadcommoncode flag set to ",string .proc.loadcommoncode];
-.lg.o[`init;".proc.loadprocesscode flag set to ",string .proc.loadprocesscode];
-.lg.o[`init;".proc.loadnamecode flag set to ",string .proc.loadnamecode];
+/.lg.o[`init;".proc.loadprocesscode flag set to ",string .proc.loadprocesscode];
+/.lg.o[`init;".proc.loadnamecode flag set to ",string .proc.loadnamecode];
 .lg.o[`init;".proc.loadhandlers flag set to ",string .proc.loadhandlers];
 .lg.o[`init;".proc.logroll flag set to ",string .proc.logroll];
 
 if[.proc.loadcommoncode; .proc.reloadcommoncode[]]
-if[.proc.loadprocesscode;.proc.reloadprocesscode[]]
-if[.proc.loadnamecode;.proc.reloadnamecode[]]
+/if[.proc.loadprocesscode;.proc.reloadprocesscode[]]
+/if[.proc.loadnamecode;.proc.reloadnamecode[]]
 
 if[`loaddir in key .proc.params;
 	.lg.o[`init;"loaddir flag found - loading files in directory ",first .proc.params`loaddir];
 	.proc.loaddir each .proc.params`loaddir]
 
 // Load message handlers after all the other library code
-if[.proc.loadhandlers;.proc.loaddir .proc.torqhome,"code/handlers"]
+if[.proc.loadhandlers;.proc.loaddir .proc.torqhandlers]
 
 // If the timer is loaded, and logrolling is set to true, try to log the roll file on a daily basis
 if[.proc.logroll and not any `debug`noredirect in key .proc.params;

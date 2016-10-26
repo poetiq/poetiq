@@ -35,6 +35,7 @@ RETAIN:`long$0Wp 		// length of time to retain server records
 AUTOCLEAN:0b			// clean out old records when handling a close
 DEBUG:1b			// log messages when opening new connections
 
+SOCKETTYPE: enlist[`]!enlist ` // Make sure all connections are created as standard sockets
 //==========================================================================================
 
 \d .
@@ -64,21 +65,19 @@ getservices:{[proctypes;subscribe]
 	if[subscribe; subs[.z.w]:proctypes,()]; 
 	distinct select procname,proctype,hpup,attributes from .servers.SERVERS where proctype in ?[(proctypes~`ALL) or proctypes~enlist`ALL;proctype;proctypes],not proctype=`discovery}
 
-// Make sure all connections are created as standard sockets
-.servers.SOCKETTYPE:enlist[`]!enlist `
-
-// initialise connections
-.servers.startup[]
-
 // subscriptions - handles to list of required proc types
 subs:(`int$())!()
 
 // add each handle
-@[.servers.addw;;{.lg.e[`discovery;x]}] each exec w from .servers.SERVERS where .dotz.liveh w, not hpup in (exec hpup from .servers.nontorqprocesstab);
+@[.servers.addw;;{.lg.e[`discovery;x]}] each exec w from .servers.SERVERS where .dotz.liveh w / , not hpup in (exec hpup from .servers.nontorqprocesstab);
 
 // try to make each server connect back in 
 / (neg exec w from .servers.SERVERS where .dotz.liveh w)@\:"@[value;(`.servers.autodiscovery;`);()]";
-(neg exec w from .servers.SERVERS where .dotz.liveh w,not hpup in exec hpup from .servers.nontorqprocesstab)@\:(`.servers.autodiscovery;`);
+/ (neg exec w from .servers.SERVERS where .dotz.liveh w,not hpup in exec hpup from .servers.nontorqprocesstab)@\:(`.servers.autodiscovery;`);
+(neg exec w from .servers.SERVERS where .dotz.liveh w)@\:(`.servers.autodiscovery;`);
 
 // modify .z.pc - drop items out of the subscription dictionary
 .z.pc:{subs::(enlist y) _ subs; x@y}@[value;`.z.pc;{;}]
+
+// initialise connections
+.servers.startup[]

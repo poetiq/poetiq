@@ -121,7 +121,7 @@ cleanup:{if[count w0:exec w from`.servers.SERVERS where not .dotz.livehn w;
 addnthawc:{[name;proctype;hpup;attributes;W;checkhandle]
     if[checkhandle and not isalive:.dotz.liveh W;'"invalid handle"];
     cleanup[];
-    $[not hpup in (exec hpup from .servers.SERVERS) inter (exec hpup from .servers.nontorqprocesstab);
+    $[not hpup in (exec hpup from .servers.SERVERS); / inter (exec hpup from .servers.nontorqprocesstab);
 	    `.servers.SERVERS insert(name;proctype;lower hpup;W;0i;$[isalive;.proc.cp[];0Np];.proc.cp[];0Np;attributes);
 	    .lg.o[`conn;"Removed double entries: name->", string[name],", proctype->",string[proctype],", hpup->\"",string[hpup],"\""]];
     W
@@ -304,8 +304,9 @@ getipctype:{[HPUP]
 // called at start up
 startup:{
 	// correctly format procs and hpup
-	procstab::procs:formatprocs .proc.readprocs .proc.file;
-  	nontorqprocesstab::formatprocs $[count key NONTORQPROCESSFILE;.proc.readprocs NONTORQPROCESSFILE;0#procs];
+	/ procstab::procs:formatprocs .proc.readprocs .proc.file;
+	procstab::procs:formatprocs .servers.procs;
+  	/ nontorqprocesstab::formatprocs $[count key NONTORQPROCESSFILE;.proc.readprocs NONTORQPROCESSFILE;0#procs];
 
 	// If DISCOVERY servers have been explicity defined
 	if[count .servers.DISCOVERY;
@@ -315,14 +316,14 @@ startup:{
 	// Remove any processes that have an active connection
 	connectedprocs: select procname, proctype, hpup from SERVERS;
 	procs: delete from procs where ([] procname; proctype; hpup) in connectedprocs;
-	nontorqprocs: delete from nontorqprocesstab where ([] procname; proctype; hpup) in connectedprocs;
+	/ nontorqprocs: delete from nontorqprocesstab where ([] procname; proctype; hpup) in connectedprocs;
 	// if there aren't any processes left to connect to, then escape
-	if[not any count each (procs;nontorqprocs); .lg.o[`conn;"No new processes to connect to.  Escaping..."];:()];
+	/ if[not any count each (procs;nontorqprocs); .lg.o[`conn;"No new processes to connect to.  Escaping..."];:()];
 	if[CONNECTIONSFROMDISCOVERY or DISCOVERYREGISTER;
 		register[procs;`discovery;0b];
 		retrydiscovery[]];
 	if[not CONNECTIONSFROMDISCOVERY; register[procs;;0b] each $[CONNECTIONS~`ALL;exec distinct proctype from procs;CONNECTIONS]];
-	if[TRACKNONTORQPROCESS;register[nontorqprocs;;0b] each  $[CONNECTIONS~`ALL;exec distinct proctype from nontorqprocs;CONNECTIONS]];
+	/if[TRACKNONTORQPROCESS;register[nontorqprocs;;0b] each  $[CONNECTIONS~`ALL;exec distinct proctype from nontorqprocs;CONNECTIONS]];
 	// try and open dead connections
 	retry[]}
 

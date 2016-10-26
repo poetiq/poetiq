@@ -166,7 +166,7 @@ getconfig:{[path;level]
             appconf:()]];
 
         /-get KDBCONFIG path
-        conf:`$(kc:torqconfighome),"/",path;
+        conf:`$(kc: .proc.torqconfig) ,"/",path;
 
         /-if level is non-zero return appconfig and config files
         (),$[level;

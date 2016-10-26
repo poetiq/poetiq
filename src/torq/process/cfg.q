@@ -2,8 +2,10 @@
 .proc.proctype:: $[count 1_string system "d";`$v;`proc]
 .proc.procname:: `$raze string .proc.proctype,`1 /.proc.proctype,"1" 
 
-.proc.torqhome: "F:/gdrive/q/TorQ/"
-.proc.torqconfighome: "F:/gdrive/q/TorQ/config"
+.proc.torqhome: (system "cd"),"/src/torq/"
+.proc.torqcommon: .proc.torqhome, "process/common"
+.proc.torqhandlers: .proc.torqhome, "process/handlers"
+.proc.torqconfig: .proc.torqhome, "/process/config"
 / .proc.port: 5000
 
 // Default configuration - loaded by all processes
@@ -14,10 +16,10 @@
 host: "localhost"
 
 loadcommoncode:1b		// whether to load the common code defined at ${KDBCODE}/common
+loadhandlers:1b			// whether to load the message handler code defined at ${KDBCODE}/handlers
 loadprocesscode:0b		// whether to load the process specific code defined at ${KDBCODE}/{process type}
 loadnamecode:0b			// whether to load the name specific code defined at ${KDBCODE}/{name of process}
-loadhandlers:1b			// whether to load the message handler code defined at ${KDBCODE}/handlers
-logroll:1b			// whether to roll the std out/err logs on a daily basis
+logroll:1b			    // whether to roll the std out/err logs on a daily basis
 
 params,: (enlist `debug)!() // debug mode by default
 
@@ -81,28 +83,7 @@ LOADPASSWORD:1b											// load the external username:password from ${KDBCONFI
 STARTUP:0b    											// whether to automatically make connections on startup
 DISCOVERY:enlist`										// list of discovery services to connect to (if not using process.csv)
 
-
-// called at start up
-startup:{
-	'break;
-	// If DISCOVERY servers have been explicity defined
-	if[count .servers.DISCOVERY;
-                if[not null first .servers.DISCOVERY;
-                        if[count select from procs where hpup in .servers.DISCOVERY; .lg.e[`startup; "host:port in .servers.DISCOVERY list is already present in data read from ",string .proc.file]];
-                        procs,:([]host:`;port:0Ni;proctype:`discovery;procname:`;hpup:.servers.DISCOVERY)]];
-	// Remove any processes that have an active connection
-	connectedprocs: select procname, proctype, hpup from SERVERS;
-	procs: delete from procs where ([] procname; proctype; hpup) in connectedprocs;
-	nontorqprocs: delete from nontorqprocesstab where ([] procname; proctype; hpup) in connectedprocs;
-	// if there aren't any processes left to connect to, then escape
-	if[not any count each (procs;nontorqprocs); .lg.o[`conn;"No new processes to connect to.  Escaping..."];:()];
-	if[CONNECTIONSFROMDISCOVERY or DISCOVERYREGISTER;
-		register[procs;`discovery;0b];
-		retrydiscovery[]];
-	if[not CONNECTIONSFROMDISCOVERY; register[procs;;0b] each $[CONNECTIONS~`ALL;exec distinct proctype from procs;CONNECTIONS]];
-	// try and open dead connections
-	retry[]}
-
+procs:([]host:`;port:0Ni;proctype:`discovery;procname:`;hpup:.servers.DISCOVERY)
 
 // functions to ignore when called async - bypass all permission checking and logging
 \d .zpsignore
@@ -156,7 +137,3 @@ errortolerance:3f		// and to an error state when it hasn't heartbeated in errort
 broadcast:1b;                   // broadcast publishing is on by default. Availble in kdb version 3.4 or later.
 
 / system "d .",.proc.proctype
-
-
-\d . 
-procs:: ([]host:`;port:0Ni;proctype:`discovery;procname:`;hpup:.servers.DISCOVERY)
