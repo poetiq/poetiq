@@ -34,3 +34,6 @@ terminal.glue
 
 # OS X
 .DS_Store
+
+# console emulator settings
+ConEmu.xml
