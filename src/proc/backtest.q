@@ -2,6 +2,21 @@
 / configure with strategy
 / start feed
 
+\d .backtest
+
+conns: (`alpha``;`feed`btt`event;`oms`market`order)
+
+\
+\d .proc
+
+(`alpha)
+
+
+
+init:{[proctype;cfg]
+ 
+ }
+
 
 backtest: {[strategy]
 	jobid: 1
