@@ -26,6 +26,9 @@ newjobid:
  	/ .servers.startup[]
  }
 
+new:{
+	system "bin\\startp.bat", 
+}
 
 
  cfg[`alpha]
