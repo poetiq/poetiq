@@ -305,7 +305,7 @@ getipctype:{[HPUP]
 startup:{
 	// correctly format procs and hpup
 	/ procstab::procs:formatprocs .proc.readprocs .proc.file;
-	procstab::procs:formatprocs .servers.procs;
+	procstab::procs:formatprocs .proc.procs;
   	/ nontorqprocesstab::formatprocs $[count key NONTORQPROCESSFILE;.proc.readprocs NONTORQPROCESSFILE;0#procs];
 
 	// If DISCOVERY servers have been explicity defined

@@ -6,7 +6,7 @@
 .proc.torqcommon: .proc.torqhome, "process/common"
 .proc.torqhandlers: .proc.torqhome, "process/handlers"
 .proc.torqconfig: .proc.torqhome, "/process/config"
-/ .proc.port: 5000
+.proc.discovery: `:localhost:5000
 
 // Default configuration - loaded by all processes
 
@@ -82,8 +82,6 @@ DEBUG:1b											// log messages when opening new connections
 LOADPASSWORD:1b											// load the external username:password from ${KDBCONFIG}/passwords
 STARTUP:0b    											// whether to automatically make connections on startup
 DISCOVERY:enlist`										// list of discovery services to connect to (if not using process.csv)
-
-procs:([]host:`;port:0Ni;proctype:`discovery;procname:`;hpup:.servers.DISCOVERY)
 
 // functions to ignore when called async - bypass all permission checking and logging
 \d .zpsignore

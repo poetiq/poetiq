@@ -16,8 +16,9 @@ if[count cfgpath:raze .Q.opt[.z.x]`cfg;
    .proc.init[cfgpath];
    system "p ",string .proc.port;]
 .proc.init["src/torq/process/run.q"]
-
-
+1+5
+select from `.
+.proc.port
 /
 
 -----------
@@ -33,3 +34,4 @@ init[]							/ if typing/reconfiguring running process
 
 / ######
 / consider merging (process)/fun into (process)/cfg
+\p

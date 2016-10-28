@@ -4,12 +4,17 @@
 
 
 backtest: {[strategy]
- 	jobid: reserve[`alpha`btctrl`feed`market`oms`hdb`portcon`portfolio`btt];
+	jobid: 1
+ 	reserve[`alpha`btctrl`feed`market`oms`hdb`portcon`portfolio`btt; jobid];
+ 	/advertise strategy change event
  	hbtt: gethandle[jobid; `btt];
  	(neg hbtt) (`u.upd; `strategy; strategy);
  }
 
-reserve:{
+reserve:{[proctype;jobid]
+
+	/$[null exec first w from .servers.SERVERS where proctype=proctype
+	new[proctype]
 newjobid:
  handle: if null x from table then start
  update job:newjobid where h=handle 

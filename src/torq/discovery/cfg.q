@@ -20,6 +20,8 @@ typedir: 1!flip `proctype`dirname!flip (
 
 update port: 5000+til count typedir from `typedir
 
+procs: flip `host`port`proctype`procname`hpup!"sisss"$\:()
+
 // Bespoke config for the discovery service
 
 // Server connection details

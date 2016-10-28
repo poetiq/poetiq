@@ -154,6 +154,8 @@ $[count[req] = count req inter key params;
 
 \d .proc
 
+getprocs: {discovery "procs"}
+
 getconfig:{[path;level]
         /-check if KDBAPPCONFIG exists
         keyappconf:$[not ""~kac:getenv[`KDBAPPCONFIG];
