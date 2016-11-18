@@ -1,7 +1,0 @@
-dotz.q
-writeaccess.q
-controlaccess.q
-trackclients.q
-logusage.q
-apidetails.q
-zpsignore.q

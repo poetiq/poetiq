@@ -1,0 +1,5922 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "strategy/strategy1.q",
+			"settings":
+			{
+				"buffer_size": 2109,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/schema.q",
+			"settings":
+			{
+				"buffer_size": 245,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/ext.q",
+			"settings":
+			{
+				"buffer_size": 259,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/runbt.q",
+			"settings":
+			{
+				"buffer_size": 282,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/dt.q",
+			"settings":
+			{
+				"buffer_size": 318,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/F/gdrive/poetiq"
+	],
+	"file_history":
+	[
+		"/F/gdrive/poetiq/src/int.q",
+		"/C/Projects/q/poetiq/src/run.q",
+		"/C/Projects/q/poetiq/src/dt.q",
+		"/C/Projects/q/poetiq/config/settings/default.q",
+		"/C/Projects/q/poetiq/torq.q",
+		"/C/Projects/q/poetiq/src/processes/discovery.q",
+		"/C/Projects/q/poetiq/src/handlers/trackservers.q",
+		"/C/Projects/q/poetiq/bin/start_poetiq.sh",
+		"/C/Projects/q/poetiq/src/processes/portfolio.q",
+		"/C/Projects/q/poetiq/src/processes/alpha.q",
+		"/C/Projects/q/poetiq/src/alpha/cl-deltas.q",
+		"/C/Projects/q/poetiq/src/processes/btctrl.q",
+		"/C/Projects/q/poetiq/bin/btunit.sh",
+		"/C/Projects/q/poetiq/config/process.csv",
+		"/C/Projects/q/poetiq/src/processes/gateway.q",
+		"/C/Projects/q/poetiq/hdb/buildhdb.q",
+		"/C/Projects/q/poetiq/src/alpha/cl-strat1",
+		"/C/Projects/q/poetiq/src/processes/housekeeping.q",
+		"/C/Users/Smart/Desktop/x.q",
+		"/C/Projects/q/poetiq/bin/start_backtest.sh"
+	],
+	"find":
+	{
+		"height": 50.0
+	},
+	"find_in_files":
+	{
+		"height": 138.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\\",
+			"\\\\",
+			"alpha.calc",
+			".oms.proc",
+			"orderdata",
+			"liveh",
+			"cep.q",
+			"time",
+			"getserverids",
+			"not all of",
+			"not all of the requested servers",
+			"not all",
+			" not all",
+			" lt]]",
+			"proc",
+			"procs:",
+			"procs",
+			"getservices",
+			"no processes found",
+			"reques",
+			"request",
+			"no process",
+			"KDBCODE",
+			"sa",
+			"if"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "strategy/strategy1.q",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2109,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								496,
+								496
+							]
+						],
+						"settings":
+						{
+							"side_bar_folders_auto_load_folder": 1,
+							"syntax": "Packages/q KDB/syntax/q.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 696.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/schema.q",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 245,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/q KDB/syntax/q.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/ext.q",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 259,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"q_compl":
+							[
+								[
+									"daily	Table",
+									"daily"
+								],
+								[
+									"daily	date",
+									"date"
+								],
+								[
+									"date	daily",
+									"date"
+								],
+								[
+									"daily	sym",
+									"sym"
+								],
+								[
+									"sym	daily",
+									"sym"
+								],
+								[
+									"daily	open",
+									"open"
+								],
+								[
+									"open	daily",
+									"open"
+								],
+								[
+									"daily	high",
+									"high"
+								],
+								[
+									"high	daily",
+									"high"
+								],
+								[
+									"daily	low",
+									"low"
+								],
+								[
+									"low	daily",
+									"low"
+								],
+								[
+									"daily	close",
+									"close"
+								],
+								[
+									"close	daily",
+									"close"
+								],
+								[
+									"daily	price",
+									"price"
+								],
+								[
+									"price	daily",
+									"price"
+								],
+								[
+									"daily	size",
+									"size"
+								],
+								[
+									"size	daily",
+									"size"
+								],
+								[
+									"depth	Table",
+									"depth"
+								],
+								[
+									"depth	date",
+									"date"
+								],
+								[
+									"date	depth",
+									"date"
+								],
+								[
+									"depth	time",
+									"time"
+								],
+								[
+									"time	depth",
+									"time"
+								],
+								[
+									"depth	sym",
+									"sym"
+								],
+								[
+									"sym	depth",
+									"sym"
+								],
+								[
+									"depth	price",
+									"price"
+								],
+								[
+									"price	depth",
+									"price"
+								],
+								[
+									"depth	size",
+									"size"
+								],
+								[
+									"size	depth",
+									"size"
+								],
+								[
+									"depth	side",
+									"side"
+								],
+								[
+									"side	depth",
+									"side"
+								],
+								[
+									"depth	ex",
+									"ex"
+								],
+								[
+									"ex	depth",
+									"ex"
+								],
+								[
+									"mas	Table",
+									"mas"
+								],
+								[
+									"mas	sym",
+									"sym"
+								],
+								[
+									"sym	mas",
+									"sym"
+								],
+								[
+									"mas	name",
+									"name"
+								],
+								[
+									"name	mas",
+									"name"
+								],
+								[
+									"nbbo	Table",
+									"nbbo"
+								],
+								[
+									"nbbo	date",
+									"date"
+								],
+								[
+									"date	nbbo",
+									"date"
+								],
+								[
+									"nbbo	sym",
+									"sym"
+								],
+								[
+									"sym	nbbo",
+									"sym"
+								],
+								[
+									"nbbo	time",
+									"time"
+								],
+								[
+									"time	nbbo",
+									"time"
+								],
+								[
+									"nbbo	bid",
+									"bid"
+								],
+								[
+									"bid	nbbo",
+									"bid"
+								],
+								[
+									"nbbo	ask",
+									"ask"
+								],
+								[
+									"ask	nbbo",
+									"ask"
+								],
+								[
+									"nbbo	bsize",
+									"bsize"
+								],
+								[
+									"bsize	nbbo",
+									"bsize"
+								],
+								[
+									"nbbo	asize",
+									"asize"
+								],
+								[
+									"asize	nbbo",
+									"asize"
+								],
+								[
+									"quote	Table",
+									"quote"
+								],
+								[
+									"quote	date",
+									"date"
+								],
+								[
+									"date	quote",
+									"date"
+								],
+								[
+									"quote	sym",
+									"sym"
+								],
+								[
+									"sym	quote",
+									"sym"
+								],
+								[
+									"quote	time",
+									"time"
+								],
+								[
+									"time	quote",
+									"time"
+								],
+								[
+									"quote	bid",
+									"bid"
+								],
+								[
+									"bid	quote",
+									"bid"
+								],
+								[
+									"quote	ask",
+									"ask"
+								],
+								[
+									"ask	quote",
+									"ask"
+								],
+								[
+									"quote	bsize",
+									"bsize"
+								],
+								[
+									"bsize	quote",
+									"bsize"
+								],
+								[
+									"quote	asize",
+									"asize"
+								],
+								[
+									"asize	quote",
+									"asize"
+								],
+								[
+									"quote	mode",
+									"mode"
+								],
+								[
+									"mode	quote",
+									"mode"
+								],
+								[
+									"quote	ex",
+									"ex"
+								],
+								[
+									"ex	quote",
+									"ex"
+								],
+								[
+									"trade	Table",
+									"trade"
+								],
+								[
+									"trade	date",
+									"date"
+								],
+								[
+									"date	trade",
+									"date"
+								],
+								[
+									"trade	sym",
+									"sym"
+								],
+								[
+									"sym	trade",
+									"sym"
+								],
+								[
+									"trade	time",
+									"time"
+								],
+								[
+									"time	trade",
+									"time"
+								],
+								[
+									"trade	price",
+									"price"
+								],
+								[
+									"price	trade",
+									"price"
+								],
+								[
+									"trade	size",
+									"size"
+								],
+								[
+									"size	trade",
+									"size"
+								],
+								[
+									"trade	stop",
+									"stop"
+								],
+								[
+									"stop	trade",
+									"stop"
+								],
+								[
+									"trade	cond",
+									"cond"
+								],
+								[
+									"cond	trade",
+									"cond"
+								],
+								[
+									"trade	ex",
+									"ex"
+								],
+								[
+									"ex	trade",
+									"ex"
+								],
+								[
+									"date	Variable",
+									"date"
+								],
+								[
+									"itables	Variable",
+									"itables"
+								],
+								[
+									"sym	Variable",
+									"sym"
+								],
+								[
+									"doEvent	Function",
+									"doEvent"
+								],
+								[
+									"groupbytstamp	Function",
+									"groupbytstamp"
+								],
+								[
+									"run	Function",
+									"run"
+								],
+								[
+									"neg	q",
+									"neg"
+								],
+								[
+									"not	q",
+									"not"
+								],
+								[
+									"null	q",
+									"null"
+								],
+								[
+									"string	q",
+									"string"
+								],
+								[
+									"reciprocal	q",
+									"reciprocal"
+								],
+								[
+									"floor	q",
+									"floor"
+								],
+								[
+									"ceiling	q",
+									"ceiling"
+								],
+								[
+									"signum	q",
+									"signum"
+								],
+								[
+									"mod	q",
+									"mod"
+								],
+								[
+									"xbar	q",
+									"xbar"
+								],
+								[
+									"xlog	q",
+									"xlog"
+								],
+								[
+									"and	q",
+									"and"
+								],
+								[
+									"or	q",
+									"or"
+								],
+								[
+									"each	q",
+									"each"
+								],
+								[
+									"scan	q",
+									"scan"
+								],
+								[
+									"over	q",
+									"over"
+								],
+								[
+									"prior	q",
+									"prior"
+								],
+								[
+									"mmu	q",
+									"mmu"
+								],
+								[
+									"lsq	q",
+									"lsq"
+								],
+								[
+									"inv	q",
+									"inv"
+								],
+								[
+									"md5	q",
+									"md5"
+								],
+								[
+									"ltime	q",
+									"ltime"
+								],
+								[
+									"gtime	q",
+									"gtime"
+								],
+								[
+									"count	q",
+									"count"
+								],
+								[
+									"first	q",
+									"first"
+								],
+								[
+									"svar	q",
+									"svar"
+								],
+								[
+									"sdev	q",
+									"sdev"
+								],
+								[
+									"scov	q",
+									"scov"
+								],
+								[
+									"med	q",
+									"med"
+								],
+								[
+									"all	q",
+									"all"
+								],
+								[
+									"any	q",
+									"any"
+								],
+								[
+									"rand	q",
+									"rand"
+								],
+								[
+									"sums	q",
+									"sums"
+								],
+								[
+									"prds	q",
+									"prds"
+								],
+								[
+									"mins	q",
+									"mins"
+								],
+								[
+									"maxs	q",
+									"maxs"
+								],
+								[
+									"fills	q",
+									"fills"
+								],
+								[
+									"deltas	q",
+									"deltas"
+								],
+								[
+									"ratios	q",
+									"ratios"
+								],
+								[
+									"avgs	q",
+									"avgs"
+								],
+								[
+									"differ	q",
+									"differ"
+								],
+								[
+									"prev	q",
+									"prev"
+								],
+								[
+									"next	q",
+									"next"
+								],
+								[
+									"rank	q",
+									"rank"
+								],
+								[
+									"reverse	q",
+									"reverse"
+								],
+								[
+									"iasc	q",
+									"iasc"
+								],
+								[
+									"idesc	q",
+									"idesc"
+								],
+								[
+									"asc	q",
+									"asc"
+								],
+								[
+									"desc	q",
+									"desc"
+								],
+								[
+									"msum	q",
+									"msum"
+								],
+								[
+									"mcount	q",
+									"mcount"
+								],
+								[
+									"mavg	q",
+									"mavg"
+								],
+								[
+									"mdev	q",
+									"mdev"
+								],
+								[
+									"xrank	q",
+									"xrank"
+								],
+								[
+									"mmin	q",
+									"mmin"
+								],
+								[
+									"mmax	q",
+									"mmax"
+								],
+								[
+									"xprev	q",
+									"xprev"
+								],
+								[
+									"rotate	q",
+									"rotate"
+								],
+								[
+									"ema	q",
+									"ema"
+								],
+								[
+									"distinct	q",
+									"distinct"
+								],
+								[
+									"group	q",
+									"group"
+								],
+								[
+									"where	q",
+									"where"
+								],
+								[
+									"flip	q",
+									"flip"
+								],
+								[
+									"type	q",
+									"type"
+								],
+								[
+									"key	q",
+									"key"
+								],
+								[
+									"til	q",
+									"til"
+								],
+								[
+									"get	q",
+									"get"
+								],
+								[
+									"value	q",
+									"value"
+								],
+								[
+									"attr	q",
+									"attr"
+								],
+								[
+									"cut	q",
+									"cut"
+								],
+								[
+									"set	q",
+									"set"
+								],
+								[
+									"upsert	q",
+									"upsert"
+								],
+								[
+									"raze	q",
+									"raze"
+								],
+								[
+									"union	q",
+									"union"
+								],
+								[
+									"inter	q",
+									"inter"
+								],
+								[
+									"except	q",
+									"except"
+								],
+								[
+									"cross	q",
+									"cross"
+								],
+								[
+									"sv	q",
+									"sv"
+								],
+								[
+									"vs	q",
+									"vs"
+								],
+								[
+									"sublist	q",
+									"sublist"
+								],
+								[
+									"read0	q",
+									"read0"
+								],
+								[
+									"read1	q",
+									"read1"
+								],
+								[
+									"hopen	q",
+									"hopen"
+								],
+								[
+									"hclose	q",
+									"hclose"
+								],
+								[
+									"hdel	q",
+									"hdel"
+								],
+								[
+									"hsym	q",
+									"hsym"
+								],
+								[
+									"hcount	q",
+									"hcount"
+								],
+								[
+									"peach	q",
+									"peach"
+								],
+								[
+									"system	q",
+									"system"
+								],
+								[
+									"ltrim	q",
+									"ltrim"
+								],
+								[
+									"rtrim	q",
+									"rtrim"
+								],
+								[
+									"trim	q",
+									"trim"
+								],
+								[
+									"lower	q",
+									"lower"
+								],
+								[
+									"upper	q",
+									"upper"
+								],
+								[
+									"ssr	q",
+									"ssr"
+								],
+								[
+									"view	q",
+									"view"
+								],
+								[
+									"tables	q",
+									"tables"
+								],
+								[
+									"views	q",
+									"views"
+								],
+								[
+									"cols	q",
+									"cols"
+								],
+								[
+									"xcols	q",
+									"xcols"
+								],
+								[
+									"keys	q",
+									"keys"
+								],
+								[
+									"xkey	q",
+									"xkey"
+								],
+								[
+									"xcol	q",
+									"xcol"
+								],
+								[
+									"xasc	q",
+									"xasc"
+								],
+								[
+									"xdesc	q",
+									"xdesc"
+								],
+								[
+									"fkeys	q",
+									"fkeys"
+								],
+								[
+									"meta	q",
+									"meta"
+								],
+								[
+									"lj	q",
+									"lj"
+								],
+								[
+									"ljf	q",
+									"ljf"
+								],
+								[
+									"aj	q",
+									"aj"
+								],
+								[
+									"aj0	q",
+									"aj0"
+								],
+								[
+									"ij	q",
+									"ij"
+								],
+								[
+									"ijf	q",
+									"ijf"
+								],
+								[
+									"pj	q",
+									"pj"
+								],
+								[
+									"asof	q",
+									"asof"
+								],
+								[
+									"uj	q",
+									"uj"
+								],
+								[
+									"ww	q",
+									"ww"
+								],
+								[
+									"wj	q",
+									"wj"
+								],
+								[
+									"wj1	q",
+									"wj1"
+								],
+								[
+									"fby	q",
+									"fby"
+								],
+								[
+									"xgroup	q",
+									"xgroup"
+								],
+								[
+									"ungroup	q",
+									"ungroup"
+								],
+								[
+									"ej	q",
+									"ej"
+								],
+								[
+									"save	q",
+									"save"
+								],
+								[
+									"load	q",
+									"load"
+								],
+								[
+									"rsave	q",
+									"rsave"
+								],
+								[
+									"rload	q",
+									"rload"
+								],
+								[
+									"dsave	q",
+									"dsave"
+								],
+								[
+									"show	q",
+									"show"
+								],
+								[
+									"csv	q",
+									"csv"
+								],
+								[
+									"parse	q",
+									"parse"
+								],
+								[
+									"eval	q",
+									"eval"
+								],
+								[
+									"reval	q",
+									"reval"
+								],
+								[
+									"select	q",
+									"select"
+								],
+								[
+									"from	q",
+									"from"
+								],
+								[
+									"update	q",
+									"update"
+								],
+								[
+									"delete	q",
+									"delete"
+								],
+								[
+									".Q	Namespace",
+									"Q"
+								],
+								[
+									".Q.k	.Q",
+									"Q.k"
+								],
+								[
+									".Q.host	.Q",
+									"Q.host"
+								],
+								[
+									".Q.addr	.Q",
+									"Q.addr"
+								],
+								[
+									".Q.gc	.Q",
+									"Q.gc"
+								],
+								[
+									".Q.w	.Q",
+									"Q.w"
+								],
+								[
+									".Q.res	.Q",
+									"Q.res"
+								],
+								[
+									".Q.addmonths	.Q",
+									"Q.addmonths"
+								],
+								[
+									".Q.Xf	.Q",
+									"Q.Xf"
+								],
+								[
+									".Q.Cf	.Q",
+									"Q.Cf"
+								],
+								[
+									".Q.f	.Q",
+									"Q.f"
+								],
+								[
+									".Q.fmt	.Q",
+									"Q.fmt"
+								],
+								[
+									".Q.ff	.Q",
+									"Q.ff"
+								],
+								[
+									".Q.fl	.Q",
+									"Q.fl"
+								],
+								[
+									".Q.opt	.Q",
+									"Q.opt"
+								],
+								[
+									".Q.def	.Q",
+									"Q.def"
+								],
+								[
+									".Q.qt	.Q",
+									"Q.qt"
+								],
+								[
+									".Q.v	.Q",
+									"Q.v"
+								],
+								[
+									".Q.qp	.Q",
+									"Q.qp"
+								],
+								[
+									".Q.V	.Q",
+									"Q.V"
+								],
+								[
+									".Q.ft	.Q",
+									"Q.ft"
+								],
+								[
+									".Q.ord	.Q",
+									"Q.ord"
+								],
+								[
+									".Q.tx	.Q",
+									"Q.tx"
+								],
+								[
+									".Q.tt	.Q",
+									"Q.tt"
+								],
+								[
+									".Q.fk	.Q",
+									"Q.fk"
+								],
+								[
+									".Q.t	.Q",
+									"Q.t"
+								],
+								[
+									".Q.ty	.Q",
+									"Q.ty"
+								],
+								[
+									".Q.nct	.Q",
+									"Q.nct"
+								],
+								[
+									".Q.fu	.Q",
+									"Q.fu"
+								],
+								[
+									".Q.fc	.Q",
+									"Q.fc"
+								],
+								[
+									".Q.A	.Q",
+									"Q.A"
+								],
+								[
+									".Q.a	.Q",
+									"Q.a"
+								],
+								[
+									".Q.n	.Q",
+									"Q.n"
+								],
+								[
+									".Q.nA	.Q",
+									"Q.nA"
+								],
+								[
+									".Q.an	.Q",
+									"Q.an"
+								],
+								[
+									".Q.b6	.Q",
+									"Q.b6"
+								],
+								[
+									".Q.id	.Q",
+									"Q.id"
+								],
+								[
+									".Q.j10	.Q",
+									"Q.j10"
+								],
+								[
+									".Q.x10	.Q",
+									"Q.x10"
+								],
+								[
+									".Q.j12	.Q",
+									"Q.j12"
+								],
+								[
+									".Q.x12	.Q",
+									"Q.x12"
+								],
+								[
+									".Q.l	.Q",
+									"Q.l"
+								],
+								[
+									".Q.sw	.Q",
+									"Q.sw"
+								],
+								[
+									".Q.tab	.Q",
+									"Q.tab"
+								],
+								[
+									".Q.t0	.Q",
+									"Q.t0"
+								],
+								[
+									".Q.s1	.Q",
+									"Q.s1"
+								],
+								[
+									".Q.s2	.Q",
+									"Q.s2"
+								],
+								[
+									".Q.S	.Q",
+									"Q.S"
+								],
+								[
+									".Q.s	.Q",
+									"Q.s"
+								],
+								[
+									".Q.hap	.Q",
+									"Q.hap"
+								],
+								[
+									".Q.hmb	.Q",
+									"Q.hmb"
+								],
+								[
+									".Q.hg	.Q",
+									"Q.hg"
+								],
+								[
+									".Q.hp	.Q",
+									"Q.hp"
+								],
+								[
+									".Q.a1	.Q",
+									"Q.a1"
+								],
+								[
+									".Q.a0	.Q",
+									"Q.a0"
+								],
+								[
+									".Q.IN	.Q",
+									"Q.IN"
+								],
+								[
+									".Q.qa	.Q",
+									"Q.qa"
+								],
+								[
+									".Q.qb	.Q",
+									"Q.qb"
+								],
+								[
+									".Q.vt	.Q",
+									"Q.vt"
+								],
+								[
+									".Q.bv	.Q",
+									"Q.bv"
+								],
+								[
+									".Q.pm	.Q",
+									"Q.pm"
+								],
+								[
+									".Q.pt	.Q",
+									"Q.pt"
+								],
+								[
+									".Q.MAP	.Q",
+									"Q.MAP"
+								],
+								[
+									".Q.dd	.Q",
+									"Q.dd"
+								],
+								[
+									".Q.d0	.Q",
+									"Q.d0"
+								],
+								[
+									".Q.p1	.Q",
+									"Q.p1"
+								],
+								[
+									".Q.p2	.Q",
+									"Q.p2"
+								],
+								[
+									".Q.p	.Q",
+									"Q.p"
+								],
+								[
+									".Q.view	.Q",
+									"Q.view"
+								],
+								[
+									".Q.L	.Q",
+									"Q.L"
+								],
+								[
+									".Q.cn	.Q",
+									"Q.cn"
+								],
+								[
+									".Q.pcnt	.Q",
+									"Q.pcnt"
+								],
+								[
+									".Q.dt	.Q",
+									"Q.dt"
+								],
+								[
+									".Q.ind	.Q",
+									"Q.ind"
+								],
+								[
+									".Q.fp	.Q",
+									"Q.fp"
+								],
+								[
+									".Q.foo	.Q",
+									"Q.foo"
+								],
+								[
+									".Q.a2	.Q",
+									"Q.a2"
+								],
+								[
+									".Q.qd	.Q",
+									"Q.qd"
+								],
+								[
+									".Q.xy	.Q",
+									"Q.xy"
+								],
+								[
+									".Q.x1	.Q",
+									"Q.x1"
+								],
+								[
+									".Q.x0	.Q",
+									"Q.x0"
+								],
+								[
+									".Q.x2	.Q",
+									"Q.x2"
+								],
+								[
+									".Q.ua	.Q",
+									"Q.ua"
+								],
+								[
+									".Q.q0	.Q",
+									"Q.q0"
+								],
+								[
+									".Q.qe	.Q",
+									"Q.qe"
+								],
+								[
+									".Q.ps	.Q",
+									"Q.ps"
+								],
+								[
+									".Q.enx	.Q",
+									"Q.enx"
+								],
+								[
+									".Q.en	.Q",
+									"Q.en"
+								],
+								[
+									".Q.par	.Q",
+									"Q.par"
+								],
+								[
+									".Q.qm	.Q",
+									"Q.qm"
+								],
+								[
+									".Q.dpt	.Q",
+									"Q.dpt"
+								],
+								[
+									".Q.dpft	.Q",
+									"Q.dpft"
+								],
+								[
+									".Q.hdpf	.Q",
+									"Q.hdpf"
+								],
+								[
+									".Q.fsn	.Q",
+									"Q.fsn"
+								],
+								[
+									".Q.fs	.Q",
+									"Q.fs"
+								],
+								[
+									".Q.fpn	.Q",
+									"Q.fpn"
+								],
+								[
+									".Q.fps	.Q",
+									"Q.fps"
+								],
+								[
+									".Q.dsftg	.Q",
+									"Q.dsftg"
+								],
+								[
+									".Q.M	.Q",
+									"Q.M"
+								],
+								[
+									".Q.chk	.Q",
+									"Q.chk"
+								],
+								[
+									".Q.D	.Q",
+									"Q.D"
+								],
+								[
+									".Q.PV	.Q",
+									"Q.PV"
+								],
+								[
+									".Q.PD	.Q",
+									"Q.PD"
+								],
+								[
+									".Q.pf	.Q",
+									"Q.pf"
+								],
+								[
+									".Q.pd	.Q",
+									"Q.pd"
+								],
+								[
+									".Q.pv	.Q",
+									"Q.pv"
+								],
+								[
+									".Q.u	.Q",
+									"Q.u"
+								],
+								[
+									".Q.pn	.Q",
+									"Q.pn"
+								],
+								[
+									".h	Namespace",
+									"h"
+								],
+								[
+									".h.htc	.h",
+									"h.htc"
+								],
+								[
+									".h.hta	.h",
+									"h.hta"
+								],
+								[
+									".h.htac	.h",
+									"h.htac"
+								],
+								[
+									".h.ha	.h",
+									"h.ha"
+								],
+								[
+									".h.hb	.h",
+									"h.hb"
+								],
+								[
+									".h.pre	.h",
+									"h.pre"
+								],
+								[
+									".h.xmp	.h",
+									"h.xmp"
+								],
+								[
+									".h.cd	.h",
+									"h.cd"
+								],
+								[
+									".h.td	.h",
+									"h.td"
+								],
+								[
+									".h.hc	.h",
+									"h.hc"
+								],
+								[
+									".h.xs	.h",
+									"h.xs"
+								],
+								[
+									".h.xd	.h",
+									"h.xd"
+								],
+								[
+									".h.ex	.h",
+									"h.ex"
+								],
+								[
+									".h.iso8601	.h",
+									"h.iso8601"
+								],
+								[
+									".h.eb	.h",
+									"h.eb"
+								],
+								[
+									".h.es	.h",
+									"h.es"
+								],
+								[
+									".h.ed	.h",
+									"h.ed"
+								],
+								[
+									".h.edsn	.h",
+									"h.edsn"
+								],
+								[
+									".h.ec	.h",
+									"h.ec"
+								],
+								[
+									".h.tx	.h",
+									"h.tx"
+								],
+								[
+									".h.xt	.h",
+									"h.xt"
+								],
+								[
+									".h.c0	.h",
+									"h.c0"
+								],
+								[
+									".h.c1	.h",
+									"h.c1"
+								],
+								[
+									".h.logo	.h",
+									"h.logo"
+								],
+								[
+									".h.sa	.h",
+									"h.sa"
+								],
+								[
+									".h.html	.h",
+									"h.html"
+								],
+								[
+									".h.sb	.h",
+									"h.sb"
+								],
+								[
+									".h.fram	.h",
+									"h.fram"
+								],
+								[
+									".h.jx	.h",
+									"h.jx"
+								],
+								[
+									".h.uh	.h",
+									"h.uh"
+								],
+								[
+									".h.sc	.h",
+									"h.sc"
+								],
+								[
+									".h.hug	.h",
+									"h.hug"
+								],
+								[
+									".h.hu	.h",
+									"h.hu"
+								],
+								[
+									".h.ty	.h",
+									"h.ty"
+								],
+								[
+									".h.hn	.h",
+									"h.hn"
+								],
+								[
+									".h.HOME	.h",
+									"h.HOME"
+								],
+								[
+									".h.hy	.h",
+									"h.hy"
+								],
+								[
+									".h.hp	.h",
+									"h.hp"
+								],
+								[
+									".h.he	.h",
+									"h.he"
+								],
+								[
+									".h.br	.h",
+									"h.br"
+								],
+								[
+									".h.hr	.h",
+									"h.hr"
+								],
+								[
+									".h.nbr	.h",
+									"h.nbr"
+								],
+								[
+									".h.code	.h",
+									"h.code"
+								],
+								[
+									".h.http	.h",
+									"h.http"
+								],
+								[
+									".h.text	.h",
+									"h.text"
+								],
+								[
+									".h.data	.h",
+									"h.data"
+								],
+								[
+									".h.ht	.h",
+									"h.ht"
+								],
+								[
+									".j	Namespace",
+									"j"
+								],
+								[
+									".j.e	.j",
+									"j.e"
+								],
+								[
+									".j.q	.j",
+									"j.q"
+								],
+								[
+									".j.s	.j",
+									"j.s"
+								],
+								[
+									".j.J	.j",
+									"j.J"
+								],
+								[
+									".j.j	.j",
+									"j.j"
+								],
+								[
+									".j.k	.j",
+									"j.k"
+								],
+								[
+									".o	Namespace",
+									"o"
+								],
+								[
+									".o.ex	.o",
+									"o.ex"
+								],
+								[
+									".o.T	.o",
+									"o.T"
+								],
+								[
+									".o.T0	.o",
+									"o.T0"
+								],
+								[
+									".o.B0	.o",
+									"o.B0"
+								],
+								[
+									".o.C0	.o",
+									"o.C0"
+								],
+								[
+									".o.PS	.o",
+									"o.PS"
+								],
+								[
+									".o.t	.o",
+									"o.t"
+								],
+								[
+									".o.Columns	.o",
+									"o.Columns"
+								],
+								[
+									".o.TI	.o",
+									"o.TI"
+								],
+								[
+									".o.TypeInfo	.o",
+									"o.TypeInfo"
+								],
+								[
+									".o.Special	.o",
+									"o.Special"
+								],
+								[
+									".o.o	.o",
+									"o.o"
+								],
+								[
+									".o.Tables	.o",
+									"o.Tables"
+								],
+								[
+									".o.Ts	.o",
+									"o.Ts"
+								],
+								[
+									".o.Stats	.o",
+									"o.Stats"
+								],
+								[
+									".o.Cols	.o",
+									"o.Cols"
+								],
+								[
+									".o.Key	.o",
+									"o.Key"
+								],
+								[
+									".o.FG	.o",
+									"o.FG"
+								],
+								[
+									".o.Fkey	.o",
+									"o.Fkey"
+								],
+								[
+									".o.Gkey	.o",
+									"o.Gkey"
+								],
+								[
+									".st	Namespace",
+									"st"
+								],
+								[
+									".st.mem	.st",
+									"st.mem"
+								],
+								[
+									".st.start	.st",
+									"st.start"
+								],
+								[
+									".hdb	Namespace",
+									"hdb"
+								],
+								[
+									".hdb.daily	.hdb",
+									"hdb.daily"
+								],
+								[
+									".hdb.depth	.hdb",
+									"hdb.depth"
+								],
+								[
+									".hdb.mas	.hdb",
+									"hdb.mas"
+								],
+								[
+									".hdb.sym	.hdb",
+									"hdb.sym"
+								],
+								[
+									".hdb.date	.hdb",
+									"hdb.date"
+								],
+								[
+									".hdb.nbbo	.hdb",
+									"hdb.nbbo"
+								],
+								[
+									".hdb.quote	.hdb",
+									"hdb.quote"
+								],
+								[
+									".hdb.trade	.hdb",
+									"hdb.trade"
+								],
+								[
+									".dt	Namespace",
+									"dt"
+								],
+								[
+									".dt.trades	.dt",
+									"dt.trades"
+								],
+								[
+									".dt.fundamental	.dt",
+									"dt.fundamental"
+								],
+								[
+									".int	Namespace",
+									"int"
+								],
+								[
+									".int.prepschema	.int",
+									"int.prepschema"
+								],
+								[
+									".int.appendsdt	.int",
+									"int.appendsdt"
+								],
+								[
+									".int.procsig	.int",
+									"int.procsig"
+								],
+								[
+									".int.portcon	.int",
+									"int.portcon"
+								],
+								[
+									".int.oms	.int",
+									"int.oms"
+								],
+								[
+									".int.proctime	.int",
+									"int.proctime"
+								],
+								[
+									".int.itables	.int",
+									"int.itables"
+								],
+								[
+									".alpha	Namespace",
+									"alpha"
+								],
+								[
+									".alpha.dif	.alpha",
+									"alpha.dif"
+								],
+								[
+									".alpha.calc	.alpha",
+									"alpha.calc"
+								],
+								[
+									".market	Namespace",
+									"market"
+								],
+								[
+									".market.source	.market",
+									"market.source"
+								],
+								[
+									".market.order	.market",
+									"market.order"
+								],
+								[
+									".port	Namespace",
+									"port"
+								],
+								[
+									".port.positions	.port",
+									"port.positions"
+								],
+								[
+									".port.pnl	.port",
+									"port.pnl"
+								],
+								[
+									".port.cash	.port",
+									"port.cash"
+								],
+								[
+									".schema	Namespace",
+									"schema"
+								],
+								[
+									".schema.signal	.schema",
+									"schema.signal"
+								],
+								[
+									".schema.targetsz	.schema",
+									"schema.targetsz"
+								],
+								[
+									".schema.targetw	.schema",
+									"schema.targetw"
+								],
+								[
+									".schema.order	.schema",
+									"schema.order"
+								],
+								[
+									".oms	Namespace",
+									"oms"
+								],
+								[
+									".oms.obook	.oms",
+									"oms.obook"
+								],
+								[
+									".oms.obookupd	.oms",
+									"oms.obookupd"
+								],
+								[
+									".oms.proc	.oms",
+									"oms.proc"
+								],
+								[
+									".sdt	Namespace",
+									"sdt"
+								],
+								[
+									".sdt.fundamental	.sdt",
+									"sdt.fundamental"
+								]
+							],
+							"q_handle":
+							{
+								"hdb": false,
+								"host": "localhost",
+								"name": "localhost:5555",
+								"password": null,
+								"port": 5555,
+								"username": null
+							},
+							"syntax": "Packages/q KDB/syntax/q.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/runbt.q",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 282,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"q_compl":
+							[
+								[
+									"daily	Table",
+									"daily"
+								],
+								[
+									"daily	date",
+									"date"
+								],
+								[
+									"date	daily",
+									"date"
+								],
+								[
+									"daily	sym",
+									"sym"
+								],
+								[
+									"sym	daily",
+									"sym"
+								],
+								[
+									"daily	open",
+									"open"
+								],
+								[
+									"open	daily",
+									"open"
+								],
+								[
+									"daily	high",
+									"high"
+								],
+								[
+									"high	daily",
+									"high"
+								],
+								[
+									"daily	low",
+									"low"
+								],
+								[
+									"low	daily",
+									"low"
+								],
+								[
+									"daily	close",
+									"close"
+								],
+								[
+									"close	daily",
+									"close"
+								],
+								[
+									"daily	price",
+									"price"
+								],
+								[
+									"price	daily",
+									"price"
+								],
+								[
+									"daily	size",
+									"size"
+								],
+								[
+									"size	daily",
+									"size"
+								],
+								[
+									"depth	Table",
+									"depth"
+								],
+								[
+									"depth	date",
+									"date"
+								],
+								[
+									"date	depth",
+									"date"
+								],
+								[
+									"depth	time",
+									"time"
+								],
+								[
+									"time	depth",
+									"time"
+								],
+								[
+									"depth	sym",
+									"sym"
+								],
+								[
+									"sym	depth",
+									"sym"
+								],
+								[
+									"depth	price",
+									"price"
+								],
+								[
+									"price	depth",
+									"price"
+								],
+								[
+									"depth	size",
+									"size"
+								],
+								[
+									"size	depth",
+									"size"
+								],
+								[
+									"depth	side",
+									"side"
+								],
+								[
+									"side	depth",
+									"side"
+								],
+								[
+									"depth	ex",
+									"ex"
+								],
+								[
+									"ex	depth",
+									"ex"
+								],
+								[
+									"mas	Table",
+									"mas"
+								],
+								[
+									"mas	sym",
+									"sym"
+								],
+								[
+									"sym	mas",
+									"sym"
+								],
+								[
+									"mas	name",
+									"name"
+								],
+								[
+									"name	mas",
+									"name"
+								],
+								[
+									"nbbo	Table",
+									"nbbo"
+								],
+								[
+									"nbbo	date",
+									"date"
+								],
+								[
+									"date	nbbo",
+									"date"
+								],
+								[
+									"nbbo	sym",
+									"sym"
+								],
+								[
+									"sym	nbbo",
+									"sym"
+								],
+								[
+									"nbbo	time",
+									"time"
+								],
+								[
+									"time	nbbo",
+									"time"
+								],
+								[
+									"nbbo	bid",
+									"bid"
+								],
+								[
+									"bid	nbbo",
+									"bid"
+								],
+								[
+									"nbbo	ask",
+									"ask"
+								],
+								[
+									"ask	nbbo",
+									"ask"
+								],
+								[
+									"nbbo	bsize",
+									"bsize"
+								],
+								[
+									"bsize	nbbo",
+									"bsize"
+								],
+								[
+									"nbbo	asize",
+									"asize"
+								],
+								[
+									"asize	nbbo",
+									"asize"
+								],
+								[
+									"quote	Table",
+									"quote"
+								],
+								[
+									"quote	date",
+									"date"
+								],
+								[
+									"date	quote",
+									"date"
+								],
+								[
+									"quote	sym",
+									"sym"
+								],
+								[
+									"sym	quote",
+									"sym"
+								],
+								[
+									"quote	time",
+									"time"
+								],
+								[
+									"time	quote",
+									"time"
+								],
+								[
+									"quote	bid",
+									"bid"
+								],
+								[
+									"bid	quote",
+									"bid"
+								],
+								[
+									"quote	ask",
+									"ask"
+								],
+								[
+									"ask	quote",
+									"ask"
+								],
+								[
+									"quote	bsize",
+									"bsize"
+								],
+								[
+									"bsize	quote",
+									"bsize"
+								],
+								[
+									"quote	asize",
+									"asize"
+								],
+								[
+									"asize	quote",
+									"asize"
+								],
+								[
+									"quote	mode",
+									"mode"
+								],
+								[
+									"mode	quote",
+									"mode"
+								],
+								[
+									"quote	ex",
+									"ex"
+								],
+								[
+									"ex	quote",
+									"ex"
+								],
+								[
+									"trade	Table",
+									"trade"
+								],
+								[
+									"trade	date",
+									"date"
+								],
+								[
+									"date	trade",
+									"date"
+								],
+								[
+									"trade	sym",
+									"sym"
+								],
+								[
+									"sym	trade",
+									"sym"
+								],
+								[
+									"trade	time",
+									"time"
+								],
+								[
+									"time	trade",
+									"time"
+								],
+								[
+									"trade	price",
+									"price"
+								],
+								[
+									"price	trade",
+									"price"
+								],
+								[
+									"trade	size",
+									"size"
+								],
+								[
+									"size	trade",
+									"size"
+								],
+								[
+									"trade	stop",
+									"stop"
+								],
+								[
+									"stop	trade",
+									"stop"
+								],
+								[
+									"trade	cond",
+									"cond"
+								],
+								[
+									"cond	trade",
+									"cond"
+								],
+								[
+									"trade	ex",
+									"ex"
+								],
+								[
+									"ex	trade",
+									"ex"
+								],
+								[
+									"date	Variable",
+									"date"
+								],
+								[
+									"sym	Variable",
+									"sym"
+								],
+								[
+									"doEvent	Function",
+									"doEvent"
+								],
+								[
+									"run	Function",
+									"run"
+								],
+								[
+									"neg	q",
+									"neg"
+								],
+								[
+									"not	q",
+									"not"
+								],
+								[
+									"null	q",
+									"null"
+								],
+								[
+									"string	q",
+									"string"
+								],
+								[
+									"reciprocal	q",
+									"reciprocal"
+								],
+								[
+									"floor	q",
+									"floor"
+								],
+								[
+									"ceiling	q",
+									"ceiling"
+								],
+								[
+									"signum	q",
+									"signum"
+								],
+								[
+									"mod	q",
+									"mod"
+								],
+								[
+									"xbar	q",
+									"xbar"
+								],
+								[
+									"xlog	q",
+									"xlog"
+								],
+								[
+									"and	q",
+									"and"
+								],
+								[
+									"or	q",
+									"or"
+								],
+								[
+									"each	q",
+									"each"
+								],
+								[
+									"scan	q",
+									"scan"
+								],
+								[
+									"over	q",
+									"over"
+								],
+								[
+									"prior	q",
+									"prior"
+								],
+								[
+									"mmu	q",
+									"mmu"
+								],
+								[
+									"lsq	q",
+									"lsq"
+								],
+								[
+									"inv	q",
+									"inv"
+								],
+								[
+									"md5	q",
+									"md5"
+								],
+								[
+									"ltime	q",
+									"ltime"
+								],
+								[
+									"gtime	q",
+									"gtime"
+								],
+								[
+									"count	q",
+									"count"
+								],
+								[
+									"first	q",
+									"first"
+								],
+								[
+									"svar	q",
+									"svar"
+								],
+								[
+									"sdev	q",
+									"sdev"
+								],
+								[
+									"scov	q",
+									"scov"
+								],
+								[
+									"med	q",
+									"med"
+								],
+								[
+									"all	q",
+									"all"
+								],
+								[
+									"any	q",
+									"any"
+								],
+								[
+									"rand	q",
+									"rand"
+								],
+								[
+									"sums	q",
+									"sums"
+								],
+								[
+									"prds	q",
+									"prds"
+								],
+								[
+									"mins	q",
+									"mins"
+								],
+								[
+									"maxs	q",
+									"maxs"
+								],
+								[
+									"fills	q",
+									"fills"
+								],
+								[
+									"deltas	q",
+									"deltas"
+								],
+								[
+									"ratios	q",
+									"ratios"
+								],
+								[
+									"avgs	q",
+									"avgs"
+								],
+								[
+									"differ	q",
+									"differ"
+								],
+								[
+									"prev	q",
+									"prev"
+								],
+								[
+									"next	q",
+									"next"
+								],
+								[
+									"rank	q",
+									"rank"
+								],
+								[
+									"reverse	q",
+									"reverse"
+								],
+								[
+									"iasc	q",
+									"iasc"
+								],
+								[
+									"idesc	q",
+									"idesc"
+								],
+								[
+									"asc	q",
+									"asc"
+								],
+								[
+									"desc	q",
+									"desc"
+								],
+								[
+									"msum	q",
+									"msum"
+								],
+								[
+									"mcount	q",
+									"mcount"
+								],
+								[
+									"mavg	q",
+									"mavg"
+								],
+								[
+									"mdev	q",
+									"mdev"
+								],
+								[
+									"xrank	q",
+									"xrank"
+								],
+								[
+									"mmin	q",
+									"mmin"
+								],
+								[
+									"mmax	q",
+									"mmax"
+								],
+								[
+									"xprev	q",
+									"xprev"
+								],
+								[
+									"rotate	q",
+									"rotate"
+								],
+								[
+									"ema	q",
+									"ema"
+								],
+								[
+									"distinct	q",
+									"distinct"
+								],
+								[
+									"group	q",
+									"group"
+								],
+								[
+									"where	q",
+									"where"
+								],
+								[
+									"flip	q",
+									"flip"
+								],
+								[
+									"type	q",
+									"type"
+								],
+								[
+									"key	q",
+									"key"
+								],
+								[
+									"til	q",
+									"til"
+								],
+								[
+									"get	q",
+									"get"
+								],
+								[
+									"value	q",
+									"value"
+								],
+								[
+									"attr	q",
+									"attr"
+								],
+								[
+									"cut	q",
+									"cut"
+								],
+								[
+									"set	q",
+									"set"
+								],
+								[
+									"upsert	q",
+									"upsert"
+								],
+								[
+									"raze	q",
+									"raze"
+								],
+								[
+									"union	q",
+									"union"
+								],
+								[
+									"inter	q",
+									"inter"
+								],
+								[
+									"except	q",
+									"except"
+								],
+								[
+									"cross	q",
+									"cross"
+								],
+								[
+									"sv	q",
+									"sv"
+								],
+								[
+									"vs	q",
+									"vs"
+								],
+								[
+									"sublist	q",
+									"sublist"
+								],
+								[
+									"read0	q",
+									"read0"
+								],
+								[
+									"read1	q",
+									"read1"
+								],
+								[
+									"hopen	q",
+									"hopen"
+								],
+								[
+									"hclose	q",
+									"hclose"
+								],
+								[
+									"hdel	q",
+									"hdel"
+								],
+								[
+									"hsym	q",
+									"hsym"
+								],
+								[
+									"hcount	q",
+									"hcount"
+								],
+								[
+									"peach	q",
+									"peach"
+								],
+								[
+									"system	q",
+									"system"
+								],
+								[
+									"ltrim	q",
+									"ltrim"
+								],
+								[
+									"rtrim	q",
+									"rtrim"
+								],
+								[
+									"trim	q",
+									"trim"
+								],
+								[
+									"lower	q",
+									"lower"
+								],
+								[
+									"upper	q",
+									"upper"
+								],
+								[
+									"ssr	q",
+									"ssr"
+								],
+								[
+									"view	q",
+									"view"
+								],
+								[
+									"tables	q",
+									"tables"
+								],
+								[
+									"views	q",
+									"views"
+								],
+								[
+									"cols	q",
+									"cols"
+								],
+								[
+									"xcols	q",
+									"xcols"
+								],
+								[
+									"keys	q",
+									"keys"
+								],
+								[
+									"xkey	q",
+									"xkey"
+								],
+								[
+									"xcol	q",
+									"xcol"
+								],
+								[
+									"xasc	q",
+									"xasc"
+								],
+								[
+									"xdesc	q",
+									"xdesc"
+								],
+								[
+									"fkeys	q",
+									"fkeys"
+								],
+								[
+									"meta	q",
+									"meta"
+								],
+								[
+									"lj	q",
+									"lj"
+								],
+								[
+									"ljf	q",
+									"ljf"
+								],
+								[
+									"aj	q",
+									"aj"
+								],
+								[
+									"aj0	q",
+									"aj0"
+								],
+								[
+									"ij	q",
+									"ij"
+								],
+								[
+									"ijf	q",
+									"ijf"
+								],
+								[
+									"pj	q",
+									"pj"
+								],
+								[
+									"asof	q",
+									"asof"
+								],
+								[
+									"uj	q",
+									"uj"
+								],
+								[
+									"ww	q",
+									"ww"
+								],
+								[
+									"wj	q",
+									"wj"
+								],
+								[
+									"wj1	q",
+									"wj1"
+								],
+								[
+									"fby	q",
+									"fby"
+								],
+								[
+									"xgroup	q",
+									"xgroup"
+								],
+								[
+									"ungroup	q",
+									"ungroup"
+								],
+								[
+									"ej	q",
+									"ej"
+								],
+								[
+									"save	q",
+									"save"
+								],
+								[
+									"load	q",
+									"load"
+								],
+								[
+									"rsave	q",
+									"rsave"
+								],
+								[
+									"rload	q",
+									"rload"
+								],
+								[
+									"dsave	q",
+									"dsave"
+								],
+								[
+									"show	q",
+									"show"
+								],
+								[
+									"csv	q",
+									"csv"
+								],
+								[
+									"parse	q",
+									"parse"
+								],
+								[
+									"eval	q",
+									"eval"
+								],
+								[
+									"reval	q",
+									"reval"
+								],
+								[
+									"select	q",
+									"select"
+								],
+								[
+									"from	q",
+									"from"
+								],
+								[
+									"update	q",
+									"update"
+								],
+								[
+									"delete	q",
+									"delete"
+								],
+								[
+									".Q	Namespace",
+									"Q"
+								],
+								[
+									".Q.k	.Q",
+									"Q.k"
+								],
+								[
+									".Q.host	.Q",
+									"Q.host"
+								],
+								[
+									".Q.addr	.Q",
+									"Q.addr"
+								],
+								[
+									".Q.gc	.Q",
+									"Q.gc"
+								],
+								[
+									".Q.w	.Q",
+									"Q.w"
+								],
+								[
+									".Q.res	.Q",
+									"Q.res"
+								],
+								[
+									".Q.addmonths	.Q",
+									"Q.addmonths"
+								],
+								[
+									".Q.Xf	.Q",
+									"Q.Xf"
+								],
+								[
+									".Q.Cf	.Q",
+									"Q.Cf"
+								],
+								[
+									".Q.f	.Q",
+									"Q.f"
+								],
+								[
+									".Q.fmt	.Q",
+									"Q.fmt"
+								],
+								[
+									".Q.ff	.Q",
+									"Q.ff"
+								],
+								[
+									".Q.fl	.Q",
+									"Q.fl"
+								],
+								[
+									".Q.opt	.Q",
+									"Q.opt"
+								],
+								[
+									".Q.def	.Q",
+									"Q.def"
+								],
+								[
+									".Q.qt	.Q",
+									"Q.qt"
+								],
+								[
+									".Q.v	.Q",
+									"Q.v"
+								],
+								[
+									".Q.qp	.Q",
+									"Q.qp"
+								],
+								[
+									".Q.V	.Q",
+									"Q.V"
+								],
+								[
+									".Q.ft	.Q",
+									"Q.ft"
+								],
+								[
+									".Q.ord	.Q",
+									"Q.ord"
+								],
+								[
+									".Q.tx	.Q",
+									"Q.tx"
+								],
+								[
+									".Q.tt	.Q",
+									"Q.tt"
+								],
+								[
+									".Q.fk	.Q",
+									"Q.fk"
+								],
+								[
+									".Q.t	.Q",
+									"Q.t"
+								],
+								[
+									".Q.ty	.Q",
+									"Q.ty"
+								],
+								[
+									".Q.nct	.Q",
+									"Q.nct"
+								],
+								[
+									".Q.fu	.Q",
+									"Q.fu"
+								],
+								[
+									".Q.fc	.Q",
+									"Q.fc"
+								],
+								[
+									".Q.A	.Q",
+									"Q.A"
+								],
+								[
+									".Q.a	.Q",
+									"Q.a"
+								],
+								[
+									".Q.n	.Q",
+									"Q.n"
+								],
+								[
+									".Q.nA	.Q",
+									"Q.nA"
+								],
+								[
+									".Q.an	.Q",
+									"Q.an"
+								],
+								[
+									".Q.b6	.Q",
+									"Q.b6"
+								],
+								[
+									".Q.id	.Q",
+									"Q.id"
+								],
+								[
+									".Q.j10	.Q",
+									"Q.j10"
+								],
+								[
+									".Q.x10	.Q",
+									"Q.x10"
+								],
+								[
+									".Q.j12	.Q",
+									"Q.j12"
+								],
+								[
+									".Q.x12	.Q",
+									"Q.x12"
+								],
+								[
+									".Q.l	.Q",
+									"Q.l"
+								],
+								[
+									".Q.sw	.Q",
+									"Q.sw"
+								],
+								[
+									".Q.tab	.Q",
+									"Q.tab"
+								],
+								[
+									".Q.t0	.Q",
+									"Q.t0"
+								],
+								[
+									".Q.s1	.Q",
+									"Q.s1"
+								],
+								[
+									".Q.s2	.Q",
+									"Q.s2"
+								],
+								[
+									".Q.S	.Q",
+									"Q.S"
+								],
+								[
+									".Q.s	.Q",
+									"Q.s"
+								],
+								[
+									".Q.hap	.Q",
+									"Q.hap"
+								],
+								[
+									".Q.hmb	.Q",
+									"Q.hmb"
+								],
+								[
+									".Q.hg	.Q",
+									"Q.hg"
+								],
+								[
+									".Q.hp	.Q",
+									"Q.hp"
+								],
+								[
+									".Q.a1	.Q",
+									"Q.a1"
+								],
+								[
+									".Q.a0	.Q",
+									"Q.a0"
+								],
+								[
+									".Q.IN	.Q",
+									"Q.IN"
+								],
+								[
+									".Q.qa	.Q",
+									"Q.qa"
+								],
+								[
+									".Q.qb	.Q",
+									"Q.qb"
+								],
+								[
+									".Q.vt	.Q",
+									"Q.vt"
+								],
+								[
+									".Q.bv	.Q",
+									"Q.bv"
+								],
+								[
+									".Q.pm	.Q",
+									"Q.pm"
+								],
+								[
+									".Q.pt	.Q",
+									"Q.pt"
+								],
+								[
+									".Q.MAP	.Q",
+									"Q.MAP"
+								],
+								[
+									".Q.dd	.Q",
+									"Q.dd"
+								],
+								[
+									".Q.d0	.Q",
+									"Q.d0"
+								],
+								[
+									".Q.p1	.Q",
+									"Q.p1"
+								],
+								[
+									".Q.p2	.Q",
+									"Q.p2"
+								],
+								[
+									".Q.p	.Q",
+									"Q.p"
+								],
+								[
+									".Q.view	.Q",
+									"Q.view"
+								],
+								[
+									".Q.L	.Q",
+									"Q.L"
+								],
+								[
+									".Q.cn	.Q",
+									"Q.cn"
+								],
+								[
+									".Q.pcnt	.Q",
+									"Q.pcnt"
+								],
+								[
+									".Q.dt	.Q",
+									"Q.dt"
+								],
+								[
+									".Q.ind	.Q",
+									"Q.ind"
+								],
+								[
+									".Q.fp	.Q",
+									"Q.fp"
+								],
+								[
+									".Q.foo	.Q",
+									"Q.foo"
+								],
+								[
+									".Q.a2	.Q",
+									"Q.a2"
+								],
+								[
+									".Q.qd	.Q",
+									"Q.qd"
+								],
+								[
+									".Q.xy	.Q",
+									"Q.xy"
+								],
+								[
+									".Q.x1	.Q",
+									"Q.x1"
+								],
+								[
+									".Q.x0	.Q",
+									"Q.x0"
+								],
+								[
+									".Q.x2	.Q",
+									"Q.x2"
+								],
+								[
+									".Q.ua	.Q",
+									"Q.ua"
+								],
+								[
+									".Q.q0	.Q",
+									"Q.q0"
+								],
+								[
+									".Q.qe	.Q",
+									"Q.qe"
+								],
+								[
+									".Q.ps	.Q",
+									"Q.ps"
+								],
+								[
+									".Q.enx	.Q",
+									"Q.enx"
+								],
+								[
+									".Q.en	.Q",
+									"Q.en"
+								],
+								[
+									".Q.par	.Q",
+									"Q.par"
+								],
+								[
+									".Q.qm	.Q",
+									"Q.qm"
+								],
+								[
+									".Q.dpt	.Q",
+									"Q.dpt"
+								],
+								[
+									".Q.dpft	.Q",
+									"Q.dpft"
+								],
+								[
+									".Q.hdpf	.Q",
+									"Q.hdpf"
+								],
+								[
+									".Q.fsn	.Q",
+									"Q.fsn"
+								],
+								[
+									".Q.fs	.Q",
+									"Q.fs"
+								],
+								[
+									".Q.fpn	.Q",
+									"Q.fpn"
+								],
+								[
+									".Q.fps	.Q",
+									"Q.fps"
+								],
+								[
+									".Q.dsftg	.Q",
+									"Q.dsftg"
+								],
+								[
+									".Q.M	.Q",
+									"Q.M"
+								],
+								[
+									".Q.chk	.Q",
+									"Q.chk"
+								],
+								[
+									".Q.D	.Q",
+									"Q.D"
+								],
+								[
+									".Q.PV	.Q",
+									"Q.PV"
+								],
+								[
+									".Q.PD	.Q",
+									"Q.PD"
+								],
+								[
+									".Q.pf	.Q",
+									"Q.pf"
+								],
+								[
+									".Q.pd	.Q",
+									"Q.pd"
+								],
+								[
+									".Q.pv	.Q",
+									"Q.pv"
+								],
+								[
+									".Q.u	.Q",
+									"Q.u"
+								],
+								[
+									".Q.pn	.Q",
+									"Q.pn"
+								],
+								[
+									".h	Namespace",
+									"h"
+								],
+								[
+									".h.htc	.h",
+									"h.htc"
+								],
+								[
+									".h.hta	.h",
+									"h.hta"
+								],
+								[
+									".h.htac	.h",
+									"h.htac"
+								],
+								[
+									".h.ha	.h",
+									"h.ha"
+								],
+								[
+									".h.hb	.h",
+									"h.hb"
+								],
+								[
+									".h.pre	.h",
+									"h.pre"
+								],
+								[
+									".h.xmp	.h",
+									"h.xmp"
+								],
+								[
+									".h.cd	.h",
+									"h.cd"
+								],
+								[
+									".h.td	.h",
+									"h.td"
+								],
+								[
+									".h.hc	.h",
+									"h.hc"
+								],
+								[
+									".h.xs	.h",
+									"h.xs"
+								],
+								[
+									".h.xd	.h",
+									"h.xd"
+								],
+								[
+									".h.ex	.h",
+									"h.ex"
+								],
+								[
+									".h.iso8601	.h",
+									"h.iso8601"
+								],
+								[
+									".h.eb	.h",
+									"h.eb"
+								],
+								[
+									".h.es	.h",
+									"h.es"
+								],
+								[
+									".h.ed	.h",
+									"h.ed"
+								],
+								[
+									".h.edsn	.h",
+									"h.edsn"
+								],
+								[
+									".h.ec	.h",
+									"h.ec"
+								],
+								[
+									".h.tx	.h",
+									"h.tx"
+								],
+								[
+									".h.xt	.h",
+									"h.xt"
+								],
+								[
+									".h.c0	.h",
+									"h.c0"
+								],
+								[
+									".h.c1	.h",
+									"h.c1"
+								],
+								[
+									".h.logo	.h",
+									"h.logo"
+								],
+								[
+									".h.sa	.h",
+									"h.sa"
+								],
+								[
+									".h.html	.h",
+									"h.html"
+								],
+								[
+									".h.sb	.h",
+									"h.sb"
+								],
+								[
+									".h.fram	.h",
+									"h.fram"
+								],
+								[
+									".h.jx	.h",
+									"h.jx"
+								],
+								[
+									".h.uh	.h",
+									"h.uh"
+								],
+								[
+									".h.sc	.h",
+									"h.sc"
+								],
+								[
+									".h.hug	.h",
+									"h.hug"
+								],
+								[
+									".h.hu	.h",
+									"h.hu"
+								],
+								[
+									".h.ty	.h",
+									"h.ty"
+								],
+								[
+									".h.hn	.h",
+									"h.hn"
+								],
+								[
+									".h.HOME	.h",
+									"h.HOME"
+								],
+								[
+									".h.hy	.h",
+									"h.hy"
+								],
+								[
+									".h.hp	.h",
+									"h.hp"
+								],
+								[
+									".h.he	.h",
+									"h.he"
+								],
+								[
+									".h.br	.h",
+									"h.br"
+								],
+								[
+									".h.hr	.h",
+									"h.hr"
+								],
+								[
+									".h.nbr	.h",
+									"h.nbr"
+								],
+								[
+									".h.code	.h",
+									"h.code"
+								],
+								[
+									".h.http	.h",
+									"h.http"
+								],
+								[
+									".h.text	.h",
+									"h.text"
+								],
+								[
+									".h.data	.h",
+									"h.data"
+								],
+								[
+									".h.ht	.h",
+									"h.ht"
+								],
+								[
+									".j	Namespace",
+									"j"
+								],
+								[
+									".j.e	.j",
+									"j.e"
+								],
+								[
+									".j.q	.j",
+									"j.q"
+								],
+								[
+									".j.s	.j",
+									"j.s"
+								],
+								[
+									".j.J	.j",
+									"j.J"
+								],
+								[
+									".j.j	.j",
+									"j.j"
+								],
+								[
+									".j.k	.j",
+									"j.k"
+								],
+								[
+									".o	Namespace",
+									"o"
+								],
+								[
+									".o.ex	.o",
+									"o.ex"
+								],
+								[
+									".o.T	.o",
+									"o.T"
+								],
+								[
+									".o.T0	.o",
+									"o.T0"
+								],
+								[
+									".o.B0	.o",
+									"o.B0"
+								],
+								[
+									".o.C0	.o",
+									"o.C0"
+								],
+								[
+									".o.PS	.o",
+									"o.PS"
+								],
+								[
+									".o.t	.o",
+									"o.t"
+								],
+								[
+									".o.Columns	.o",
+									"o.Columns"
+								],
+								[
+									".o.TI	.o",
+									"o.TI"
+								],
+								[
+									".o.TypeInfo	.o",
+									"o.TypeInfo"
+								],
+								[
+									".o.Special	.o",
+									"o.Special"
+								],
+								[
+									".o.o	.o",
+									"o.o"
+								],
+								[
+									".o.Tables	.o",
+									"o.Tables"
+								],
+								[
+									".o.Ts	.o",
+									"o.Ts"
+								],
+								[
+									".o.Stats	.o",
+									"o.Stats"
+								],
+								[
+									".o.Cols	.o",
+									"o.Cols"
+								],
+								[
+									".o.Key	.o",
+									"o.Key"
+								],
+								[
+									".o.FG	.o",
+									"o.FG"
+								],
+								[
+									".o.Fkey	.o",
+									"o.Fkey"
+								],
+								[
+									".o.Gkey	.o",
+									"o.Gkey"
+								],
+								[
+									".st	Namespace",
+									"st"
+								],
+								[
+									".st.mem	.st",
+									"st.mem"
+								],
+								[
+									".dt	Namespace",
+									"dt"
+								],
+								[
+									".dt.trades	.dt",
+									"dt.trades"
+								],
+								[
+									".dt.fundamental	.dt",
+									"dt.fundamental"
+								],
+								[
+									".int	Namespace",
+									"int"
+								],
+								[
+									".int.itables	.int",
+									"int.itables"
+								],
+								[
+									".int.prepschema	.int",
+									"int.prepschema"
+								],
+								[
+									".int.appendsdt	.int",
+									"int.appendsdt"
+								],
+								[
+									".int.procsig	.int",
+									"int.procsig"
+								],
+								[
+									".int.portcon	.int",
+									"int.portcon"
+								],
+								[
+									".int.oms	.int",
+									"int.oms"
+								],
+								[
+									".int.proctime	.int",
+									"int.proctime"
+								],
+								[
+									".ext	Namespace",
+									"ext"
+								],
+								[
+									".ext.groupbytstamp	.ext",
+									"ext.groupbytstamp"
+								],
+								[
+									".ext.transfev	.ext",
+									"ext.transfev"
+								],
+								[
+									".ext.queue	.ext",
+									"ext.queue"
+								],
+								[
+									".schema	Namespace",
+									"schema"
+								],
+								[
+									".schema.signal	.schema",
+									"schema.signal"
+								],
+								[
+									".schema.targetsz	.schema",
+									"schema.targetsz"
+								],
+								[
+									".schema.targetw	.schema",
+									"schema.targetw"
+								],
+								[
+									".schema.order	.schema",
+									"schema.order"
+								],
+								[
+									".alpha	Namespace",
+									"alpha"
+								],
+								[
+									".alpha.dif	.alpha",
+									"alpha.dif"
+								],
+								[
+									".alpha.calc	.alpha",
+									"alpha.calc"
+								],
+								[
+									".portcon	Namespace",
+									"portcon"
+								],
+								[
+									".portcon.calc	.portcon",
+									"portcon.calc"
+								],
+								[
+									".port	Namespace",
+									"port"
+								],
+								[
+									".port.positions	.port",
+									"port.positions"
+								],
+								[
+									".port.pnl	.port",
+									"port.pnl"
+								],
+								[
+									".port.cash	.port",
+									"port.cash"
+								],
+								[
+									".oms	Namespace",
+									"oms"
+								],
+								[
+									".oms.obook	.oms",
+									"oms.obook"
+								],
+								[
+									".oms.obookupd	.oms",
+									"oms.obookupd"
+								],
+								[
+									".oms.proc	.oms",
+									"oms.proc"
+								]
+							],
+							"q_handle":
+							{
+								"hdb": false,
+								"host": "localhost",
+								"name": "localhost:5555",
+								"password": null,
+								"port": 5555,
+								"username": null
+							},
+							"syntax": "Packages/q KDB/syntax/q.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/dt.q",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 318,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"q_compl":
+							[
+								[
+									"daily	Table",
+									"daily"
+								],
+								[
+									"daily	date",
+									"date"
+								],
+								[
+									"date	daily",
+									"date"
+								],
+								[
+									"daily	sym",
+									"sym"
+								],
+								[
+									"sym	daily",
+									"sym"
+								],
+								[
+									"daily	open",
+									"open"
+								],
+								[
+									"open	daily",
+									"open"
+								],
+								[
+									"daily	high",
+									"high"
+								],
+								[
+									"high	daily",
+									"high"
+								],
+								[
+									"daily	low",
+									"low"
+								],
+								[
+									"low	daily",
+									"low"
+								],
+								[
+									"daily	close",
+									"close"
+								],
+								[
+									"close	daily",
+									"close"
+								],
+								[
+									"daily	price",
+									"price"
+								],
+								[
+									"price	daily",
+									"price"
+								],
+								[
+									"daily	size",
+									"size"
+								],
+								[
+									"size	daily",
+									"size"
+								],
+								[
+									"depth	Table",
+									"depth"
+								],
+								[
+									"depth	date",
+									"date"
+								],
+								[
+									"date	depth",
+									"date"
+								],
+								[
+									"depth	time",
+									"time"
+								],
+								[
+									"time	depth",
+									"time"
+								],
+								[
+									"depth	sym",
+									"sym"
+								],
+								[
+									"sym	depth",
+									"sym"
+								],
+								[
+									"depth	price",
+									"price"
+								],
+								[
+									"price	depth",
+									"price"
+								],
+								[
+									"depth	size",
+									"size"
+								],
+								[
+									"size	depth",
+									"size"
+								],
+								[
+									"depth	side",
+									"side"
+								],
+								[
+									"side	depth",
+									"side"
+								],
+								[
+									"depth	ex",
+									"ex"
+								],
+								[
+									"ex	depth",
+									"ex"
+								],
+								[
+									"mas	Table",
+									"mas"
+								],
+								[
+									"mas	sym",
+									"sym"
+								],
+								[
+									"sym	mas",
+									"sym"
+								],
+								[
+									"mas	name",
+									"name"
+								],
+								[
+									"name	mas",
+									"name"
+								],
+								[
+									"nbbo	Table",
+									"nbbo"
+								],
+								[
+									"nbbo	date",
+									"date"
+								],
+								[
+									"date	nbbo",
+									"date"
+								],
+								[
+									"nbbo	sym",
+									"sym"
+								],
+								[
+									"sym	nbbo",
+									"sym"
+								],
+								[
+									"nbbo	time",
+									"time"
+								],
+								[
+									"time	nbbo",
+									"time"
+								],
+								[
+									"nbbo	bid",
+									"bid"
+								],
+								[
+									"bid	nbbo",
+									"bid"
+								],
+								[
+									"nbbo	ask",
+									"ask"
+								],
+								[
+									"ask	nbbo",
+									"ask"
+								],
+								[
+									"nbbo	bsize",
+									"bsize"
+								],
+								[
+									"bsize	nbbo",
+									"bsize"
+								],
+								[
+									"nbbo	asize",
+									"asize"
+								],
+								[
+									"asize	nbbo",
+									"asize"
+								],
+								[
+									"quote	Table",
+									"quote"
+								],
+								[
+									"quote	date",
+									"date"
+								],
+								[
+									"date	quote",
+									"date"
+								],
+								[
+									"quote	sym",
+									"sym"
+								],
+								[
+									"sym	quote",
+									"sym"
+								],
+								[
+									"quote	time",
+									"time"
+								],
+								[
+									"time	quote",
+									"time"
+								],
+								[
+									"quote	bid",
+									"bid"
+								],
+								[
+									"bid	quote",
+									"bid"
+								],
+								[
+									"quote	ask",
+									"ask"
+								],
+								[
+									"ask	quote",
+									"ask"
+								],
+								[
+									"quote	bsize",
+									"bsize"
+								],
+								[
+									"bsize	quote",
+									"bsize"
+								],
+								[
+									"quote	asize",
+									"asize"
+								],
+								[
+									"asize	quote",
+									"asize"
+								],
+								[
+									"quote	mode",
+									"mode"
+								],
+								[
+									"mode	quote",
+									"mode"
+								],
+								[
+									"quote	ex",
+									"ex"
+								],
+								[
+									"ex	quote",
+									"ex"
+								],
+								[
+									"trade	Table",
+									"trade"
+								],
+								[
+									"trade	date",
+									"date"
+								],
+								[
+									"date	trade",
+									"date"
+								],
+								[
+									"trade	sym",
+									"sym"
+								],
+								[
+									"sym	trade",
+									"sym"
+								],
+								[
+									"trade	time",
+									"time"
+								],
+								[
+									"time	trade",
+									"time"
+								],
+								[
+									"trade	price",
+									"price"
+								],
+								[
+									"price	trade",
+									"price"
+								],
+								[
+									"trade	size",
+									"size"
+								],
+								[
+									"size	trade",
+									"size"
+								],
+								[
+									"trade	stop",
+									"stop"
+								],
+								[
+									"stop	trade",
+									"stop"
+								],
+								[
+									"trade	cond",
+									"cond"
+								],
+								[
+									"cond	trade",
+									"cond"
+								],
+								[
+									"trade	ex",
+									"ex"
+								],
+								[
+									"ex	trade",
+									"ex"
+								],
+								[
+									"date	Variable",
+									"date"
+								],
+								[
+									"sym	Variable",
+									"sym"
+								],
+								[
+									"doEvent	Function",
+									"doEvent"
+								],
+								[
+									"run	Function",
+									"run"
+								],
+								[
+									"neg	q",
+									"neg"
+								],
+								[
+									"not	q",
+									"not"
+								],
+								[
+									"null	q",
+									"null"
+								],
+								[
+									"string	q",
+									"string"
+								],
+								[
+									"reciprocal	q",
+									"reciprocal"
+								],
+								[
+									"floor	q",
+									"floor"
+								],
+								[
+									"ceiling	q",
+									"ceiling"
+								],
+								[
+									"signum	q",
+									"signum"
+								],
+								[
+									"mod	q",
+									"mod"
+								],
+								[
+									"xbar	q",
+									"xbar"
+								],
+								[
+									"xlog	q",
+									"xlog"
+								],
+								[
+									"and	q",
+									"and"
+								],
+								[
+									"or	q",
+									"or"
+								],
+								[
+									"each	q",
+									"each"
+								],
+								[
+									"scan	q",
+									"scan"
+								],
+								[
+									"over	q",
+									"over"
+								],
+								[
+									"prior	q",
+									"prior"
+								],
+								[
+									"mmu	q",
+									"mmu"
+								],
+								[
+									"lsq	q",
+									"lsq"
+								],
+								[
+									"inv	q",
+									"inv"
+								],
+								[
+									"md5	q",
+									"md5"
+								],
+								[
+									"ltime	q",
+									"ltime"
+								],
+								[
+									"gtime	q",
+									"gtime"
+								],
+								[
+									"count	q",
+									"count"
+								],
+								[
+									"first	q",
+									"first"
+								],
+								[
+									"svar	q",
+									"svar"
+								],
+								[
+									"sdev	q",
+									"sdev"
+								],
+								[
+									"scov	q",
+									"scov"
+								],
+								[
+									"med	q",
+									"med"
+								],
+								[
+									"all	q",
+									"all"
+								],
+								[
+									"any	q",
+									"any"
+								],
+								[
+									"rand	q",
+									"rand"
+								],
+								[
+									"sums	q",
+									"sums"
+								],
+								[
+									"prds	q",
+									"prds"
+								],
+								[
+									"mins	q",
+									"mins"
+								],
+								[
+									"maxs	q",
+									"maxs"
+								],
+								[
+									"fills	q",
+									"fills"
+								],
+								[
+									"deltas	q",
+									"deltas"
+								],
+								[
+									"ratios	q",
+									"ratios"
+								],
+								[
+									"avgs	q",
+									"avgs"
+								],
+								[
+									"differ	q",
+									"differ"
+								],
+								[
+									"prev	q",
+									"prev"
+								],
+								[
+									"next	q",
+									"next"
+								],
+								[
+									"rank	q",
+									"rank"
+								],
+								[
+									"reverse	q",
+									"reverse"
+								],
+								[
+									"iasc	q",
+									"iasc"
+								],
+								[
+									"idesc	q",
+									"idesc"
+								],
+								[
+									"asc	q",
+									"asc"
+								],
+								[
+									"desc	q",
+									"desc"
+								],
+								[
+									"msum	q",
+									"msum"
+								],
+								[
+									"mcount	q",
+									"mcount"
+								],
+								[
+									"mavg	q",
+									"mavg"
+								],
+								[
+									"mdev	q",
+									"mdev"
+								],
+								[
+									"xrank	q",
+									"xrank"
+								],
+								[
+									"mmin	q",
+									"mmin"
+								],
+								[
+									"mmax	q",
+									"mmax"
+								],
+								[
+									"xprev	q",
+									"xprev"
+								],
+								[
+									"rotate	q",
+									"rotate"
+								],
+								[
+									"ema	q",
+									"ema"
+								],
+								[
+									"distinct	q",
+									"distinct"
+								],
+								[
+									"group	q",
+									"group"
+								],
+								[
+									"where	q",
+									"where"
+								],
+								[
+									"flip	q",
+									"flip"
+								],
+								[
+									"type	q",
+									"type"
+								],
+								[
+									"key	q",
+									"key"
+								],
+								[
+									"til	q",
+									"til"
+								],
+								[
+									"get	q",
+									"get"
+								],
+								[
+									"value	q",
+									"value"
+								],
+								[
+									"attr	q",
+									"attr"
+								],
+								[
+									"cut	q",
+									"cut"
+								],
+								[
+									"set	q",
+									"set"
+								],
+								[
+									"upsert	q",
+									"upsert"
+								],
+								[
+									"raze	q",
+									"raze"
+								],
+								[
+									"union	q",
+									"union"
+								],
+								[
+									"inter	q",
+									"inter"
+								],
+								[
+									"except	q",
+									"except"
+								],
+								[
+									"cross	q",
+									"cross"
+								],
+								[
+									"sv	q",
+									"sv"
+								],
+								[
+									"vs	q",
+									"vs"
+								],
+								[
+									"sublist	q",
+									"sublist"
+								],
+								[
+									"read0	q",
+									"read0"
+								],
+								[
+									"read1	q",
+									"read1"
+								],
+								[
+									"hopen	q",
+									"hopen"
+								],
+								[
+									"hclose	q",
+									"hclose"
+								],
+								[
+									"hdel	q",
+									"hdel"
+								],
+								[
+									"hsym	q",
+									"hsym"
+								],
+								[
+									"hcount	q",
+									"hcount"
+								],
+								[
+									"peach	q",
+									"peach"
+								],
+								[
+									"system	q",
+									"system"
+								],
+								[
+									"ltrim	q",
+									"ltrim"
+								],
+								[
+									"rtrim	q",
+									"rtrim"
+								],
+								[
+									"trim	q",
+									"trim"
+								],
+								[
+									"lower	q",
+									"lower"
+								],
+								[
+									"upper	q",
+									"upper"
+								],
+								[
+									"ssr	q",
+									"ssr"
+								],
+								[
+									"view	q",
+									"view"
+								],
+								[
+									"tables	q",
+									"tables"
+								],
+								[
+									"views	q",
+									"views"
+								],
+								[
+									"cols	q",
+									"cols"
+								],
+								[
+									"xcols	q",
+									"xcols"
+								],
+								[
+									"keys	q",
+									"keys"
+								],
+								[
+									"xkey	q",
+									"xkey"
+								],
+								[
+									"xcol	q",
+									"xcol"
+								],
+								[
+									"xasc	q",
+									"xasc"
+								],
+								[
+									"xdesc	q",
+									"xdesc"
+								],
+								[
+									"fkeys	q",
+									"fkeys"
+								],
+								[
+									"meta	q",
+									"meta"
+								],
+								[
+									"lj	q",
+									"lj"
+								],
+								[
+									"ljf	q",
+									"ljf"
+								],
+								[
+									"aj	q",
+									"aj"
+								],
+								[
+									"aj0	q",
+									"aj0"
+								],
+								[
+									"ij	q",
+									"ij"
+								],
+								[
+									"ijf	q",
+									"ijf"
+								],
+								[
+									"pj	q",
+									"pj"
+								],
+								[
+									"asof	q",
+									"asof"
+								],
+								[
+									"uj	q",
+									"uj"
+								],
+								[
+									"ww	q",
+									"ww"
+								],
+								[
+									"wj	q",
+									"wj"
+								],
+								[
+									"wj1	q",
+									"wj1"
+								],
+								[
+									"fby	q",
+									"fby"
+								],
+								[
+									"xgroup	q",
+									"xgroup"
+								],
+								[
+									"ungroup	q",
+									"ungroup"
+								],
+								[
+									"ej	q",
+									"ej"
+								],
+								[
+									"save	q",
+									"save"
+								],
+								[
+									"load	q",
+									"load"
+								],
+								[
+									"rsave	q",
+									"rsave"
+								],
+								[
+									"rload	q",
+									"rload"
+								],
+								[
+									"dsave	q",
+									"dsave"
+								],
+								[
+									"show	q",
+									"show"
+								],
+								[
+									"csv	q",
+									"csv"
+								],
+								[
+									"parse	q",
+									"parse"
+								],
+								[
+									"eval	q",
+									"eval"
+								],
+								[
+									"reval	q",
+									"reval"
+								],
+								[
+									"select	q",
+									"select"
+								],
+								[
+									"from	q",
+									"from"
+								],
+								[
+									"update	q",
+									"update"
+								],
+								[
+									"delete	q",
+									"delete"
+								],
+								[
+									".Q	Namespace",
+									"Q"
+								],
+								[
+									".Q.k	.Q",
+									"Q.k"
+								],
+								[
+									".Q.host	.Q",
+									"Q.host"
+								],
+								[
+									".Q.addr	.Q",
+									"Q.addr"
+								],
+								[
+									".Q.gc	.Q",
+									"Q.gc"
+								],
+								[
+									".Q.w	.Q",
+									"Q.w"
+								],
+								[
+									".Q.res	.Q",
+									"Q.res"
+								],
+								[
+									".Q.addmonths	.Q",
+									"Q.addmonths"
+								],
+								[
+									".Q.Xf	.Q",
+									"Q.Xf"
+								],
+								[
+									".Q.Cf	.Q",
+									"Q.Cf"
+								],
+								[
+									".Q.f	.Q",
+									"Q.f"
+								],
+								[
+									".Q.fmt	.Q",
+									"Q.fmt"
+								],
+								[
+									".Q.ff	.Q",
+									"Q.ff"
+								],
+								[
+									".Q.fl	.Q",
+									"Q.fl"
+								],
+								[
+									".Q.opt	.Q",
+									"Q.opt"
+								],
+								[
+									".Q.def	.Q",
+									"Q.def"
+								],
+								[
+									".Q.qt	.Q",
+									"Q.qt"
+								],
+								[
+									".Q.v	.Q",
+									"Q.v"
+								],
+								[
+									".Q.qp	.Q",
+									"Q.qp"
+								],
+								[
+									".Q.V	.Q",
+									"Q.V"
+								],
+								[
+									".Q.ft	.Q",
+									"Q.ft"
+								],
+								[
+									".Q.ord	.Q",
+									"Q.ord"
+								],
+								[
+									".Q.tx	.Q",
+									"Q.tx"
+								],
+								[
+									".Q.tt	.Q",
+									"Q.tt"
+								],
+								[
+									".Q.fk	.Q",
+									"Q.fk"
+								],
+								[
+									".Q.t	.Q",
+									"Q.t"
+								],
+								[
+									".Q.ty	.Q",
+									"Q.ty"
+								],
+								[
+									".Q.nct	.Q",
+									"Q.nct"
+								],
+								[
+									".Q.fu	.Q",
+									"Q.fu"
+								],
+								[
+									".Q.fc	.Q",
+									"Q.fc"
+								],
+								[
+									".Q.A	.Q",
+									"Q.A"
+								],
+								[
+									".Q.a	.Q",
+									"Q.a"
+								],
+								[
+									".Q.n	.Q",
+									"Q.n"
+								],
+								[
+									".Q.nA	.Q",
+									"Q.nA"
+								],
+								[
+									".Q.an	.Q",
+									"Q.an"
+								],
+								[
+									".Q.b6	.Q",
+									"Q.b6"
+								],
+								[
+									".Q.id	.Q",
+									"Q.id"
+								],
+								[
+									".Q.j10	.Q",
+									"Q.j10"
+								],
+								[
+									".Q.x10	.Q",
+									"Q.x10"
+								],
+								[
+									".Q.j12	.Q",
+									"Q.j12"
+								],
+								[
+									".Q.x12	.Q",
+									"Q.x12"
+								],
+								[
+									".Q.l	.Q",
+									"Q.l"
+								],
+								[
+									".Q.sw	.Q",
+									"Q.sw"
+								],
+								[
+									".Q.tab	.Q",
+									"Q.tab"
+								],
+								[
+									".Q.t0	.Q",
+									"Q.t0"
+								],
+								[
+									".Q.s1	.Q",
+									"Q.s1"
+								],
+								[
+									".Q.s2	.Q",
+									"Q.s2"
+								],
+								[
+									".Q.S	.Q",
+									"Q.S"
+								],
+								[
+									".Q.s	.Q",
+									"Q.s"
+								],
+								[
+									".Q.hap	.Q",
+									"Q.hap"
+								],
+								[
+									".Q.hmb	.Q",
+									"Q.hmb"
+								],
+								[
+									".Q.hg	.Q",
+									"Q.hg"
+								],
+								[
+									".Q.hp	.Q",
+									"Q.hp"
+								],
+								[
+									".Q.a1	.Q",
+									"Q.a1"
+								],
+								[
+									".Q.a0	.Q",
+									"Q.a0"
+								],
+								[
+									".Q.IN	.Q",
+									"Q.IN"
+								],
+								[
+									".Q.qa	.Q",
+									"Q.qa"
+								],
+								[
+									".Q.qb	.Q",
+									"Q.qb"
+								],
+								[
+									".Q.vt	.Q",
+									"Q.vt"
+								],
+								[
+									".Q.bv	.Q",
+									"Q.bv"
+								],
+								[
+									".Q.pm	.Q",
+									"Q.pm"
+								],
+								[
+									".Q.pt	.Q",
+									"Q.pt"
+								],
+								[
+									".Q.MAP	.Q",
+									"Q.MAP"
+								],
+								[
+									".Q.dd	.Q",
+									"Q.dd"
+								],
+								[
+									".Q.d0	.Q",
+									"Q.d0"
+								],
+								[
+									".Q.p1	.Q",
+									"Q.p1"
+								],
+								[
+									".Q.p2	.Q",
+									"Q.p2"
+								],
+								[
+									".Q.p	.Q",
+									"Q.p"
+								],
+								[
+									".Q.view	.Q",
+									"Q.view"
+								],
+								[
+									".Q.L	.Q",
+									"Q.L"
+								],
+								[
+									".Q.cn	.Q",
+									"Q.cn"
+								],
+								[
+									".Q.pcnt	.Q",
+									"Q.pcnt"
+								],
+								[
+									".Q.dt	.Q",
+									"Q.dt"
+								],
+								[
+									".Q.ind	.Q",
+									"Q.ind"
+								],
+								[
+									".Q.fp	.Q",
+									"Q.fp"
+								],
+								[
+									".Q.foo	.Q",
+									"Q.foo"
+								],
+								[
+									".Q.a2	.Q",
+									"Q.a2"
+								],
+								[
+									".Q.qd	.Q",
+									"Q.qd"
+								],
+								[
+									".Q.xy	.Q",
+									"Q.xy"
+								],
+								[
+									".Q.x1	.Q",
+									"Q.x1"
+								],
+								[
+									".Q.x0	.Q",
+									"Q.x0"
+								],
+								[
+									".Q.x2	.Q",
+									"Q.x2"
+								],
+								[
+									".Q.ua	.Q",
+									"Q.ua"
+								],
+								[
+									".Q.q0	.Q",
+									"Q.q0"
+								],
+								[
+									".Q.qe	.Q",
+									"Q.qe"
+								],
+								[
+									".Q.ps	.Q",
+									"Q.ps"
+								],
+								[
+									".Q.enx	.Q",
+									"Q.enx"
+								],
+								[
+									".Q.en	.Q",
+									"Q.en"
+								],
+								[
+									".Q.par	.Q",
+									"Q.par"
+								],
+								[
+									".Q.qm	.Q",
+									"Q.qm"
+								],
+								[
+									".Q.dpt	.Q",
+									"Q.dpt"
+								],
+								[
+									".Q.dpft	.Q",
+									"Q.dpft"
+								],
+								[
+									".Q.hdpf	.Q",
+									"Q.hdpf"
+								],
+								[
+									".Q.fsn	.Q",
+									"Q.fsn"
+								],
+								[
+									".Q.fs	.Q",
+									"Q.fs"
+								],
+								[
+									".Q.fpn	.Q",
+									"Q.fpn"
+								],
+								[
+									".Q.fps	.Q",
+									"Q.fps"
+								],
+								[
+									".Q.dsftg	.Q",
+									"Q.dsftg"
+								],
+								[
+									".Q.M	.Q",
+									"Q.M"
+								],
+								[
+									".Q.chk	.Q",
+									"Q.chk"
+								],
+								[
+									".Q.D	.Q",
+									"Q.D"
+								],
+								[
+									".Q.PV	.Q",
+									"Q.PV"
+								],
+								[
+									".Q.PD	.Q",
+									"Q.PD"
+								],
+								[
+									".Q.pf	.Q",
+									"Q.pf"
+								],
+								[
+									".Q.pd	.Q",
+									"Q.pd"
+								],
+								[
+									".Q.pv	.Q",
+									"Q.pv"
+								],
+								[
+									".Q.u	.Q",
+									"Q.u"
+								],
+								[
+									".Q.pn	.Q",
+									"Q.pn"
+								],
+								[
+									".h	Namespace",
+									"h"
+								],
+								[
+									".h.htc	.h",
+									"h.htc"
+								],
+								[
+									".h.hta	.h",
+									"h.hta"
+								],
+								[
+									".h.htac	.h",
+									"h.htac"
+								],
+								[
+									".h.ha	.h",
+									"h.ha"
+								],
+								[
+									".h.hb	.h",
+									"h.hb"
+								],
+								[
+									".h.pre	.h",
+									"h.pre"
+								],
+								[
+									".h.xmp	.h",
+									"h.xmp"
+								],
+								[
+									".h.cd	.h",
+									"h.cd"
+								],
+								[
+									".h.td	.h",
+									"h.td"
+								],
+								[
+									".h.hc	.h",
+									"h.hc"
+								],
+								[
+									".h.xs	.h",
+									"h.xs"
+								],
+								[
+									".h.xd	.h",
+									"h.xd"
+								],
+								[
+									".h.ex	.h",
+									"h.ex"
+								],
+								[
+									".h.iso8601	.h",
+									"h.iso8601"
+								],
+								[
+									".h.eb	.h",
+									"h.eb"
+								],
+								[
+									".h.es	.h",
+									"h.es"
+								],
+								[
+									".h.ed	.h",
+									"h.ed"
+								],
+								[
+									".h.edsn	.h",
+									"h.edsn"
+								],
+								[
+									".h.ec	.h",
+									"h.ec"
+								],
+								[
+									".h.tx	.h",
+									"h.tx"
+								],
+								[
+									".h.xt	.h",
+									"h.xt"
+								],
+								[
+									".h.c0	.h",
+									"h.c0"
+								],
+								[
+									".h.c1	.h",
+									"h.c1"
+								],
+								[
+									".h.logo	.h",
+									"h.logo"
+								],
+								[
+									".h.sa	.h",
+									"h.sa"
+								],
+								[
+									".h.html	.h",
+									"h.html"
+								],
+								[
+									".h.sb	.h",
+									"h.sb"
+								],
+								[
+									".h.fram	.h",
+									"h.fram"
+								],
+								[
+									".h.jx	.h",
+									"h.jx"
+								],
+								[
+									".h.uh	.h",
+									"h.uh"
+								],
+								[
+									".h.sc	.h",
+									"h.sc"
+								],
+								[
+									".h.hug	.h",
+									"h.hug"
+								],
+								[
+									".h.hu	.h",
+									"h.hu"
+								],
+								[
+									".h.ty	.h",
+									"h.ty"
+								],
+								[
+									".h.hn	.h",
+									"h.hn"
+								],
+								[
+									".h.HOME	.h",
+									"h.HOME"
+								],
+								[
+									".h.hy	.h",
+									"h.hy"
+								],
+								[
+									".h.hp	.h",
+									"h.hp"
+								],
+								[
+									".h.he	.h",
+									"h.he"
+								],
+								[
+									".h.br	.h",
+									"h.br"
+								],
+								[
+									".h.hr	.h",
+									"h.hr"
+								],
+								[
+									".h.nbr	.h",
+									"h.nbr"
+								],
+								[
+									".h.code	.h",
+									"h.code"
+								],
+								[
+									".h.http	.h",
+									"h.http"
+								],
+								[
+									".h.text	.h",
+									"h.text"
+								],
+								[
+									".h.data	.h",
+									"h.data"
+								],
+								[
+									".h.ht	.h",
+									"h.ht"
+								],
+								[
+									".j	Namespace",
+									"j"
+								],
+								[
+									".j.e	.j",
+									"j.e"
+								],
+								[
+									".j.q	.j",
+									"j.q"
+								],
+								[
+									".j.s	.j",
+									"j.s"
+								],
+								[
+									".j.J	.j",
+									"j.J"
+								],
+								[
+									".j.j	.j",
+									"j.j"
+								],
+								[
+									".j.k	.j",
+									"j.k"
+								],
+								[
+									".o	Namespace",
+									"o"
+								],
+								[
+									".o.ex	.o",
+									"o.ex"
+								],
+								[
+									".o.T	.o",
+									"o.T"
+								],
+								[
+									".o.T0	.o",
+									"o.T0"
+								],
+								[
+									".o.B0	.o",
+									"o.B0"
+								],
+								[
+									".o.C0	.o",
+									"o.C0"
+								],
+								[
+									".o.PS	.o",
+									"o.PS"
+								],
+								[
+									".o.t	.o",
+									"o.t"
+								],
+								[
+									".o.Columns	.o",
+									"o.Columns"
+								],
+								[
+									".o.TI	.o",
+									"o.TI"
+								],
+								[
+									".o.TypeInfo	.o",
+									"o.TypeInfo"
+								],
+								[
+									".o.Special	.o",
+									"o.Special"
+								],
+								[
+									".o.o	.o",
+									"o.o"
+								],
+								[
+									".o.Tables	.o",
+									"o.Tables"
+								],
+								[
+									".o.Ts	.o",
+									"o.Ts"
+								],
+								[
+									".o.Stats	.o",
+									"o.Stats"
+								],
+								[
+									".o.Cols	.o",
+									"o.Cols"
+								],
+								[
+									".o.Key	.o",
+									"o.Key"
+								],
+								[
+									".o.FG	.o",
+									"o.FG"
+								],
+								[
+									".o.Fkey	.o",
+									"o.Fkey"
+								],
+								[
+									".o.Gkey	.o",
+									"o.Gkey"
+								],
+								[
+									".st	Namespace",
+									"st"
+								],
+								[
+									".st.mem	.st",
+									"st.mem"
+								],
+								[
+									".hdb	Namespace",
+									"hdb"
+								],
+								[
+									".hdb.daily	.hdb",
+									"hdb.daily"
+								],
+								[
+									".hdb.depth	.hdb",
+									"hdb.depth"
+								],
+								[
+									".hdb.mas	.hdb",
+									"hdb.mas"
+								],
+								[
+									".hdb.sym	.hdb",
+									"hdb.sym"
+								],
+								[
+									".hdb.date	.hdb",
+									"hdb.date"
+								],
+								[
+									".hdb.nbbo	.hdb",
+									"hdb.nbbo"
+								],
+								[
+									".hdb.quote	.hdb",
+									"hdb.quote"
+								],
+								[
+									".hdb.trade	.hdb",
+									"hdb.trade"
+								],
+								[
+									".dt	Namespace",
+									"dt"
+								],
+								[
+									".dt.trades	.dt",
+									"dt.trades"
+								],
+								[
+									".dt.fundamental	.dt",
+									"dt.fundamental"
+								],
+								[
+									".int	Namespace",
+									"int"
+								],
+								[
+									".int.itables	.int",
+									"int.itables"
+								],
+								[
+									".int.prepschema	.int",
+									"int.prepschema"
+								],
+								[
+									".int.appendsdt	.int",
+									"int.appendsdt"
+								],
+								[
+									".int.procsig	.int",
+									"int.procsig"
+								],
+								[
+									".int.portcon	.int",
+									"int.portcon"
+								],
+								[
+									".int.oms	.int",
+									"int.oms"
+								],
+								[
+									".int.proctime	.int",
+									"int.proctime"
+								],
+								[
+									".int.tstamp	.int",
+									"int.tstamp"
+								],
+								[
+									".int.pstart	.int",
+									"int.pstart"
+								],
+								[
+									".ext	Namespace",
+									"ext"
+								],
+								[
+									".ext.groupbytstamp	.ext",
+									"ext.groupbytstamp"
+								],
+								[
+									".ext.transfev	.ext",
+									"ext.transfev"
+								],
+								[
+									".ext.queue	.ext",
+									"ext.queue"
+								],
+								[
+									".schema	Namespace",
+									"schema"
+								],
+								[
+									".schema.signal	.schema",
+									"schema.signal"
+								],
+								[
+									".schema.targetsz	.schema",
+									"schema.targetsz"
+								],
+								[
+									".schema.targetw	.schema",
+									"schema.targetw"
+								],
+								[
+									".schema.order	.schema",
+									"schema.order"
+								],
+								[
+									".alpha	Namespace",
+									"alpha"
+								],
+								[
+									".alpha.dif	.alpha",
+									"alpha.dif"
+								],
+								[
+									".alpha.calc	.alpha",
+									"alpha.calc"
+								],
+								[
+									".portcon	Namespace",
+									"portcon"
+								],
+								[
+									".portcon.calc	.portcon",
+									"portcon.calc"
+								],
+								[
+									".port	Namespace",
+									"port"
+								],
+								[
+									".port.positions	.port",
+									"port.positions"
+								],
+								[
+									".port.pnl	.port",
+									"port.pnl"
+								],
+								[
+									".port.cash	.port",
+									"port.cash"
+								],
+								[
+									".oms	Namespace",
+									"oms"
+								],
+								[
+									".oms.obook	.oms",
+									"oms.obook"
+								],
+								[
+									".oms.obookupd	.oms",
+									"oms.obookupd"
+								],
+								[
+									".oms.proc	.oms",
+									"oms.proc"
+								],
+								[
+									".market	Namespace",
+									"market"
+								],
+								[
+									".market.source	.market",
+									"market.source"
+								],
+								[
+									".market.order	.market",
+									"market.order"
+								],
+								[
+									".sdt	Namespace",
+									"sdt"
+								],
+								[
+									".sdt.fundamental	.sdt",
+									"sdt.fundamental"
+								]
+							],
+							"q_handle":
+							{
+								"hdb": false,
+								"host": "localhost",
+								"name": "localhost:5555",
+								"password": null,
+								"port": 5555,
+								"username": null
+							},
+							"syntax": "Packages/q KDB/syntax/q.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 43.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.q":
+	{
+		"height": 213.0
+	},
+	"pinned_build_system": "",
+	"project": "poetiq.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 226.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
