@@ -1,0 +1,19 @@
+# Ignore subfolders (databases) in hdb/ but retain files
+hdb/*/*
+
+logs/*.log
+logs/*.txt
+
+# archive
+archive/
+
+# OS X
+.DS_Store
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+terminal.glue
+
+# Console emulator settings
+ConEmu.xml
