@@ -1,4 +1,5 @@
 \d .port
+if[`fill in key `.port; delete fill from `.port]; / because fill,::x is faster than fill::fill,x;
 /positions: update `u#sym from `sym xkey flip `sym`sz`val!"sif"$\:()
 pos.val: ()!() / sym -> total position (liquidation) value dictionary.
 pos.sz: ()!() / sym -> total number of units/shares dictionary

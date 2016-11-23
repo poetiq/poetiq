@@ -25,7 +25,7 @@ neworders:{
 	/.lg.l[`i;`market.neworders;x];
 	{obook[x`otype;x`sym;x`side],:enlist x} each x;
 	if[count x[`sym] except opensyms;
-	opensyms::`u#opensyms,x[`sym]
+	opensyms::`u#distinct opensyms,x[`sym]
 	]; 
  }
 

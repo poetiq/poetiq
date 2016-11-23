@@ -1,7 +1,6 @@
 \d .strategy
-upd:{
-	.oms.calc.fun . .portcon.calc.fun .alpha.calc.fun[];
- }
+
+precalc.fun: { (`targetsz; ungroup select tstamp, sz:signum deltas price by sym from .dt.trades)}
 
 \d .alpha
 dif: { select signal:last deltas price by sym from .sdt.trades}
@@ -9,11 +8,11 @@ calc.fun: .alpha.dif
 
 \d .risk
 
-
 \d .portcon
 calc.fun:{[alpha] (`targetsz;select sym, sz:signum signal from alpha) } / (type;data); where type is targetsz or targetw
 
 \d .oms
+targetsz: ()!()
 opensz: ()!() / maps symbols to total size of open orders by symbol
 sendorder:{
 	opensz[x`sym]+:x`size;
@@ -26,10 +25,14 @@ cancelorder:{
  }
 
 calc.fun.targetsz:{
-	target:x[`sym]!x`sz;
-	if[cnt:count delta:(where delta <>0)#delta:target-opensz;
+	targetsz[x[`sym]]::x`sz;
+	if[cnt:count delta:(where delta <>0)#delta:targetsz-opensz;
 	sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)]; 
 	];
+ }
+
+upd:{
+	if[.bt.e[`event] in `targetsz`targetw; calc.fun[.bt.e[`event];.bt.data]];
  }
 
 /
