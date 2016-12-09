@@ -1,6 +1,9 @@
+
+dt.targetsz: ungroup select tstamp, sz:signum deltas price by sym from dt.trades
+
 \d .strategy
 
-precalc.fun: { (`targetsz; ungroup select tstamp, sz:signum deltas price by sym from .dt.trades)}
+precalc.fun: { (`targetsz; ungroup select tstamp, sz:signum deltas price by sym from `..dt[`trades])}
 
 \d .alpha
 dif: { select signal:last deltas price by sym from .sdt.trades}

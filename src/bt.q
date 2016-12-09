@@ -42,7 +42,7 @@ doEvent:{[event]
  }
 
 run:{[]
- 	{.dt[x]:y} . .strategy.precalc.fun[];
+ 	@[`dt;;:;] . .strategy.precalc.fun[];
  	.sdt.prepschema[];
  	{doEvent[x]} each select from .ext.queue[] where etstamp>2016.05.25;
  }
