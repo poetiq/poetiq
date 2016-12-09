@@ -14,17 +14,12 @@ upd:{
 
 \d .bt
 
-init:{[]
- ;
- .ps.init[tables `.dt];
- }
-
 ecounter:0;
 
 doEvent:{[event]
  	e::event;
  	ecounter+::1;
- 	f:cols .eschema[event`event];
+ 	f:cols .schema[event`event];
  	x:event`data;
  	data::$[0>type first x;enlist f!x;flip f!x];
  	/.lg.toc[`doEvent.data];
@@ -47,8 +42,8 @@ doEvent:{[event]
  }
 
 run:{[]
-	.sdt.prepschema[];
  	{.dt[x]:y} . .strategy.precalc.fun[];
+ 	.sdt.prepschema[];
  	{doEvent[x]} each select from .ext.queue[] where etstamp>2016.05.25;
  }
 
