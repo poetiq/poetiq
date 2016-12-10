@@ -4,7 +4,7 @@
 r:{
 	system "cd F:/poetiq";
 	/system "cd C:/Projects/q/poetiq";
-	{system "l src/",string x;} each `lg.q`dt.q`sdt.q`ext.q`port.q;
+	{system "l src/",string x;} each `lg.q`dt.q`sdt.q`port.q;
 	system "l strategy/","strategy1.q";
 	system "l src/market/","market.q";
 	system "l src/bt.q";

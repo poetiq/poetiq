@@ -14,6 +14,10 @@ upd:{
 
 \d .bt
 
+groupbytstamp: {?[x;();(enlist `etstamp)!enlist `tstamp; allc!allc:cols[x]]} / except `tstamp
+transfev:{select event:x, etstamp, data:flip value flip value grpd from grpd:groupbytstamp `dt[x]}
+queue: {`etstamp xasc (,/){transfev[x]} each 1_key `dt}
+
 ecounter:0;
 
 doEvent:{[event]
@@ -44,7 +48,7 @@ doEvent:{[event]
 run:{[]
  	@[`dt;;:;] . .strategy.precalc.fun[];
  	.sdt.prepschema[];
- 	{doEvent[x]} each select from .ext.queue[] where etstamp>2016.05.25;
+ 	{doEvent[x]} each select from queue[] where etstamp>2016.05.25;
  }
 
 / ************************************************************************
