@@ -7,11 +7,6 @@ upd:{
 	.clock.now:: .z.p;
  }
 
-\d .strategy
-upd:{
-	.oms.calc.fun . .portcon.calc.fun .alpha.calc.fun[];
- }
-
 \d .bt
 
 groupbytstamp: {?[x;();(enlist `etstamp)!enlist `tstamp; allc!allc:cols[x]]} / except `tstamp
@@ -33,7 +28,7 @@ doEvent:{[event]
  	.mtm.upd[];
  	.market.upd[];
  	.clock.upd[];
- 	.sdt.upd[];
+ 	.dt.upd[];
 	    / port
 	    / mtm
 	/.strategy.upd[];
@@ -46,8 +41,7 @@ doEvent:{[event]
  }
 
 run:{[]
- 	@[`dt;;:;] . .strategy.precalc.fun[];
- 	.sdt.prepschema[];
+ 	.dt.prepschema[];
  	{doEvent[x]} each select from queue[] where etstamp>2016.05.25;
  }
 

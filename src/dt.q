@@ -1,8 +1,12 @@
-/\l C:/Projects/q/hdb/equitysim
-\l F:/hdb/equitysim
+\d .dt
 
-dt.trades: select value sym, price, size, tstamp: time + date from trade
-dt.fundamental: select date, sym, data:abs (rand each count[daily]#0h)%10000,indicator:`PE, tstamp:"p"$date from daily
+inittables:{select from `dt};  / prepares set of tables to be recreated in internal environment, its primarily designed to take all tables in .dt namespace, but may be overriden
+prepschema:{
+	.sdt,: (1_key `dt)!{delete from x} each 1_value inittables[];
+ 	.schema,: (1_key `dt)!{delete from x} each 1_value inittables[];
+ } / prepares schema for internal data storage
 
-/system "cd C:/Projects/q/poetiq"
-system "cd F:/poetiq"
+/ function processes the data, distributes event content to internal tables prepared by prepschema function
+upd:{
+	.sdt[.bt.e`event],: .bt.data;
+ }
