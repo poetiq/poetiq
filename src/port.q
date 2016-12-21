@@ -1,13 +1,14 @@
+port.equity.last:: .port.cash + exec sum pnl from .port.pnl
+port.equity.curve:: select ec: .port.cash + sum pnl by tstamp from .port.pnl
+port.w::.port.pos.val % .port.cash + sum .port.pos.val
+
 \d .port
 if[`fill in key `.port; delete fill from `.port]; / because fill,::x is faster than fill::fill,x;
 /positions: update `u#sym from `sym xkey flip `sym`sz`val!"sif"$\:()
+cash: 100000
 pos.val: ()!() / sym -> total position (liquidation) value dictionary.
 pos.sz: ()!() / sym -> total number of units/shares dictionary
 pnl: update `s#tstamp,`g#sym from flip `tstamp`sym`pnl!"psf"$\:()
-cash: 100000
-equity:: cash + exec sum pnl from pnl
-ec:: select ec: cash + sum pnl by time from pnl
-w::select last sz*cost%equity by sym from positions 
 
 / average cost method
 upd.fill: {

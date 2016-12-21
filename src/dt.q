@@ -10,3 +10,6 @@ prepschema:{
 upd:{
 	.sdt[.bt.e`event],: .bt.data;
  }
+
+/ align x to y, fill missing with z. treat `sym!`val
+/align:{if[not (kx:key[x])~ky:key[y]; x[ky except kx]: z[]; y[kx except ky]:z[]];(asc x;asc y)}

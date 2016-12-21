@@ -28,7 +28,7 @@ doEvent:{[event]
  	.mtm.upd[];
  	.market.upd[];
  	.clock.upd[];
- 	.dt.upd[];
+ 	
 	    / port
 	    / mtm
 	/.strategy.upd[];
@@ -52,4 +52,3 @@ run:{[]
 / market process each select by priority from orders.op 
 / rename all size to sz
 / LOW PRIORITY: market order partial fills assuming some measure of overall liquidity
-/ consider src/market/market.q -> src/market.q

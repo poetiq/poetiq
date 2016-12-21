@@ -10,3 +10,9 @@ For testing and simulation use the [`buildhdb.q`](http://code.kx.com/wsvn/code/c
 cd hdb
 q buildhdb.q -S 104831        # seed random numbers generator for reproducible results
 ````
+
+## Installation ##
+
+$ export POETIQ=usr/bin/poetiq/
+$ cd $POETIQ
+$ q bt.q -cfg src/ -strat strategy/strategy1.q -p 5000

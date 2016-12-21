@@ -1,5 +1,6 @@
 \d .oms
 targetsz: ()!()
+targetw: ()!()
 opensz: ()!() / maps symbols to total size of open orders by symbol
 sendorder:{
 	opensz[x`sym]+:x`size;
@@ -13,8 +14,21 @@ cancelorder:{
 
 calc.fun.targetsz:{
 	targetsz[x[`sym]]::x`sz;
-	if[cnt:count delta:(where delta <>0)#delta:targetsz-opensz;
-	sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)]; 
+	delta:targetsz-opensz;
+	if[cnt:count delta:(where delta <>0)#delta;
+		sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)]; 
+	];
+ }
+
+calc.fun.targetw: {
+	/currw:$[0=count .port.w;([sym:`$()]sz:`float$());.port.w];
+	targetw:: x[`sym]!x`w;
+	0N!get[`port.equity.last];
+		break;
+	delta:(targetw - get[`port.w]) * get[`port.equity.last] % get[`market.px];
+
+	if[cnt:count delta:(where delta <>0)#delta;
+		sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
 	];
  }
 
