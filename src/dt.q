@@ -1,9 +1,9 @@
 \d .dt
 
-inittables:{select from `dt};  / prepares set of tables to be recreated in internal environment, its primarily designed to take all tables in .dt namespace, but may be overriden
+inittables:{`.[`dt]};  / prepares set of tables to be recreated in internal environment, its primarily designed to take all tables in .dt namespace, but may be overriden
 prepschema:{
-	.sdt,: (1_key `dt)!{delete from x} each 1_value inittables[];
- 	.schema,: (1_key `dt)!{delete from x} each 1_value inittables[];
+	.sdt,: 1_0#/: inittables[];
+ 	.schema,: 1_0#/: inittables[];
  } / prepares schema for internal data storage
 
 / function processes the data, distributes event content to internal tables prepared by prepschema function
