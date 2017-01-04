@@ -3,7 +3,7 @@ port.equity.curve:: select ec: port.cash + sum pnl by tstamp from port.pnl
 port.w::port.pos.val % port.cash + sum port.pos.val
 
 port.cash: 100000
-pnl: update `s#tstamp,`g#sym from flip `tstamp`sym`pnl!"psf"$\:()
+port.pnl: update `s#tstamp,`g#sym from flip `tstamp`sym`pnl!"psf"$\:()
 
 port.pos.val: ()!() / sym -> total position (liquidation) value dictionary.
 port.pos.sz: ()!() / sym -> total number of units/shares dictionary
@@ -26,8 +26,8 @@ if[`fill in key `port; delete fill from `port] / because fill,::x is faster than
 .port.upd.mtm:{
 		if[ port.lastt=n:"d"$.bt.e[`etstamp] ; :()];
 		if[null port.lastt; port.lastt::n; :()];
-		d:(s: key port.pos.sz)#.market.lastpx;
-		`pnl insert (((count s)#"p"$port.lastt); s; value (newval: d * port.pos.sz) - port.pos.val); / record pnl (change in value)
+		d:(s: key port.pos.sz)#market.lastpx;
+		`port.pnl insert (((count s)#"p"$port.lastt); s; value (newval: d * port.pos.sz) - port.pos.val); / record pnl (change in value)
 		port.pos.val[key newval]:: value newval; / reprice positions
 		port.lastt::n;
  }

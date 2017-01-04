@@ -1,66 +1,67 @@
-\d .market
-source:`trades;
-last.quotes:()!();
-lastpx:()!(); / last traded price for each symbol
-orderid: 0;
-genorderid:{:orderid+::1}
-genorderids:{ orderid:: last ret:1 + orderid + til x; ret }
-opensyms:`u#`$() / list of symbols which have at least one open order in the orderbook
-sides:(1;-1)!(`buy`sell)
-sidescode:(`buy`sell)!(1;-1)
-obook: ()!()
-obook[`]:()!()
-obook[`;`]:()!()
+market.source:`trades;
+market.last.quotes:()!();
+market.lastpx:()!(); / last traded price for each symbol
+market.orderid: 0;
+market.opensyms:`u#`$() / list of symbols which have at least one open order in the orderbook
+market.obook: ()!()
+market.obook[`]:()!()
+market.obook[`;`]:()!()
 
-upd:{
+.market.sides:(1;-1)!(`buy`sell)
+.market.sidescode:(`buy`sell)!(1;-1)
+
+.market.genorderid:{:market.orderid+::1}
+.market.genorderids:{ market.orderid:: last ret:1 + market.orderid + til x; ret }
+
+.market.upd:{
 	if[.bt.e[`event] in `trades`quotes;
-		if[any .bt.data[`sym] in opensyms;filled:execute[.bt.e`event;`mkt][.bt.data]]; /,execute[t;`lmt][x];
- 		lastpx[.bt.data`sym]:.bt.data`price;
+		if[any .bt.data[`sym] in market.opensyms;filled:.market.execute[.bt.e`event;`mkt][.bt.data]]; /,execute[t;`lmt][x];
+ 		market.lastpx[.bt.data`sym]:.bt.data`price;
  		];
  }
 
 / add to book, track number of open orders per symbol
-neworders:{
+.market.neworders:{
 	x:update size: abs size, side: .market.sides[signum size] from x;
 	/.lg.l[`i;`market.neworders;x];
-	{obook[x`otype;x`sym;x`side],:enlist x} each x;
-	if[count x[`sym] except opensyms;
-	opensyms::`u#distinct opensyms,x[`sym]
+	{market.obook[x`otype;x`sym;x`side],:enlist x} each x;
+	if[count x[`sym] except market.opensyms;
+	market.opensyms::`u#distinct market.opensyms,x[`sym]
 	]; 
  }
 
-sendorder:{[o]
- 	send[source;first o`otype][o]; / refactor for multi-type lists of o
+.market.sendorder:{[o]
+ 	.market.send[market.source;first o`otype][o]; / refactor for multi-type lists of o
  }
 
-send.trades.mkt:{
- 	neworders[x];
+.market.send.trades.mkt:{
+ 	.market.neworders[x];
  }
 
-send.trades.lmt:{
+.market.send.trades.lmt:{
  	:()!()
  }
 
 / assuming full fills
-execute.trades.mkt:{
-	s: x[`sym] inter opensyms;
-	o: raze {select id, sym, size:.market.sidescode[side]*size from (,/)value x} each obook[`mkt;s]; / orders to be filled
+.market.execute.trades.mkt:{
+	s: x[`sym] inter market.opensyms;
+	o: raze {select id, sym, size:.market.sidescode[side]*size from (,/)value x} each market.obook[`mkt;s]; / orders to be filled
 	f: o lj select last price, tstamp by sym from x; / filled
- 	{ obook[`mkt;x;`buy]: (); 
- 	  obook[`mkt;x;`sell]: (); } each s;
- 	opensyms::`u#opensyms except s;
- 	orders.onfilled[f];
+ 	{ market.obook[`mkt;x;`buy]: (); 
+ 	  market.obook[`mkt;x;`sell]: (); } each s;
+ 	market.opensyms::`u#market.opensyms except s;
+ 	.market.orders.onfilled[f];
  }
 
-execute.trades.lmt:{
+.market.execute.trades.lmt:{
  }
 
 / send to portfolio
-orders.onfilled:{ 
+.market.orders.onfilled:{ 
 	.port.upd[`fill;x];
  }
 
-orders.oncanceled:{
+.market.orders.oncanceled:{
  	.oms.upd[`canc;x];
  }
 
