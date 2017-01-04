@@ -1,39 +1,35 @@
-port.equity.last:: .port.cash + exec sum pnl from .port.pnl
-port.equity.curve:: select ec: .port.cash + sum pnl by tstamp from .port.pnl
-port.w::.port.pos.val % .port.cash + sum .port.pos.val
+port.equity.last:: port.cash + exec sum pnl from port.pnl
+port.equity.curve:: select ec: port.cash + sum pnl by tstamp from port.pnl
+port.w::port.pos.val % port.cash + sum port.pos.val
 
-\d .port
-if[`fill in key `.port; delete fill from `.port]; / because fill,::x is faster than fill::fill,x;
-/positions: update `u#sym from `sym xkey flip `sym`sz`val!"sif"$\:()
-cash: 100000
-pos.val: ()!() / sym -> total position (liquidation) value dictionary.
-pos.sz: ()!() / sym -> total number of units/shares dictionary
+port.cash: 100000
 pnl: update `s#tstamp,`g#sym from flip `tstamp`sym`pnl!"psf"$\:()
 
+port.pos.val: ()!() / sym -> total position (liquidation) value dictionary.
+port.pos.sz: ()!() / sym -> total number of units/shares dictionary
+
+port.lastt:0N
+
+if[`fill in key `port; delete fill from `port] / because fill,::x is faster than fill::fill,x;
+/positions: update `u#sym from `sym xkey flip `sym`sz`val!"sif"$\:()
+
 / average cost method
-upd.fill: {
+.port.upd.fill: {
 	fill,::x;
 	lastfillprice: exec last price, last tstamp by sym from x; / assuming fills sorted by tstamp (!), take last observed transacted price per symbol to use it for (m)arking-to-market
 	fillval: exec sum price * size by sym from x;
 	fillsz: exec sum size by sym from x;
-	pos.sz[key fillsz]+:: value fillsz;
-	pos.val[key fillsz]+:: value fillval;
+	port.pos.sz[key fillsz]+:: value fillsz;
+	port.pos.val[key fillsz]+:: value fillval;
  }
 
-\d .mtm
-calc:{ / x - new prices, with timestamp
-	if[not null lastt;
-	    x: .market.lastpx;
-		d:(s: key .port.pos.sz)#x;
-		.port.pnl,:: flip (((count s)#"p"$lastt); s; value (newval: d * .port.pos.sz) - .port.pos.val); / record pnl (change in value)
-		.port.pos.val[key newval]:: value newval; / reprice positions
-		];
- }
-
-lastt:0N;
-upd:{
-		if[ lastt<>n:"d"$.bt.e[`etstamp] ;
-			calc[]; lastt::n]
+.port.upd.mtm:{
+		if[ port.lastt=n:"d"$.bt.e[`etstamp] ; :()];
+		if[null port.lastt; port.lastt::n; :()];
+		d:(s: key port.pos.sz)#.market.lastpx;
+		`pnl insert (((count s)#"p"$port.lastt); s; value (newval: d * port.pos.sz) - port.pos.val); / record pnl (change in value)
+		port.pos.val[key newval]:: value newval; / reprice positions
+		port.lastt::n;
  }
 
 /

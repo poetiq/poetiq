@@ -25,7 +25,7 @@ doEvent:{[event]
  	/.lg.tic::.z.p;.mtm.upd[]; .lg.toc[`mtm.upd];
  	/.lg.tic::.z.p;.market.upd[]; .lg.toc[`market.upd];
  	/.lg.tic::.z.p;.sdt.upd[];.lg.toc[`sdt.upd];
- 	.mtm.upd[];
+ 	.port.upd.mtm[];
  	.market.upd[];
  	.clock.upd[];
  	
