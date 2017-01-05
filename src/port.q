@@ -26,7 +26,7 @@ if[`fill in key `port; delete fill from `port] / because fill,::x is faster than
 .port.upd.mtm:{
 		if[ port.lastt=n:"d"$.bt.e[`etstamp] ; :()];
 		if[null port.lastt; port.lastt::n; :()];
-		d:(s: key port.pos.sz)#market.lastpx;
+		d:(s: key port.pos.sz)#.market.lastpx;
 		`port.pnl insert (((count s)#"p"$port.lastt); s; value (newval: d * port.pos.sz) - port.pos.val); / record pnl (change in value)
 		port.pos.val[key newval]:: value newval; / reprice positions
 		port.lastt::n;

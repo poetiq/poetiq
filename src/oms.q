@@ -1,13 +1,12 @@
-\d .oms
 targetsz: ()!()
 targetw: ()!()
 opensz: ()!() / maps symbols to total size of open orders by symbol
-sendorder:{
+oms.sendorder:{
 	opensz[x`sym]+:x`size;
 	.market.sendorder[x];
  }
 
-cancelorder:{
+oms.cancelorder:{
 	opensz[x`sym]-:x`size;
 	.market.cancelorder[x];
  }
@@ -16,23 +15,21 @@ calc.fun.targetsz:{
 	targetsz[x[`sym]]::x`sz;
 	delta:targetsz-opensz;
 	if[cnt:count delta:(where delta <>0)#delta;
-		sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)]; 
+		oms.sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)]; 
 	];
  }
 
 calc.fun.targetw: {
 	/currw:$[0=count .port.w;([sym:`$()]sz:`float$());.port.w];
 	targetw:: x[`sym]!x`w;
-	0N!get[`port.equity.last];
-		break;
-	delta:(targetw - get[`port.w]) * get[`port.equity.last] % get[`market.px];
+	delta:(targetw - port.w) * port.equity.last % .market.lastpx;
 
 	if[cnt:count delta:(where delta <>0)#delta;
-		sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
+		oms.sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
 	];
  }
 
-upd:{
+.oms.upd:{
 	if[.bt.e[`event] in `targetsz`targetw; calc.fun[.bt.e[`event];.bt.data]];
  }
 

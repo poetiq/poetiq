@@ -1,6 +1,5 @@
-market.lastpx:()!() / last traded price for each symbol
-
 \d .market
+lastpx:()!() / last traded price for each symbol
 source:`trades;
 last.quotes:()!();
 orderid: 0;
@@ -17,8 +16,7 @@ genorderids:{ orderid:: last ret:1 + orderid + til x; ret }
 upd:{
 	if[.bt.e[`event] in `trades`quotes;
 		if[any .bt.data[`sym] in opensyms;filled:execute[.bt.e`event;`mkt][.bt.data]]; /,execute[t;`lmt][x];
-		.[ `market.lastpx; enlist .bt.data`sym; : ; .bt.data`price];
-		/lastpx[.bt.data`sym]:.bt.data`price;
+		lastpx[.bt.data`sym]:.bt.data`price;
  		];
  }
 
