@@ -1,5 +1,5 @@
 port.equity.last:: port.cash + exec sum pnl from port.pnl
-port.equity.curve:: select ec: port.cash + sum pnl by tstamp from port.pnl
+port.equity.curve:: select tstamp, ec:port.cash+sums pnl from select sum pnl by tstamp from port.pnl
 port.w::port.pos.val % port.cash + sum port.pos.val
 
 port.cash: 100000

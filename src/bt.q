@@ -42,13 +42,12 @@ doEvent:{[event]
 
 run:{[]
  	.dt.prepschema[];
- 	{doEvent[x]} each select from queue[] where etstamp>2016.05.25;
+ 	{doEvent[x]} each select from queue[]; / where etstamp>2016.05.25;
  }
 
 / ************************************************************************
 /todo
 
-/ market flip procevent get rid of
 / market process each select by priority from orders.op 
 / rename all size to sz
 / LOW PRIORITY: market order partial fills assuming some measure of overall liquidity

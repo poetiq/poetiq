@@ -46,7 +46,7 @@ send.trades.lmt:{
 execute.trades.mkt:{
 	s: x[`sym] inter opensyms;
 	o: raze {select id, sym, size:.market.sidescode[side]*size from (,/)value x} each obook[`mkt;s]; / orders to be filled
-	f: o lj select last price, tstamp by sym from x; / filled
+	f: o lj select last price, last tstamp by sym from x; / filled
  	{ obook[`mkt;x;`buy]: (); 
  	  obook[`mkt;x;`sell]: (); } each s;
  	opensyms::`u#opensyms except s;
