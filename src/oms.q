@@ -22,8 +22,8 @@ calc.fun.targetsz:{
 calc.fun.targetw: {
 	/currw:$[0=count .port.w;([sym:`$()]sz:`float$());.port.w];
 	targetw:: x[`sym]!x`w;
-	delta:(targetw - port.w) * port.equity.last % .market.lastpx;
-
+	price: (key[targetw] union key port.w) # .market.lastpx;
+	delta:(targetw - port.w) * port.equity.last % price; / TODO: syms where market price is missing to be excluded from delta (orders)
 	if[cnt:count delta:(where delta <>0)#delta;
 		oms.sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
 	];
