@@ -1,6 +1,6 @@
 port.equity.last:: port.cash + exec sum pnl from port.pnl
 port.equity.curve:: select tstamp, ec:port.cash+sums pnl from select sum pnl by tstamp from port.pnl
-port.w::port.pos.val % port.cash + sum port.pos.val
+port.w::port.pos.val % port.equity.last
 
 port.cash: 100000
 port.pnl: update `s#tstamp,`g#sym from flip `tstamp`sym`pnl!"psf"$\:()
@@ -27,7 +27,8 @@ if[`fill in key `port; delete fill from `port] / because fill,::x is faster than
 		if[ port.lastt=n:"d"$.bt.e[`etstamp] ; :()];
 		if[null port.lastt; port.lastt::n; :()];
 		d:(s: key port.pos.sz)#.market.lastpx;
-		`port.pnl insert (((count s)#"p"$port.lastt); s; value (newval: d * port.pos.sz) - port.pos.val); / record pnl (change in value)
+		newrecord:(((count s)#"p"$port.lastt); s; value (newval: d * port.pos.sz) - port.pos.val);
+		`port.pnl insert newrecord; / record pnl (change in value)
 		port.pos.val[key newval]:: value newval; / reprice positions
 		port.lastt::n;
  }
