@@ -8,4 +8,5 @@ dump:{(`$":log/", ssr[string .z.p; ":"; "."] ,"/lt.xls") 0:.h.tx[`xls;lt];} /dum
 
 tm:([] tspan:"n"$(); fun:"s"$())
 
-toc:{`.lg.tm insert (.z.p - tic;x)}
+tic:{zp::.z.p}
+toc:{`.lg.tm insert (.z.p - zp;x)}
