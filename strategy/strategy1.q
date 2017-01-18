@@ -1,3 +1,4 @@
+/ q bt.q -cfg src -strat strategy/strategy1.q -p 5000
 /\l C:/Projects/q/hdb/equitysim
 \l F:/hdb/equitysim
 
