@@ -21,14 +21,11 @@ doEvent:{[event]
  	f:cols .schema[event`event];
  	x:event`data;
  	data::$[0>type first x;enlist f!x;flip f!x];
- 	/.lg.toc[`doEvent.data];
- 	/.lg.tic::.z.p;.mtm.upd[]; .lg.toc[`mtm.upd];
- 	/.lg.tic::.z.p;.market.upd[]; .lg.toc[`market.upd];
- 	/.lg.tic::.z.p;.sdt.upd[];.lg.toc[`sdt.upd];
+ 	/.lg.tic[];.port.upd.mtm[]; .lg.toc[`port.upd];
+ 	/.lg.tic[];.market.upd[]; .lg.toc[`market.upd];
  	.port.upd.mtm[];
  	.market.upd[];
  	.clock.upd[];
- 	
 	    / port
 	    / mtm
 	/.strategy.upd[];
