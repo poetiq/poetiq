@@ -12,7 +12,7 @@ oms.cancelorder:{
 	.market.cancelorder[x];
  }
 
-calc.fun.targetsz:{
+.oms.upd.targetsz:{
 	targetsz[x[`sym]]::x`sz;
 	delta:targetsz-opensz;
 	if[cnt:count delta:(where delta <>0)#delta;
@@ -20,7 +20,7 @@ calc.fun.targetsz:{
 	];
  }
 
-calc.fun.targetw: {
+.oms.upd.targetw: {
 	/currw:$[0=count .port.w;([sym:`$()]sz:`float$());.port.w];
 	targetw:: x[`sym]!x`w;
 	price: (key[targetw] union key port.w) # .market.lastpx;
@@ -28,10 +28,6 @@ calc.fun.targetw: {
 	if[cnt:count delta:(where 0 < abs delta)#delta;
 		oms.sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
 	];
- }
-
-.oms.upd:{
-	if[.bt.e[`event] in `targetsz`targetw; calc.fun[.bt.e[`event];.bt.data]];
  }
 
 /

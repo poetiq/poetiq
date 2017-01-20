@@ -29,7 +29,7 @@ doEvent:{[event]
 	    / port
 	    / mtm
 	/.strategy.upd[];
-	.oms.upd[];
+	.oms.upd[event`event; .bt.data];
 	/ risk
 	/ port constr
 		/ oms
