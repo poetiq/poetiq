@@ -1,5 +1,5 @@
 \d .market
-lastpx:()!() / last traded price for each symbol
+lastpx:(enlist `)!(enlist 0nf) / last traded price for each symbol
 source:`trades;
 last.quotes:()!();
 orderid: 0;
@@ -15,6 +15,8 @@ genorderids:{ orderid:: last ret:1 + orderid + til x; ret }
 
 upd:{
 	if[.bt.e[`event] in `trades`quotes;
+		/ ch:(key[p] inter key lastpx)# (1%p) * (p:.bt.data[`sym]!.bt.data`price) - lastpx;
+		/ if[count where .8 < abs ch;break];
 		if[any .bt.data[`sym] in opensyms;filled:execute[.bt.e`event;`mkt][.bt.data]]; /,execute[t;`lmt][x];
 		lastpx[.bt.data`sym]:.bt.data`price;
  		];
@@ -32,6 +34,10 @@ neworders:{
 
 sendorder:{[o]
  	send[source;first o`otype][o]; / refactor for multi-type lists of o
+ }
+
+cancelorder:{[o]
+	break;
  }
 
 send.trades.mkt:{
@@ -58,7 +64,7 @@ execute.trades.lmt:{
 
 / send to portfolio
 orders.onfilled:{ 
-	.port.upd[`fill;x];
+	.oms.upd[`fill;x];
  }
 
 orders.oncanceled:{

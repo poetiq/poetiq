@@ -19,8 +19,9 @@ if[`fill in key `port; delete fill from `port] / because fill,::x is faster than
 	lastfillprice: exec last price, last tstamp by sym from x; / assuming fills sorted by tstamp (!), take last observed transacted price per symbol to use it for (m)arking-to-market
 	fillval: exec sum price * size by sym from x;
 	fillsz: exec sum size by sym from x;
-	port.pos.sz[key fillsz]+:: value fillsz;
-	port.pos.val[key fillsz]+:: value fillval;
+	pos[([] sym:key fillsz);`sz]+: value fillsz;
+	/port.pos.sz[key fillsz]+:: value fillsz;
+	pos[([] sym:key fillval);`val]+: value fillval;
  }
 
 .port.upd.mtm:{

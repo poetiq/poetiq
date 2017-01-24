@@ -1,3 +1,7 @@
+.tst.desc[""]{
+ 
+ };
+
 /
 q)\l strategy/strategy1.q
 q)\t .bt.run[]

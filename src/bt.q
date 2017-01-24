@@ -9,7 +9,10 @@ upd:{
 
 \d .bt
 
-groupbytstamp: {?[x;();(enlist `etstamp)!enlist `tstamp; allc!allc:cols[x]]} / except `tstamp
+groupbytstamp: {
+	if[notstamp: not `tstamp in cols x; x:update tstamp:"p"$1 + date from x]; / if missing, infer tstamp column from date column. TODO: parametrize the delay
+	?[x;();(enlist `etstamp)!enlist `tstamp; allc!allc:cols[x] except $[notstamp;`tstamp;`]]  / except `tstamp
+ }
 transfev:{select event:x, etstamp, data:flip value flip value grpd from grpd:groupbytstamp `dt[x]}
 queue: {`etstamp xasc (,/){transfev[x]} each 1_key `dt}
 
@@ -39,7 +42,8 @@ doEvent:{[event]
 
 run:{[]
  	.dt.prepschema[];
- 	{doEvent[x]} each select from queue[]; / where etstamp>2016.05.25;
+ 	.oms.upd.newsym exec distinct sym from `dt.trades;
+ 	{doEvent[x]} each select from queue[];
  }
 
 / ************************************************************************
