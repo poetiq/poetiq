@@ -26,14 +26,16 @@ doEvent:{[event]
  	data::$[0>type first x;enlist f!x;flip f!x];
  	/.lg.tic[];.port.upd.mtm[]; .lg.toc[`port.upd];
  	/.lg.tic[];.market.upd[]; .lg.toc[`market.upd];
+ 	/.lg.tic[];.oms.upd[event`event; .bt.data]; .lg.toc[`oms.upd];
  	.port.upd.mtm[];
- 	.market.upd[];
- 	.clock.upd[];
+ 	.market.upd[event`event][];
+ 	.oms.upd[event`event; .bt.data];
+ 	/.clock.upd[];
 	    / port
 	    / mtm
 	/.strategy.upd[];
-	/.lg.tic[];.oms.upd[event`event; .bt.data]; .lg.toc[`oms.upd];
-	.oms.upd[event`event; .bt.data];
+
+
 	/ risk
 	/ port constr
 		/ oms
@@ -43,7 +45,8 @@ doEvent:{[event]
 
 run:{[]
  	.dt.prepschema[];
- 	.oms.upd.newsym exec distinct sym from `dt.trades;
+ 	.oms.upd.newsym asc exec distinct sym from `dt.trades;
+ 	update `u#sym from `pos;
  	{doEvent[x]} each select from queue[];
  }
 

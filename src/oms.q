@@ -19,7 +19,7 @@ pos: `sym xkey flip `sym`tsz`tw`opsz`val`sz!"sififi"$\:()
  }
 
 .oms.sendorder:{
-        `pos upsert select opsz:sum size by sym from x;
+        pos+: select sym, opsz:size from x;
         .market.sendorder[x];
  }
 

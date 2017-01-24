@@ -12,14 +12,23 @@ obook[`;`]:()!()
 
 genorderid:{:orderid+::1}
 genorderids:{ orderid:: last ret:1 + orderid + til x; ret }
-
+/
 upd:{
+
 	if[.bt.e[`event] in `trades`quotes;
 		/ ch:(key[p] inter key lastpx)# (1%p) * (p:.bt.data[`sym]!.bt.data`price) - lastpx;
 		/ if[count where .8 < abs ch;break];
 		if[any .bt.data[`sym] in opensyms;filled:execute[.bt.e`event;`mkt][.bt.data]]; /,execute[t;`lmt][x];
 		lastpx[.bt.data`sym]:.bt.data`price;
  		];
+
+ }
+\
+upd.trades:{
+	.lg.tic[];
+	if[any .bt.data[`sym] in opensyms;filled:execute[.bt.e`event;`mkt][.bt.data]]; /,execute[t;`lmt][x];
+	lastpx[.bt.data`sym]:.bt.data`price;
+	.lg.toc[`market.upd.inside];
  }
 
 / add to book, track number of open orders per symbol
