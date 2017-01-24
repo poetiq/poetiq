@@ -7,7 +7,8 @@ pos: `sym xkey flip `sym`tsz`tw`opsz`val`sz!"sififi"$\:()
 	/.lg.tic[];
 	 /a:`sym xkey select sym, tsz:sz from x; .lg.toc[`targetsz.xkey.select];
       	/.lg.tic[];  `pos upsert a; .lg.toc[`targetsz.upsertclean];
-      	`pos upsert 1!select sym, tsz:sz from x;
+     /`pos upsert 1!select sym, tsz:sz from x;
+     pos,:1!select sym, tsz:sz from x;
     /.lg.toc[`targetsz.upsert]; .lg.tic[];
         o:select from (select sym, size: tsz - opsz + sz from `pos) where 0<abs size;
                 /if[`PRU in exec sym from x;break;];
@@ -19,8 +20,8 @@ pos: `sym xkey flip `sym`tsz`tw`opsz`val`sz!"sififi"$\:()
  }
 
 .oms.sendorder:{
-        pos+: select sym, opsz:size from x;
-        .market.sendorder[x];
+    pos+: 1!select sym, opsz:size from x;
+    .market.sendorder[x];
  }
 
 oms.cancelorder:{
