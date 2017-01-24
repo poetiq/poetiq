@@ -3,12 +3,19 @@ pos: `sym xkey flip `sym`tsz`tw`opsz`val`sz!"sififi"$\:()
 .oms.upd.newsym:{`pos upsert update sym:x from 0!0^(count x)#0#pos;}
 
 .oms.upd.targetsz:{
-        `pos upsert `sym xkey select sym, tsz:sz from x;
+	
+	/.lg.tic[];
+	 /a:`sym xkey select sym, tsz:sz from x; .lg.toc[`targetsz.xkey.select];
+      	/.lg.tic[];  `pos upsert a; .lg.toc[`targetsz.upsertclean];
+      	`pos upsert 1!select sym, tsz:sz from x;
+    /.lg.toc[`targetsz.upsert]; .lg.tic[];
         o:select from (select sym, size: tsz - opsz + sz from `pos) where 0<abs size;
                 /if[`PRU in exec sym from x;break;];
+    /.lg.toc[`targetsz.delta]; .lg.tic[];
         if[0<cnt:count o;
             .oms.sendorder[update id:.market.genorderids[cnt], otype:cnt#`mkt from o];
         ];
+    /.lg.toc[`targetsz.sendorder];
  }
 
 .oms.sendorder:{
