@@ -1,3 +1,4 @@
+
 \d .market
 lastpx:(enlist `)!(enlist 0nf) / last traded price for each symbol
 source:`trades;
@@ -10,13 +11,21 @@ obook: ()!()
 obook[`]:()!()
 obook[`;`]:()!()
 
+
+/obook: enlist `buy`sell!(1 2; 3 4)
+
+/update 15#enlist `buy`sell!(1 2; 3 4) from pos
+/count pos
 genorderid:{:orderid+::1}
 genorderids:{ orderid:: last ret:1 + orderid + til x; ret }
 
-upd.trades:{
+.market.upd.trades:{
 	/.lg.tic[];
 	if[any x[`sym] in opensyms;filled:execute[.bt.e`event;`mkt;x]]; /,execute[t;`lmt][x];
-	lastpx[x`sym]:x`price;
+	/.lg.tic[];
+	/lastpx[x`sym]:x`price; 
+	`pos upsert 1!select sym,lastpx:price from x;
+	/.lg.toc[`market.lastpx];
 	/.lg.toc[`market.upd.inside];
  }
 
@@ -48,13 +57,20 @@ send.trades.lmt:{
 
 / assuming full fills
 execute.trades.mkt:{
+	/.lg.tic[];
 	s: x[`sym] inter opensyms;
+	/.lg.tic[];
 	o: raze {select id, sym, size:.market.sidescode[side]*size from (,/)value x} each obook[`mkt;s]; / orders to be filled
+	/.lg.toc[`execute.o];.lg.tic[];
 	f: o lj select last price, last tstamp by sym from x; / filled
+ 	/.lg.toc[`execute.f];.lg.tic[];
  	{ obook[`mkt;x;`buy]: (); 
  	  obook[`mkt;x;`sell]: (); } each s;
+ 	/.lg.toc[`execute.s];.lg.tic[];
  	opensyms::`u#opensyms except s;
  	orders.onfilled[f];
+ 	/.lg.toc[`execute.orders.onfilled];
+ 	/.lg.toc[`market.execute];
  }
 
 execute.trades.lmt:{

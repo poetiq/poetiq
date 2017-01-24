@@ -24,13 +24,14 @@ doEvent:{[event]
  	f:cols .schema[event`event];
  	x:event`data;
  	data::$[0>type first x;enlist f!x;flip f!x];
- 	.lg.tic[];.port.upd.mtm[]; .lg.toc[`port.upd];
- 	.lg.tic[];.market.upd[event`event; .bt.data]; .lg.toc[`market.upd];
- 	.lg.tic[];.oms.upd[event`event; .bt.data]; .lg.toc[`oms.upd];
- 	/.port.upd.mtm[];
- 	/.market.upd[event`event; .bt.data];
- 	/.oms.upd[event`event; .bt.data];
- 	/.clock.upd[];
+ 	/.lg.tic[];.port.upd.mtm[]; .lg.toc[`port.upd];
+ 	/.lg.tic[];.market.upd[event`event; .bt.data]; .lg.toc[`market.upd];
+ 	/.lg.tic[];.oms.upd[event`event; .bt.data]; .lg.toc[`oms.upd];
+ 	.port.upd.mtm[];
+ 	.market.upd[event`event; .bt.data];
+ 	.oms.upd[event`event; .bt.data];
+ 	
+ 	.clock.upd[];
 	    / port
 	    / mtm
 	/.strategy.upd[];
@@ -45,7 +46,7 @@ doEvent:{[event]
 
 run:{[]
  	.dt.prepschema[];
- 	.oms.upd.newsym asc exec distinct sym from `dt.trades;
+ 	.oms.upd.newsym asc exec distinct sym from `dt.trades; / O(n) scaling by number of symbols. (15000?`4), +1000 syms cost ~+4 seconds 
  	update `u#sym from `pos;
  	{doEvent[x]} each select from queue[];
  }

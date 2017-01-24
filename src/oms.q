@@ -1,4 +1,6 @@
-pos: `sym xkey flip `sym`tsz`tw`opsz`val`sz!"sififi"$\:()
+pos: `sym xkey flip `sym`tsz`tw`opsz`val`sz`lastpx!"sififif"$\:()
+
+
 
 .oms.upd.newsym:{`pos upsert update sym:x from 0!0^(count x)#0#pos;}
 

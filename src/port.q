@@ -15,7 +15,7 @@ if[`fill in key `port; delete fill from `port] / because fill,::x is faster than
 
 / average cost method
 .port.upd.fill: {
-	/.lg.tic[];
+	.lg.tic[];
 	fill,::x;
 	lastfillprice: exec last price, last tstamp by sym from x; / assuming fills sorted by tstamp (!), take last observed transacted price per symbol to use it for (m)arking-to-market
 	/f: exec sz: sum size, val:sum price * size by sym from x;
@@ -23,9 +23,21 @@ if[`fill in key `port; delete fill from `port] / because fill,::x is faster than
 	/pos[([] sym:key fillsz);`sz]+: value fillsz;
 	/port.pos.sz[key fillsz]+:: value fillsz;
 	/pos[([] sym:key fillval);`val]+: value fillval;
-	/.lg.toc[`updfill];
+	.lg.toc[`updfill];
  }
 
+.port.upd.mtm:{
+	if[ port.lastt=n:"d"$.bt.e[`etstamp] ; :()];
+	if[null port.lastt; port.lastt::n; :()];
+	update val:lastpx * sz, preval:val from `pos;
+	/d:(s: key port.pos.sz)#.market.lastpx;
+	/newrecord:(((count s)#"p"$port.lastt); s; value (newval: d * port.pos.sz) - port.pos.val);
+	`port.pnl insert select tstamp:"p"$port.lastt, sym, pnl:val - preval from `pos; / record pnl (change in value)
+	/port.pos.val[key newval]:: value newval; / reprice positions
+	port.lastt::n;
+ }
+
+/
 .port.upd.mtm:{
 		if[ port.lastt=n:"d"$.bt.e[`etstamp] ; :()];
 		if[null port.lastt; port.lastt::n; :()];
@@ -35,7 +47,7 @@ if[`fill in key `port; delete fill from `port] / because fill,::x is faster than
 		port.pos.val[key newval]:: value newval; / reprice positions
 		port.lastt::n;
  }
-
+\
 /
 pnlCalc:{[t;q]
 	update pnl: (size*close-price) + 0^(prev sums size)*deltas close by sym from aj0 [`sym`date; t; q]
