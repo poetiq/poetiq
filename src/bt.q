@@ -21,15 +21,15 @@ doEvent:{[event]
  	f:cols .schema[event`event];
  	x:event`data;
  	data::$[0>type first x;enlist f!x;flip f!x];
- 	/.lg.tic[];.port.upd.mtm[]; .lg.toc[`port.upd];
- 	/.lg.tic[];.market.upd[]; .lg.toc[`market.upd];
- 	.port.upd.mtm[];
- 	.market.upd[];
+ 	.lg.tic[];.port.upd.mtm[]; .lg.toc[`port.upd];
+ 	.lg.tic[];.market.upd[]; .lg.toc[`market.upd];
+ 	/.port.upd.mtm[];
+ 	/.market.upd[];
  	.clock.upd[];
 	    / port
 	    / mtm
 	/.strategy.upd[];
-	.oms.upd[event`event; .bt.data];
+	.lg.tic[];.oms.upd[event`event; .bt.data];.lg.toc[`oms.upd];
 	/ risk
 	/ port constr
 		/ oms

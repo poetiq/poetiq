@@ -11,13 +11,13 @@ args: .Q.def[`cfg`strat!(`:src/;`)] .Q.opt .z.x
 
 .util.loaddir: {cd:system "cd"; system "l ", x; system "cd ", cd;};
 .util.loaddir getenv[`POETIQ], 1_string hsym args `cfg;
-.lg.tic[];
+/.lg.tic[];
 $[`=args `strat; 0N!"POETIQ dev mode: No strategy specified"; system "l ", 1_string hsym args `strat];
-.lg.toc[`strat];
+/.lg.toc[`strat];
 .lg.level::`e;
-.lg.tic[];
+/.lg.tic[];
 if[not (::)~`.[`dt]; .bt.run[];];
-.lg.toc[`bt];
+/.lg.toc[`bt];
 /.lg.dump[];\\
 -1 raze "Elapsed: ", string exec sum `time$tspan from .lg.tm where fun in `bt`strat;
 -1 raze "Last equity: ", string last port.equity.curve[`ec];
