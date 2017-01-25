@@ -29,6 +29,7 @@ oms.cancelorder:{
 	if[cnt:count delta:(where 0 < abs delta)#delta;
 		oms.sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
 	];
+ };
 .oms.upd.signal: {
 	signal[x`sym]::x`signal;
  }
