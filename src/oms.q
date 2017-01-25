@@ -32,7 +32,7 @@ oms.cancelorder:{
  }
 
 .oms.upd.targetw: {
-	.lg.tic[];
+	/.lg.tic[];
 	/currw:$[0=count .port.w;([sym:`$()]sz:`float$());.port.w];
 	targetw:: x[`sym]!x`w;
 	price: (key[targetw] union key port.w) # .market.lastpx;
@@ -41,7 +41,7 @@ oms.cancelorder:{
 		/ if[(`HLCL.L in key delta) and .clock.etstamp.date=1983.01.27;break];
 		oms.sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
 	];
-	.lg.toc[`oms.upd.targetw];
+	/.lg.toc[`oms.upd.targetw];
  }
 
 .oms.upd.signal: {
