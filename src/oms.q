@@ -32,21 +32,20 @@ oms.cancelorder:{
  }
 
 .oms.upd.targetw: {
+	.lg.tic[];
 	/currw:$[0=count .port.w;([sym:`$()]sz:`float$());.port.w];
 	targetw:: x[`sym]!x`w;
 	price: (key[targetw] union key port.w) # .market.lastpx;
 	delta: neg[opensz] + .math.round (targetw - port.w) * port.equity.last % price; / TODO: syms where market price is missing to be excluded from delta (orders)
-	/ if[0<sum abs opensz;break];
 	if[cnt:count delta:(where 0 < abs delta)#delta;
 		/ if[(`HLCL.L in key delta) and .clock.etstamp.date=1983.01.27;break];
 		oms.sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
 	];
-	/if[.clock.etstamp.date>= 1983.03.22;break];
+	.lg.toc[`oms.upd.targetw];
  }
 
 .oms.upd.signal: {
 	signal[x`sym]::x`signal;
-	/if[.clock.etstamp.date>= 1983.03.22;break];
  }
 
 .oms.upd.rebal: {

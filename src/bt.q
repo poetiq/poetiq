@@ -26,17 +26,14 @@ doEvent:{[event]
  	data::$[0>type first x;enlist f!x;flip f!x];
  	/.lg.tic[];.port.upd.mtm[]; .lg.toc[`port.upd];
  	/.lg.tic[];.market.upd[event`event; .bt.data]; .lg.toc[`market.upd];
- 	/.lg.tic[];.oms.upd[event`event; .bt.data]; .lg.toc[`oms.upd];
  	.port.upd.mtm[];
  	.market.upd[event`event; .bt.data];
- 	.oms.upd[event`event; .bt.data];
- 	
  	.clock.upd[];
 	    / port
 	    / mtm
 	/.strategy.upd[];
-
-
+	/.lg.tic[];.oms.upd[event`event; .bt.data];.lg.toc[` sv `oms.upd, event`event];
+	.oms.upd[event`event; .bt.data];
 	/ risk
 	/ port constr
 		/ oms

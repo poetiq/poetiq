@@ -22,4 +22,4 @@ if[not (::)~`.[`dt]; .bt.run[];];
 -1 raze "Elapsed: ", string exec sum `time$tspan from .lg.tm where fun in `bt`strat;
 -1 raze "Last equity: ", string last port.equity.curve[`ec];
 
-\l f:/qecvis/ec.q
+\l F:/qecvis/ec.q
