@@ -22,6 +22,7 @@ oms.cancelorder:{
  }
 
 .oms.upd.targetw: {
+	.lg.tic[];
 	/currw:$[0=count .port.w;([sym:`$()]sz:`float$());.port.w];
 	targetw:: x[`sym]!x`w;
 	price: (key[targetw] union key port.w) # .market.lastpx;
@@ -29,6 +30,7 @@ oms.cancelorder:{
 	if[cnt:count delta:(where 0 < abs delta)#delta;
 		oms.sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
 	];
+	.lg.toc[`oms.upd.targetw];
  };
 .oms.upd.signal: {
 	signal[x`sym]::x`signal;

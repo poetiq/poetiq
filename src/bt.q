@@ -32,8 +32,8 @@ doEvent:{[event]
 	    / port
 	    / mtm
 	/.strategy.upd[];
-	.lg.tic[];.oms.upd[event`event; .bt.data];.lg.toc[` sv `oms.upd, event`event];
-	/.oms.upd[event`event; .bt.data];
+	/.lg.tic[];.oms.upd[event`event; .bt.data];.lg.toc[` sv `oms.upd, event`event];
+	.oms.upd[event`event; .bt.data];
 	/ risk
 	/ port constr
 		/ oms
