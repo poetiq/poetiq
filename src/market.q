@@ -1,5 +1,5 @@
 \d .market
-lastpx:()!() / last traded price for each symbol
+lastpx:(enlist `)!(enlist 0nf) / last traded price for each symbol
 source:`trades;
 last.quotes:()!();
 orderid: 0;
@@ -58,7 +58,7 @@ execute.trades.lmt:{
 
 / send to portfolio
 orders.onfilled:{ 
-	.port.upd[`fill;x];
+	.oms.upd[`fill;x];
  }
 
 orders.oncanceled:{

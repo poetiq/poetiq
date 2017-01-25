@@ -1,45 +1,21 @@
-/ q bt.q -cfg src -strat strategy/strategy1.q -p 5000
-/\l C:/Projects/q/hdb/equitysim
+/ q bt.q -cfg src -strat strategy/sma.q -p 5000
+
+\l src/ta.q
 \l F:/hdb/equitysim
 
-sig: select last price by sym, date from trade / retrieve prices daily, locf regularisation
-sig: update ma:mavg[2;price] by sym from sig  / long signal if price > mavg; add crossover indicator
-sig: update xo: .ta.xover[price; ma] by sym from sig
-sig: update mustfollowxover: 1 < sums 1=xo by sym from sig / counts the crossovers chronologically. exclude initial long signals that precede the first true crossover
-sig: update rebalance: xo and mustfollowxover by sym from sig 
-sig: select date, sym, rebalance from sig where price>ma, mustfollowxover 
-sig: select date, sym, signal:1 from sig where rebalance=1 
-
-
-sig: aj[`sym`date; (select distinct sym from sig) cross (`date xasc select distinct date from sig) ;sig]
-
-ungroup select sym, w: w signal by date from sig
-
-cross
-w: {x%sum x}
-w 0N 1 1
-
-
-
-
-select date by sym from sig where 1=rebalance 
 
 / rebalance when new signal arrives to equal weights
-rebalance: 
 
-dt.fundamental: select date, sym, data:abs (rand each count[daily]#0h)%10000,indicator:`PE, tstamp:"p"$date from daily
+sig: select last price by value sym, date from trade / retrieve prices daily, locf regularisation
+sig: update ma:mavg[2;price] by sym from sig  / long signal if price > mavg; add crossover indicator
+sig: update xo: .ta.xover[price; ma] by sym from sig
+sig: update followsxover: 1 < sums 1=xo by sym from sig / counts the crossovers chronologically. exclude initial long signals that precede the first true crossover
+dt.signal: select sym, date, signal: xo>0 from sig where xo<>0, followsxover / order management system collects signals. Doesn't necessarily trade them
+dt.rebal: select tstamp: "p"$1+date, date from sig where xo=1, followsxover / rebalance events defined. Trigger trading the current signal
 
-dt.targetsz: ungroup select tstamp, sz:signum deltas price by sym from dt.trades
+/ order management system will calculate target weights based on prevailing signal (alpha, possibly optimisation task).
 
+weight: { long % sum long:x>0} / equal weight longs. Ignore shorts (negative signals)
 
-/ live trading version:
-
-\d .alpha
-dif: { select signal:last deltas price by sym from `.dt[`trades]}
-calc.fun: .alpha.dif
-
-\d .risk
-
-\d .portcon
-calc.fun:{[alpha] (`targetsz;select sym, sz:signum signal from alpha) } / (type;data); where type is targetsz or targetw
-
+/ Definition of this will be wrapped under the hood. 
+dt.trades: select tstamp:`timestamp$date+1, value sym, price:close from daily where sym in distinct dt.signal.sym

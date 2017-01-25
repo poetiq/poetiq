@@ -1,7 +1,8 @@
 targetsz: ()!()
 targetw: ()!()
-opensz: ()!() / maps symbols to total size of open orders by symbol
-math.round: {signum[x] * floor 0.5 + abs x}
+signal: ()!()
+opensz: (enlist `)!(enlist 0Ni) / maps symbols to total size of open orders by symbol
+
 oms.sendorder:{
 	opensz[x`sym]+:x`size;
 	.market.sendorder[x];
@@ -24,10 +25,19 @@ oms.cancelorder:{
 	/currw:$[0=count .port.w;([sym:`$()]sz:`float$());.port.w];
 	targetw:: x[`sym]!x`w;
 	price: (key[targetw] union key port.w) # .market.lastpx;
-	delta: math.round (targetw - port.w) * port.equity.last % price; / TODO: syms where market price is missing to be excluded from delta (orders)
+	delta: neg[opensz] + .math.round (targetw - port.w) * port.equity.last % price; / TODO: syms where market price is missing to be excluded from delta (orders)
 	if[cnt:count delta:(where 0 < abs delta)#delta;
 		oms.sendorder[([] id:.market.genorderids[cnt]; otype:cnt#`mkt; sym:key delta; size: value delta)];
 	];
+.oms.upd.signal: {
+	signal[x`sym]::x`signal;
+ }
+.oms.upd.rebal: {
+	.oms.upd.targetw `sym`w!(key d; value d:weight signal); / TODO: 
+ }
+.oms.upd.fill: {
+	opensz[x`sym]-:x`size;
+	.port.upd.fill[x];
  }
 
 /

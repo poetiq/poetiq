@@ -1,4 +1,7 @@
-/ library of statistical functions
+/ library of math & statistical functions
+\d .math
+
+round: {signum[x] * floor 0.5 + abs x}
 
 \d .stat
 
