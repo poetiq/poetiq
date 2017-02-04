@@ -11,15 +11,25 @@ args: .Q.def[`cfg`strat!(`:src/;`)] .Q.opt .z.x
 
 .util.loaddir: {cd:system "cd"; system "l ", x; system "cd ", cd;};
 .util.loaddir getenv[`POETIQ], 1_string hsym args `cfg;
-/.lg.tic[];
+
+.log.h: `:f:/log.xls
+.log.lvl:2
+
+
+.bt.fromto: -0W 0Wp / 1985.12.01 1986.01.01
+/.bt.fromto: 2014.07 2014.08m
+/.bt.fromto: -0W 1984.01.01
+
+.lg.tic[];
 $[`=args `strat; 0N!"POETIQ dev mode: No strategy specified"; system "l ", 1_string hsym args `strat];
-/.lg.toc[`strat];
-.lg.level::`e;
-/.lg.tic[];
+.lg.toc[`strat];
+.lg.tic[];
 if[not (::)~`.[`dt]; .bt.run[];];
-/.lg.toc[`bt];
-/.lg.dump[];\\
+.lg.toc[`bt];
+
 -1 raze "Elapsed: ", string exec sum `time$tspan from .lg.tm where fun in `bt`strat;
 -1 raze "Last equity: ", string last port.equity.curve[`ec];
 
 \l F:/qecvis/ec.q
+
+.log.dump[blotter];
