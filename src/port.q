@@ -28,7 +28,7 @@ if[`fill in key `port; delete fill from `port] / because fill,::x is faster than
  }
 
 .port.upd.mtm:{
-	`pos set pos lj .market.getlastpx[select sym, tstamp:.clock.now[] from pos];
+	`pos set pos lj .market.lastpx;
 	update val:px * sz from `pos;
 	update pnl:val - cost, cost:val from `pos;
 	.log.blot["mtm";pos];

@@ -43,7 +43,7 @@ ob:  `sym xkey update `s#sym, `u#id from flip `sym`id`sz!"sjj"$\:()
 .oms.upd.targetw: {
 	.log.blot["tw";x];
 	pos,:1!select sym, tw from x;
-	`pos set pos lj .market.getlastpx[select sym, tstamp:.bt.e.etstamp from pos];
+	`pos set pos lj .market.lastpx;
 	/break;
 	update 0^sz from `pos; / for symbols not yet in portfolio that were just added
 	update tsz: "j"$tw * equity % px from `pos;

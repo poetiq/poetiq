@@ -1,8 +1,8 @@
 / assuming full fills
 .market.ex.mktfill100:{
 	/f: o lj select last price, last tstamp by sym from x; / filled
-	/f: 0!update sz:1*sz from ob ij 1!select sym, px, tstamp from x;
-	f: 0!ob ij .market.getlastpx[select sym, tstamp:.clock.now[] from ob];
+	f: 0!update sz:1*sz from ob ij 1!select sym, px, tstamp from x;
+	/f: 0!ob ij .market.getlastpx[select sym, tstamp:.clock.now[] from ob];
 	if[count f;
 		.market.orders.onfilled[f];];
  }
@@ -37,7 +37,7 @@ genorderids:{ orderid:: last ret:1 + orderid + til x; ret }
 	/.lg.tic[];
 	/if[not all (a:distinct x`sym) in exec sym from `pos; 
 	/	.oms.upd.newsym a ];
-	/lastpx,:1!select sym, px from x;
+	lastpx,:1!select sym, px from x;
 
 	.log.blot["price";lastpx];
 	/if[any x[`sym] in opensyms;

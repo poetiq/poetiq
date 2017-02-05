@@ -35,7 +35,7 @@ transfev:{
 queue: {
 	/$[`fromto in key `.bt; q::select from queue[] where etstamp within "p"$get `.bt.fromto; q::queue[]]
 	q:`etstamp xasc (,/){transfev[x]} each 1_key `dt;
-	.calendar.trading.days:: exec distinct "d"$tstamp from `dt.px;
+	.calendar.trading.days:: exec distinct "d"$tstamp from `dt.trades;
 	.clock.event.schedule[];
  	q};
 
@@ -55,9 +55,13 @@ doEvent:{[event]
 	    / mtm
 	/.strategy.upd[];
 	/.lg.tic[];.oms.upd[event`event; .bt.data];.lg.toc[` sv `oms.upd, event`event];
+	/.lg.tic[];
 	.oms.upd[event`event; .bt.data];
-	.market.upd[`trades; .bt.data];
+	/.lg.toc[`oms];  .lg.tic[];
+	.market.upd[event`event; .bt.data];
+	/.lg.toc[`market];  .lg.tic[];
 	.clock.upd[];
+	/.lg.toc[`clock]; 
 	/ risk
 	/ port constr
 		/ oms
