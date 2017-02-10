@@ -23,6 +23,7 @@ timer.check:{
  }
 \
 \d .bt
+fromto: -0W 0Wp
 /fromto: "p"$2015.05m 2015.06m 
 groupbytstamp: {
 	if[notstamp: not `tstamp in cols x; x:update tstamp:"p"$1 + date from x]; / if missing, infer tstamp column from date column. TODO: parametrize the delay
