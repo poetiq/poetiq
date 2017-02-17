@@ -6,11 +6,13 @@
 / testq init.q /c/poetiq/tests/test_strat.q -cfg src
 
 /args: .Q.def[`cfg`strat!(`:src/;`)] .Q.opt .z.x
+.utl.require "qutil"
 args: .Q.def[enlist[`cfg]!enlist `:src/] .Q.opt .z.x
-.param.upd:{
+.prm.upd:{
+	 break;
 	qopt:.Q.opt .z.x;
 	listargs: (where 1<count each qopt)#qopt;
- 	argdict: .Q.def[1_ get[`.arg] ] (`strat`cfg,key listargs) _ qopt;
+ 	argdict: .Q.def[1_ get[`.prm] ] (`strat`cfg,key listargs) _ qopt;
  	ty:.Q.t type each argdict[key listargs];
  	argdict[key listargs]:value upper[ty]$listargs; / attempt to parse q list passed via command line
  	@[`.; key argdict;: ; value argdict];
