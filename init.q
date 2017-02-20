@@ -1,32 +1,53 @@
-/ sets up default environment. User can then change configuration on the fly and run backtest from q prompt
+/ sets up default environment. User can run backtest from q prompt and change configuration on the fly.
+/ $ bt src F:/lib/Stockopedia/Q/strategy/stockranks.q --exgrp EU --mktcap.sel 5 --mktcap.bins "0 1 10 50 100 350" --qnth 10
+/ $ q init.q -cfg src
 
-/ testq bt.q /c/poetiq/tests/test_strat.q -cfg src -strat /c/poetiq/strategy/strategy1.q
-
-/ q init.q -cfg src
-/ testq init.q /c/poetiq/tests/test_strat.q -cfg src
-
-/args: .Q.def[`cfg`strat!(`:src/;`)] .Q.opt .z.x
 .utl.require "qutil"
-args: .Q.def[enlist[`cfg]!enlist `:src/] .Q.opt .z.x
-.prm.upd:{
-	 break;
-	qopt:.Q.opt .z.x;
-	listargs: (where 1<count each qopt)#qopt;
- 	argdict: .Q.def[1_ get[`.prm] ] (`strat`cfg,key listargs) _ qopt;
- 	ty:.Q.t type each argdict[key listargs];
- 	argdict[key listargs]:value upper[ty]$listargs; / attempt to parse q list passed via command line
- 	@[`.; key argdict;: ; value argdict];
+.utl.require "src/lg.q"
+.utl.require "src/util.q"
+
+/ preprocess key-value pair into list of four - see signature of .utl.addOptDef
+.utl.arg.proc:{(string x; 
+  $[1<count y; (),upper .Q.ty y; 105h=type y; "*"; .Q.ty y]; 
+  y; 
+  $[10h=abs type y;(x; {value x});x])}
+
+/ Parses strategy arguments as provided via CLI during configuration time. 
+/ Exported function that can be called from strategy file. Registers strategy parameters and their defaults.  
+loadParams:{
+	.utl.arg.args: opts;
+	f: { enlist $[(::) ~ v:get x; enlist (::) ; / exclude environment headers (::)
+		`upd~first p:except[` vs x] ``prm; enlist (::) ; / exclude .prm.upd itself
+		  .utl.arg.proc [` sv p;v] ] }; / add options from the environment
+	.utl.addOptDef .' .util.xtree[; `.prm] f ;
+	.utl.parseArgs[]; / parse options
  }
 
-/.util.loadpath: {system "l ", $[10h=type x; x; ":"= first string x; 1_string x; string x]; } / cd:system "cd"; system "cd ", cd
-.util.loadpath: {cd:system "cd"; system "l ", $[10h=type x; x; ":"= first string x; 1_string x; string x]; system "cd ", cd;} / cd:system "cd"; system "cd ", cd
 .proc.purge:{ {if[count key x;![x;();0b; key[x]  except ` ]]} each `.blot`.bt`.clock`.dt`dt`.lg`.log`.market`.oms`.port`port`.strategy`timer;
-			delete margin, pos, ob from `.;} 
-/.cfg.loadfile:{ if[not all `oms`market`port`bt in `.; .util.loadpath x;]};
-/.strategy.loadfile:{ system "l ", .util.path x; }
+			delete margin, pos, ob from `.;}
 
-.util.loadpath args `cfg;
+/ parse CLI arguments
+if[count .utl.arg.args;
+	.utl.addArg["S"; enlist `:src; (),0; (`.prm.cfg;{ hsym each x}) ];
+	/.utl.addOpt["json";"*";(`.prm.json;{.j.k raze x})];
+	args: #[;.utl.arg.args] i:first where .utl.arg.args like "--*"
+	opts: i _.utl.arg.args; .utl.arg.args: args; / assumption: options start after first "--", filepaths before
+	.utl.parseArgs[]]; /positional arguments. Options are parsed afterwards.
 
+
+/ loads files provided from positional CLI arguments
 .lg.tic[];
-$[null args `strat; 0N!"No strategy specified: entering POETIQ dev mode."; .util.loadpath args `strat] ; /.util.loadpath args `strat];
+$[.util.exists `.prm.cfg; .util.loadpath each .prm.cfg;
+	0N!"No strategy specified: entering POETIQ dev mode."];
 .lg.toc[`strat];
+
+/
+/ examples of manual parameter control
+.utl.addOptDef["qnth"; "I";10;`qnth];
+.utl.addOptDef["freq"; "S";`quarterly;`freq];	
+.utl.addOptDef["quantiles"; "S";`deciles;`quantiles];
+.utl.addOptDef["mktcap.sel"; "I";5;`mktcap.sel];
+.utl.addOptDef["mktcap.bins"; (),"F";0 1 10 50 100 350f;`mktcap.bins ]; /{"f"$value x}
+.utl.addOptDef["mktcap.op"; "*"; ">="; (`mktcap.op; {value x})];
+.utl.addOptDef["exgrp"; "S"; `UK; `exgrp];
+.utl.parseArgs[];

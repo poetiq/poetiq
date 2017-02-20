@@ -1,5 +1,4 @@
 / launches backtest from command line
-.utl.require "qutil"
 \l init.q
 
 .log.h: `:f:/log.xls
