@@ -1,6 +1,5 @@
 / sets up default environment. User can run backtest from q prompt and change configuration on the fly.
 / $ bt src F:/lib/Stockopedia/Q/strategy/stockranks.q --exgrp EU --mktcap.sel 5 --mktcap.bins "0 1 10 50 100 350" --qnth 10
-/ $ q init.q -cfg src
 
 .utl.require "qutil"
 .utl.require "src/lg.q"
@@ -30,7 +29,7 @@ loadParams:{
 if[count .utl.arg.args;
 	.utl.addArg["S"; enlist `:src; (),0; (`.prm.cfg;{ hsym each x}) ];
 	/.utl.addOpt["json";"*";(`.prm.json;{.j.k raze x})];
-	args: #[;.utl.arg.args] i:first where .utl.arg.args like "--*"
+	args: #[;.utl.arg.args] i:min count[.utl.arg.args] , first where .utl.arg.args like "--*";
 	opts: i _.utl.arg.args; .utl.arg.args: args; / assumption: options start after first "--", filepaths before
 	.utl.parseArgs[]]; /positional arguments. Options are parsed afterwards.
 
