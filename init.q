@@ -9,37 +9,60 @@
 .utl.arg.proc:{(string x; 
   $[1<count y; (),upper .Q.ty y; 105h=type y; "*"; .Q.ty y]; 
   y; 
-  $[10h=abs type y;(x; {value x});x])}
+  $[10h=abs type y;(` sv `.cfg.prm, x; {value x});` sv `.cfg.prm, x])};
 
 / Parses strategy arguments as provided via CLI during configuration time. 
 / Exported function that can be called from strategy file. Registers strategy parameters and their defaults.  
 loadParams:{
-	.utl.arg.args: opts;
-	f: { enlist $[(::) ~ v:get x; enlist (::) ; / exclude environment headers (::)
-		`upd~first p:except[` vs x] ``prm; enlist (::) ; / exclude .prm.upd itself
-		  .utl.arg.proc [` sv p;v] ] }; / add options from the environment
-	.utl.addOptDef .' .util.xtree[; `.prm] f ;
-	.utl.parseArgs[]; / parse options
+	if[.util.exists[`.utl.arg.deferredOpts];
+		.utl.arg.args: .utl.arg.deferredOpts;
+		f: { enlist $[(::) ~ v:get x; enlist (::) ; / exclude environment headers (::)
+		  .utl.arg.proc [` sv except[` vs x] ``prm; v] ] }; / add options from the environment
+		.utl.addOptDef .' .util.xtree[; `.prm] f ;
+		.utl.parseArgs[];]; / parse options
+	`.cfg.prm upsert 1_key[`.cfg.prm]_.prm;
+	@[{`. upsert get x}; `.cfg.prm; {}];
  }
 
-.proc.purge:{ {if[count key x;![x;();0b; key[x]  except ` ]]} each `.blot`.bt`.clock`.dt`dt`.lg`.log`.market`.oms`.port`port`.strategy`timer;
+.proc.purge:{ {if[count key x;![x;();0b; key[x]  except ` ]]} each `.blot`.bt`.cfg`.clock`.dt`dt`.lg`.log`.market`.oms`.port`port`.strategy`timer;
 			delete margin, pos, ob from `.;}
 
 / parse CLI arguments
 if[count .utl.arg.args;
-	.utl.addArg["S"; enlist `:src; (),0; (`.prm.cfg;{ hsym each x}) ];
+	.utl.addOpt["backtest";1b;`.cfg.bt.run];
+	.utl.addArg["S"; enlist `:src; (),0; (`.cfg.paths;{ hsym each x}) ];
 	/.utl.addOpt["json";"*";(`.prm.json;{.j.k raze x})];
-	args: #[;.utl.arg.args] i:min count[.utl.arg.args] , first where .utl.arg.args like "--*";
-	opts: i _.utl.arg.args; .utl.arg.args: args; / assumption: options start after first "--", filepaths before
-	.utl.parseArgs[]]; /positional arguments. Options are parsed afterwards.
-
+	bi: where .utl.arg.args in "--",/:.utl.arg[`boolOpts;;0];
+	i:where .utl.arg.args in .utl.arg[`regOpts`regDefOpts;;0];
+	args: #[;.utl.arg.args] fi:min count[.utl.arg.args] , first where[.utl.arg.args like "--*"] except (bi,i,i+1);
+	.utl.arg.deferredOpts: .utl.arg.args bi, (fi _til count .utl.arg.args) except (i,i+1); 
+	.utl.arg.args: args; / assumption: options start after first "--", filepaths before
+	.utl.parseArgs[];
+ ]; /positional arguments. Options are parsed afterwards.
 
 / loads files provided from positional CLI arguments
 .lg.tic[];
-$[.util.exists `.prm.cfg; .util.loadpath each .prm.cfg;
-	0N!"No strategy specified: entering POETIQ dev mode."];
+.util.loadpath each @[value;`.cfg.paths;{-1 "Welcome to POETIQ dev mode. Load or specify your strategy here.";()}];
 .lg.toc[`strat];
 
+backtest:{
+	/.util.loadpath each @[get; `.cfg.paths; ()];
+	if[99h=type x;
+		if[not `prm~prm:x[`cfg;`prm]; `.cfg.prm upsert prm];
+		if[not `paths~p:x[`cfg;`paths]; .util.loadpath each p];
+	];
+	.log.h: `:f:/log.xls;
+	.log.lvl:2;
+	.lg.tic[];
+	.bt.run[];
+	.lg.toc[`bt];
+	-1 raze "Elapsed: ", string exec sum `time$tspan from .lg.tm where fun in `bt`strat;
+	-1 raze "Last equity: ", string last port.equity.curve[`ec];
+	system "l F:/qecvis/ec.q";
+	.log.dump[blotter];
+ }
+
+if[@[value;`.cfg.bt.run;0b]; backtest[]];
 /
 / examples of manual parameter control
 .utl.addOptDef["qnth"; "I";10;`qnth];
