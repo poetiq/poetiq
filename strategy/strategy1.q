@@ -1,7 +1,6 @@
 / $ bt src strategy/strategy1.q
 
-/\l C:/Projects/q/hdb/equitysim
-\l F:/hdb/equitysim
+\l /home/ubuntu/q/equitysim
 
 dt.trades: select value sym, px:price, size, tstamp: time + date from trade
 dt.fundamental: select date, sym, data:abs (rand each count[daily]#0h)%10000,indicator:`PE, tstamp:"p"$date from daily

@@ -15,10 +15,9 @@ q buildhdb.q -S 104831        # seed random numbers generator for reproducible r
 ## Installation ##
 
 ````
-$ export POETIQ=usr/bin/poetiq/
-$ export QPATH="path/to/qutil; $POETIQ"
-$ alias bt='q $POETIQ/init.q -p 5000 --backtest'
-$ cd $POETIQ
+$ alias q='QPATH=~/q/lib:~/q/repo/poetiq'
+$ alias bt='q ~/q/repo/poetiq/init.q -p 5000 --backtest'
+$ cd poetiq
 ````
 
 ## Run ##
@@ -29,5 +28,5 @@ $ bt src strategy/strategy1.q
 Interactively:
 ````
 q init.q
-q) env.cfg.paths: getenv[`POETIQ],/: ("src/";"strategy/strategy1.q") / or write your own strategy
+q) env.cfg.paths: `:src/`:strategy/strategy1.q / or write your own strategy
 q) backtest[env]

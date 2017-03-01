@@ -25,4 +25,8 @@
         should["be valid q process state plus generated events"]{};
         should["be sent via websockets"]{};
         should["be sent via IPC message"]{};
+        should["be displayed with visualisation handler if provided"]{
+          cfg.vis: `:qecvis/ec.q;
+            / system "l F:/qecvis/ec.q";
+        };
  };

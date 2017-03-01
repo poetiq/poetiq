@@ -1,5 +1,4 @@
 / sets up default environment. User can run backtest from q prompt and change configuration on the fly.
-/ $ bt src F:/lib/Stockopedia/Q/strategy/stockranks.q --exgrp EU --mktcap.sel 5 --mktcap.bins "0 1 10 50 100 350" --qnth 10
 
 .utl.require "qutil"
 .utl.require "src/lg.q"
@@ -58,7 +57,6 @@ backtest:{
 	.lg.toc[`bt];
 	-1 raze "Elapsed: ", string exec sum `time$tspan from .lg.tm where fun in `bt`strat;
 	-1 raze "Last equity: ", string last port.equity.curve[`ec];
-	system "l F:/qecvis/ec.q";
 	.log.dump[blotter];
  }
 
