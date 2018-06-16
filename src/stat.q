@@ -26,7 +26,16 @@ round:{[d;n]
 
  }
 
+rnd:{x*"j"$y%x} / .math.rnd[1] 4.554 https://groups.google.com/forum/#!topic/personal-kdbplus/W7rZ7R8dvQo
+
 \d .stat
+
+/ TODO: consider for speed using fby (avg;rank l) fby l . See https://groups.google.com/forum/#!topic/personal-kdbplus/HR5ZWh4CNw86
+pcrank:{                                          / percentile rank, nearest rank method (https://en.wikipedia.org/wiki/Percentile)
+n:asc x where not null x;                       / sorted vector excluding nulls
+  if[not count n;:0n];                            / return 0n when all nulls
+  (sums[count each group n]%count n) @ x          / map vector to cumulative fractions formed from counting by group of same values
+  }                                               / usage: pcrank[0N 1 2 0N 2 1 5] / 0n 0.4 0.8 0n 0.8 0.4 1
 
 seq:{x+z*til ceiling(1+y-x)%z}  				  / sequence from to step. Each paralelizes to a vector
 quantile:{seq[0;100;100%x] binr y}  			  / x-th quintile memberships of y. Vigintile: x=5
